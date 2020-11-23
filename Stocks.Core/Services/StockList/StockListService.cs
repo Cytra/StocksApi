@@ -1,22 +1,24 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System.IO;
-using Stocks.Model.FMP.Requests.StockList;
-using Stocks.Model.Requests;
+using Stocks.Model;
+using Stocks.Model.DCF;
+using Stocks.Model.StockList;
 
-namespace Stocks.Core.Services
+namespace Stocks.Core.Services.StockList
 {
-    public class StockService : IStockService
+    public class StockListService : IStockListService
     {
-        private const string Token1 = "3102ef91f3e039d1d49f03cb0537acab";
-
         private readonly IHttpClientFactory _httpClientFactory;
-        public StockService(IHttpClientFactory httpClientFactory)
+        private readonly AppSettings _settings;
+        public StockListService(IHttpClientFactory httpClientFactory, IOptions<AppSettings> settings)
         {
             _httpClientFactory = httpClientFactory;
+            _settings = settings.Value;
         }
         public async Task<List<StockScreenListItem>> GetSortedStocks(DCFRequest input)
         {
@@ -29,6 +31,20 @@ namespace Stocks.Core.Services
             using JsonTextReader jsonReader = new JsonTextReader(reader);
             JsonSerializer ser = new JsonSerializer();
             var result = ser.Deserialize<List<StockScreenListItem>>(jsonReader);
+            return result;
+        }
+
+        private string GetSortedStocksUrl(DCFRequest input)
+        {
+            var result = "https://financialmodelingprep.com/api/v3/";
+            result += $"stock-screener?marketCapMoreThan={input.MarketCapMoreThan.ToString()}";
+            result += $"&betaMoreThan=1&volumeMoreThan={input.VolumeMoreThan}";
+            if (!string.IsNullOrWhiteSpace(input.Sector))
+            {
+                result += $"&sector={input.Sector}";
+            }
+            result += $"&dividendMoreThan={input.DividendMoreThan.ToString()}";
+            result += $"&apikey={_settings.ApiToken}";
             return result;
         }
 
@@ -48,21 +64,7 @@ namespace Stocks.Core.Services
 
         private string GetStockListUrl()
         {
-            var result = $"https://financialmodelingprep.com/api/v3/stock/list?apikey=" + Token1;
-            return result;
-        }
-
-        private string GetSortedStocksUrl(DCFRequest input)
-        {
-            var result = "https://financialmodelingprep.com/api/v3/";
-            result += $"stock-screener?marketCapMoreThan={input.MarketCapMoreThan.ToString()}";
-            result += $"&betaMoreThan=1&volumeMoreThan={input.VolumeMoreThan}";
-            if (!string.IsNullOrWhiteSpace(input.Sector))
-            {
-                result += $"&sector={input.Sector}";
-            }
-            result += $"&dividendMoreThan={input.DividendMoreThan.ToString()}";
-            result += $"&apikey={Token1}";
+            var result = $"https://financialmodelingprep.com/api/v3/stock/list?apikey=" + _settings.ApiToken;
             return result;
         }
     }

@@ -7,9 +7,8 @@ using System.IO;
 using Stocks.Data.Repositories;
 using Stocks.Data.Entities.DCF;
 using AutoMapper;
-using Stocks.Model.FMP.Requests.DCF;
-using Stocks.Model.Requests;
-using Stocks.Core.Services;
+using Stocks.Core.Services.StockList;
+using Stocks.Model.DCF;
 
 namespace Stocks.Core.Providers
 {
@@ -20,13 +19,17 @@ namespace Stocks.Core.Providers
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IStocksRepository _stocksRepository;
         private readonly IMapper _mapper;
-        private readonly IStockService _stockService;
-        public DcfProvider(IMapper mapper, IHttpClientFactory httpClientFactory, IStocksRepository stocksRepository, IStockService stockService)
+        private readonly IStockListService _stockListService;
+        public DcfProvider(
+            IMapper mapper, 
+            IHttpClientFactory httpClientFactory, 
+            IStocksRepository stocksRepository, 
+            IStockListService stockListService)
         {
             _mapper = mapper;
-            _httpClientFactory = httpClientFactory;
+            _httpClientFactory = httpClientFactory; 
             _stocksRepository = stocksRepository;
-            _stockService = stockService;
+            _stockListService = stockListService;
         }
 
         public async Task<List<Historical_discounted_cash_flows_Model>> GetDCF(string stock)
@@ -45,7 +48,7 @@ namespace Stocks.Core.Providers
 
         public async Task UpdateDCFs(DCFRequest request)
         {
-            var stocks = await _stockService.GetSortedStocks(request);
+            var stocks = await _stockListService.GetSortedStocks(request);
             foreach (var stock in stocks)
             {
                 await _stocksRepository.DeleteDCF(stock.Symbol);

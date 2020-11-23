@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace Stocks.Model.FMP.Requests.DCF
+namespace Stocks.Model.DCF
 {
     public class Historical_discounted_cash_flow_Model
     {

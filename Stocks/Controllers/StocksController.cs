@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Providers;
 using System.Threading.Tasks;
-using Stocks.Model.Requests;
-using Stocks.Core.Services;
+using Stocks.Core.Services.StockList;
+using Stocks.Model.DCF;
 
 namespace Stocks.Controllers
 {
@@ -11,11 +11,13 @@ namespace Stocks.Controllers
     public class StocksController : ControllerBase
     {
         private readonly IDcfProvider _stockProvider;
-        private readonly IStockService _stockService;
-        public StocksController(IDcfProvider stockProvider, IStockService stockService)
+        private readonly IStockListService _stockListService;
+        public StocksController(
+            IDcfProvider stockProvider,
+            IStockListService stockListService)
         {
             _stockProvider = stockProvider;
-            _stockService = stockService;
+            _stockListService = stockListService;
         }
 
         [HttpPost]
@@ -27,15 +29,15 @@ namespace Stocks.Controllers
 
         [HttpPost]
         public async Task<IActionResult> GetSortedStockList(DCFRequest request)
-        {
-            var result = await _stockService.GetSortedStocks(request);
+        { 
+            var result = await _stockListService.GetSortedStocks(request);
             return Ok(result.Count);  
         }
 
         [HttpGet]
         public async Task<IActionResult> GetStockList()
         {
-            var result = await _stockService.GetStockList();
+            var result = await _stockListService.GetStockList();
             return Ok(result.Count);
         }
     }

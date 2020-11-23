@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Stocks.Model.Dividend;
+
+namespace Stocks.Core.Services.Dividend
+{
+    public interface IDividendCalendarService
+    {
+        Task<List<DividendCalendarItem>> GetDividendCalendar(DividendCalendarRequest request);
+    }
+}

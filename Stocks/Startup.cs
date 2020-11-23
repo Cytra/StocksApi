@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Stocks.Core.Providers;
 using Stocks.Core.Services;
+using Stocks.Core.Services.Dividend;
+using Stocks.Core.Services.StockList;
+using Stocks.Core.Services.StockPrice;
 using Stocks.Data.Contexts;
 using Stocks.Data.Repositories;
 using Stocks.Middleware;
@@ -30,7 +33,11 @@ namespace Stocks
         {
             services.AddScoped<IDcfProvider, DcfProvider>();
             services.AddScoped<IStocksRepository, StocksRepository>();
-            services.AddScoped<IStockService, StockService>();
+            services.AddScoped<IStockListService, StockListService>();
+            services.AddScoped<IDividendProvider, DividendProvider>();
+            services.AddScoped<Core.Services.StockList.IStockListService, Core.Services.StockList.StockListService>();
+            services.AddScoped<IDividendCalendarService, DividendCalendarService>();
+            services.AddScoped<IStockPriceService, StockPriceService>();
             services.AddControllers();
             services.AddHttpClient("Stock", client =>
             {

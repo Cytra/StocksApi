@@ -1,5 +1,5 @@
-﻿using Stocks.Model.Requests;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Stocks.Model.DCF;
 
 namespace Stocks.Core.Providers
 {

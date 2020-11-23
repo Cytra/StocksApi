@@ -1,6 +1,6 @@
-﻿using Stocks.Model.Requests;
-using Swashbuckle.AspNetCore.Filters;
+﻿using Swashbuckle.AspNetCore.Filters;
 using System.Collections.Generic;
+using Stocks.Model.DCF;
 
 namespace Stocks.Samples
 {

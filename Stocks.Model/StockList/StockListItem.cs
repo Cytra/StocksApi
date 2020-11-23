@@ -1,4 +1,4 @@
-﻿namespace Stocks.Model.FMP.Requests.StockList
+﻿namespace Stocks.Model.StockList
 {
     public class StockListItem
     {

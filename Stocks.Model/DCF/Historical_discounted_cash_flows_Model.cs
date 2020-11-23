@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Stocks.Model.FMP.Requests.DCF
+namespace Stocks.Model.DCF
 {
     public class Historical_discounted_cash_flows_Model
     {
