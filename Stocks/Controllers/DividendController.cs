@@ -21,12 +21,5 @@ namespace Stocks.Controllers
             var result = await _dividendProvider.GetDividendCalendar(request);
             return Ok(result);
         }
-        [HttpPost]
-        public async Task<IActionResult> GetDividendCalendarWithPrices(DividendCalendarRequest request)
-        {
-            var result = await _dividendProvider.GetDividendCalendarWithPrices(request);
-            return Ok(result);
-        }
-
     }
 }

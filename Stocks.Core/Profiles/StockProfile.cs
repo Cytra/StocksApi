@@ -3,6 +3,7 @@ using Stocks.Data.Entities.DCF;
 using Stocks.Data.Entities.Dividend;
 using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.StockPrice;
 using Stocks.Model.DCF;
 using Stocks.Model.Dividend;
@@ -25,6 +26,8 @@ namespace Stocks.Core.Profiles
             CreateMap<SPYconstituentModel, SPYconstituentEntity>();
 
             CreateMap<IncomeStatement, IncomeStatementEntity>();
+
+            CreateMap<Model.Profile.StockProfile, StockProfileEntity>();
 
 
             //        CreateMap<PaymentEntity, Payload>()

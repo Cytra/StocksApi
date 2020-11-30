@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Entities.Dividend;
 using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.StockPrice;
 
 namespace Stocks.Data.Repositories
@@ -77,6 +78,18 @@ namespace Stocks.Data.Repositories
         public async Task SaveIncomeStatementEntities(List<IncomeStatementEntity> entities)
         {
             _stocksContext.IncomeStatementEntities.AddRange(entities);
+            await _stocksContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteStockProfileEntities()
+        {
+            var entities = await _stocksContext.StockProfileEntities.ToListAsync();
+            await _stocksContext.BulkDeleteAsync(entities);
+        }
+
+        public async Task SaveStockProfileEntities(List<StockProfileEntity> entities)
+        {
+            _stocksContext.StockProfileEntities.AddRange(entities);
             await _stocksContext.SaveChangesAsync();
         }
 

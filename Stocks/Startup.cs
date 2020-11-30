@@ -11,6 +11,7 @@ using Stocks.Core.Services;
 using Stocks.Core.Services.Dividend;
 using Stocks.Core.Services.FinancialStatements;
 using Stocks.Core.Services.Index;
+using Stocks.Core.Services.Profile;
 using Stocks.Core.Services.StockList;
 using Stocks.Core.Services.StockPrice;
 using Stocks.Core.Strategies;
@@ -48,6 +49,8 @@ namespace Stocks
             services.AddScoped<IIncomeStatementService, IncomeStatementService>();
             services.AddScoped<IIncomeStatementProvider, IncomeStatementProvider>();
             services.AddScoped<IDcfStrategy, DcfStrategy>();
+            services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IProfileProvider, ProfileProvider>();
             services.AddControllers();
             services.AddHttpClient("Stock", client =>
             {

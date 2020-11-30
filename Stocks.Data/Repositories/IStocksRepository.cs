@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Stocks.Data.Entities.Dividend;
 using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.StockPrice;
 
 namespace Stocks.Data.Repositories
@@ -21,5 +22,7 @@ namespace Stocks.Data.Repositories
         Task SaveSPYconstituentEntities(List<SPYconstituentEntity> entities);
         Task DeleteIncomeStatementEntities();
         Task SaveIncomeStatementEntities(List<IncomeStatementEntity> entities);
+        Task DeleteStockProfileEntities();
+        Task SaveStockProfileEntities(List<StockProfileEntity> entities);
     }
 }

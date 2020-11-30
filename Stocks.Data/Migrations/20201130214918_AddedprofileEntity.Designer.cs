@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stocks.Data.Contexts;
 
 namespace Stocks.Data.Migrations
 {
     [DbContext(typeof(StocksContext))]
-    partial class StocksContextModelSnapshot : ModelSnapshot
+    [Migration("20201130214918_AddedprofileEntity")]
+    partial class AddedprofileEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -267,13 +269,13 @@ namespace Stocks.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Beta")
+                    b.Property<decimal>("Beta")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Ceo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Changes")
+                    b.Property<decimal>("Changes")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Cik")
@@ -297,13 +299,13 @@ namespace Stocks.Data.Migrations
                     b.Property<string>("Cusip")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Dcf")
+                    b.Property<decimal>("Dcf")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("DcfDiff")
+                    b.Property<decimal>("DcfDiff")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool?>("DefaultImage")
+                    b.Property<bool>("DefaultImage")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
@@ -315,7 +317,7 @@ namespace Stocks.Data.Migrations
                     b.Property<string>("ExchangeShortName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("FullTimeEmployees")
+                    b.Property<long>("FullTimeEmployees")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Image")
@@ -324,16 +326,16 @@ namespace Stocks.Data.Migrations
                     b.Property<string>("Industry")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("IpoDate")
+                    b.Property<DateTime>("IpoDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Isin")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("LastDiv")
+                    b.Property<decimal>("LastDiv")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<long?>("MktCap")
+                    b.Property<long>("MktCap")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Phone")
@@ -354,7 +356,7 @@ namespace Stocks.Data.Migrations
                     b.Property<string>("Symbol")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("VolAvg")
+                    b.Property<long>("VolAvg")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Website")

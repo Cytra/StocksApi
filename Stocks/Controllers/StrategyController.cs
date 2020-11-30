@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Stocks.Core.Providers;
 using Stocks.Core.Strategies;
+using Stocks.Model.Dividend;
 using Stocks.Model.Strategy;
 
 namespace Stocks.Controllers
@@ -11,10 +13,12 @@ namespace Stocks.Controllers
     {
         private readonly IMomentumStrategy _momentumStrategy;
         private readonly IDcfStrategy _dcfStrategy;
-        public StrategyController(IMomentumStrategy momentumStrategy, IDcfStrategy dcfStrategy)
+        private readonly IDividendProvider _dividendProvider;
+        public StrategyController(IMomentumStrategy momentumStrategy, IDcfStrategy dcfStrategy, IDividendProvider dividendProvider)
         {
             _momentumStrategy = momentumStrategy;
             _dcfStrategy = dcfStrategy;
+            _dividendProvider = dividendProvider;
         }
 
         [HttpPost]
@@ -25,10 +29,17 @@ namespace Stocks.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GetDCF(StrategyRequest request)
+        public async Task<IActionResult> GetDCFData(StrategyRequest request)
         {
             await _dcfStrategy.Get(request);
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DividendArbitrage(DividendCalendarRequest request)
+        {
+            var result = await _dividendProvider.GetDividendCalendarWithPrices(request);
+            return Ok(result);
         }
     }
 }
