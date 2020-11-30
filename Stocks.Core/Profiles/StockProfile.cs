@@ -1,8 +1,14 @@
 ﻿using AutoMapper;
 using Stocks.Data.Entities.DCF;
 using Stocks.Data.Entities.Dividend;
+using Stocks.Data.Entities.FinancialStatements;
+using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.StockPrice;
 using Stocks.Model.DCF;
 using Stocks.Model.Dividend;
+using Stocks.Model.FinancialStatements;
+using Stocks.Model.Index;
+using Stocks.Model.StockPrice;
 
 namespace Stocks.Core.Profiles
 {
@@ -13,6 +19,12 @@ namespace Stocks.Core.Profiles
             CreateMap<Historical_discounted_cash_flow_Model, Historical_discounted_cash_flow_Entity>();
 
             CreateMap<DividendCalendarItem, DividendCalendarEntity>();
+
+            CreateMap<StockPriceHistoricItem, StockPriceHistoricEntity>();
+
+            CreateMap<SPYconstituentModel, SPYconstituentEntity>();
+
+            CreateMap<IncomeStatement, IncomeStatementEntity>();
 
 
             //        CreateMap<PaymentEntity, Payload>()

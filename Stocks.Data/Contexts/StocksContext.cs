@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Entities.DCF;
 using Stocks.Data.Entities.Dividend;
+using Stocks.Data.Entities.FinancialStatements;
+using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.StockPrice;
 
 namespace Stocks.Data.Contexts
 {
@@ -12,6 +15,9 @@ namespace Stocks.Data.Contexts
 
         public DbSet<Historical_discounted_cash_flow_Entity> DCFs { get; set; }
         public DbSet<DividendCalendarEntity> DividendCalendarEntities { get; set; }
+        public DbSet<StockPriceHistoricEntity> StockPriceHistoricEntities { get; set; }
+        public DbSet<SPYconstituentEntity> SPYconstituentEntities { get; set; }
+        public DbSet<IncomeStatementEntity> IncomeStatementEntities { get; set; }
 
     }
 }

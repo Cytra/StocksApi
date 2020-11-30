@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stocks.Data.Contexts;
 
 namespace Stocks.Data.Migrations
 {
     [DbContext(typeof(StocksContext))]
-    partial class StocksContextModelSnapshot : ModelSnapshot
+    [Migration("20201129131154_AddedSpyHistoryTable")]
+    partial class AddedSpyHistoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,132 +89,6 @@ namespace Stocks.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DividendCalendarEntities");
-                });
-
-            modelBuilder.Entity("Stocks.Data.Entities.FinancialStatements.IncomeStatementEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("AcceptedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("AccountsPayables")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AccountsReceivables")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AcquisitionsNet")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CapitalExpenditure")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CashAtBeginningOfPeriod")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CashAtEndOfPeriod")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ChangeInWorkingCapital")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CommonStockIssued")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CommonStockRepurchased")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("DebtRepayment")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("DeferredIncomeTax")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("DepreciationAndAmortization")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("DividendsPaid")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("EffectOfForexChangesOnCash")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("FillingDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FinalLink")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("FreeCashFlow")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("Inventory")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("InvestmentsInPropertyPlantAndEquipment")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("NetCashProvidedByOperatingActivities")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("NetCashUsedForInvestingActivites")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("NetCashUsedProvidedByFinancingActivities")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("NetChangeInCash")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("NetIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OperatingCashFlow")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OtherFinancingActivites")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OtherInvestingActivites")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OtherNonCashItems")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OtherWorkingCapital")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Period")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("PurchasesOfInvestments")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SalesMaturitiesOfInvestments")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("StockBasedCompensation")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Symbol")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IncomeStatementEntities");
                 });
 
             modelBuilder.Entity("Stocks.Data.Entities.Index.SPYconstituentEntity", b =>

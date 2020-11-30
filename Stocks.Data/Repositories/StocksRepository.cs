@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Entities.Dividend;
+using Stocks.Data.Entities.FinancialStatements;
+using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.StockPrice;
 
 namespace Stocks.Data.Repositories
 {
@@ -38,6 +41,42 @@ namespace Stocks.Data.Repositories
         public async Task SaveDividendCalendarEntity(DividendCalendarEntity input)
         {
             _stocksContext.DividendCalendarEntities.Add(input);
+            await _stocksContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteAllStockPriceHistoricEntities()
+        {
+            var entities = await _stocksContext.StockPriceHistoricEntities.ToListAsync();
+            await _stocksContext.BulkDeleteAsync(entities);
+        }
+
+        public async Task SaveStockPriceHistoricEntities(List<StockPriceHistoricEntity> entities)
+        {
+            _stocksContext.StockPriceHistoricEntities.AddRange(entities);
+            await _stocksContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteSPYconstituentEntities()
+        {
+            var entities = await _stocksContext.SPYconstituentEntities.ToListAsync();
+            await _stocksContext.BulkDeleteAsync(entities);
+        }
+
+        public async Task SaveSPYconstituentEntities(List<SPYconstituentEntity> entities)
+        {
+            _stocksContext.SPYconstituentEntities.AddRange(entities);
+            await _stocksContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteIncomeStatementEntities()
+        {
+            var entities = await _stocksContext.IncomeStatementEntities.ToListAsync();
+            await _stocksContext.BulkDeleteAsync(entities);
+        }
+
+        public async Task SaveIncomeStatementEntities(List<IncomeStatementEntity> entities)
+        {
+            _stocksContext.IncomeStatementEntities.AddRange(entities);
             await _stocksContext.SaveChangesAsync();
         }
 

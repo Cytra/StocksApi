@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Stocks.Core.Extensions;
 using Stocks.Core.Services.Dividend;
 using Stocks.Core.Services.StockPrice;
 using Stocks.Data.Entities.Dividend;
@@ -52,11 +53,11 @@ namespace Stocks.Core.Providers
 
         private async Task UpdateStockPrices(List<DividendCalendarItem> stocks)
         {
-            var stockSplits = Split(stocks, 10);
+            var stockSplits = ListExtensions.Split(stocks, 10);
             var allPrices = new ConcurrentBag<StockPriceItem>();
             foreach (var stockSplit in stockSplits)
             {
-                var stockSymbols = GetSymbolsString(stockSplit.Select(x => x.Symbol).ToArray());
+                var stockSymbols = StringExtensions.GetSymbolsString(stockSplit.Select(x => x.Symbol).ToArray());
                 var prices = await _stockPriceService.GetStockPrices(stockSymbols);
                 foreach (var price in prices)
                 {
@@ -72,28 +73,6 @@ namespace Stocks.Core.Providers
                     stockToUpdate.Price = stockPrice.Price;
                 }
             }
-        }
-
-        public static List<List<T>> Split<T>(List<T> source, int count)
-        {
-            return source
-                .Select((x, i) => new { Index = i, Value = x })
-                .GroupBy(x => x.Index / count)
-                .Select(x => x.Select(v => v.Value).ToList())
-                .ToList();
-        }
-
-        private string GetSymbolsString(string[] ids)
-        {
-            var idsStringBuilder = new StringBuilder();
-            for (int i = 0; i < ids.Count() - 1; i++)
-            {
-                idsStringBuilder.Append(ids[i]);
-                idsStringBuilder.Append(',');
-            }
-            idsStringBuilder.Append(ids[ids.Count() - 1]);
-            var result = idsStringBuilder.ToString().Replace("/", "");
-            return result;
         }
     }
 }
