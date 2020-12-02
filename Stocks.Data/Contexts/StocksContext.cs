@@ -20,6 +20,7 @@ namespace Stocks.Data.Contexts
         public DbSet<SPYconstituentEntity> SPYconstituentEntities { get; set; }
         public DbSet<IncomeStatementEntity> IncomeStatementEntities { get; set; }
         public DbSet<StockProfileEntity> StockProfileEntities { get; set; }
+        public DbSet<BalanceSheetEntity> BalanceSheetEntities { get; set; }
 
     }
 }

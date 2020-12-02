@@ -24,5 +24,7 @@ namespace Stocks.Data.Repositories
         Task SaveIncomeStatementEntities(List<IncomeStatementEntity> entities);
         Task DeleteStockProfileEntities();
         Task SaveStockProfileEntities(List<StockProfileEntity> entities);
+        Task DeleteBalanceSheetEntities();
+        Task SaveBalanceSheetEntities(List<BalanceSheetEntity> entities);
     }
 }

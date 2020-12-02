@@ -29,6 +29,8 @@ namespace Stocks.Core.Profiles
 
             CreateMap<Model.Profile.StockProfile, StockProfileEntity>();
 
+            CreateMap<BalanceSheet, BalanceSheetEntity>();
+
 
             //        CreateMap<PaymentEntity, Payload>()
             //.ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount))

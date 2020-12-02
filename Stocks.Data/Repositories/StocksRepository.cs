@@ -93,6 +93,18 @@ namespace Stocks.Data.Repositories
             await _stocksContext.SaveChangesAsync();
         }
 
+        public async Task DeleteBalanceSheetEntities()
+        {
+            var entities = await _stocksContext.BalanceSheetEntities.ToListAsync();
+            await _stocksContext.BulkDeleteAsync(entities);
+        }
+
+        public async Task SaveBalanceSheetEntities(List<BalanceSheetEntity> entities)
+        {
+            _stocksContext.BalanceSheetEntities.AddRange(entities);
+            await _stocksContext.SaveChangesAsync();
+        }
+
         public async Task SaveDCFs(List<Historical_discounted_cash_flow_Entity> dcfs)
         {
             _stocksContext.DCFs.AddRange(dcfs);

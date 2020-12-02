@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stocks.Data.Contexts;
 
 namespace Stocks.Data.Migrations
 {
     [DbContext(typeof(StocksContext))]
-    partial class StocksContextModelSnapshot : ModelSnapshot
+    [Migration("20201201195041_AddedBalanceSheetEntity")]
+    partial class AddedBalanceSheetEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,19 +101,19 @@ namespace Stocks.Data.Migrations
                     b.Property<DateTime?>("AcceptedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("AccountPayables")
+                    b.Property<long>("AccountPayables")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("AccumulatedOtherComprehensiveIncomeLoss")
+                    b.Property<long>("AccumulatedOtherComprehensiveIncomeLoss")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CashAndCashEquivalents")
+                    b.Property<long>("CashAndCashEquivalents")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CashAndShortTermInvestments")
+                    b.Property<long>("CashAndShortTermInvestments")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CommonStock")
+                    b.Property<long>("CommonStock")
                         .HasColumnType("bigint");
 
                     b.Property<DateTimeOffset>("Created")
@@ -120,13 +122,13 @@ namespace Stocks.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("DeferredRevenue")
+                    b.Property<long>("DeferredRevenue")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("DeferredRevenueNonCurrent")
+                    b.Property<long>("DeferredRevenueNonCurrent")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("DeferredTaxLiabilitiesNonCurrent")
+                    b.Property<long>("DeferredTaxLiabilitiesNonCurrent")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("FillingDate")
@@ -135,106 +137,106 @@ namespace Stocks.Data.Migrations
                     b.Property<string>("FinalLink")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("Goodwill")
+                    b.Property<long>("Goodwill")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("GoodwillAndIntangibleAssets")
+                    b.Property<long>("GoodwillAndIntangibleAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("IntangibleAssets")
+                    b.Property<long>("IntangibleAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("Inventory")
+                    b.Property<long>("Inventory")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("LongTermDebt")
+                    b.Property<long>("LongTermDebt")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("LongTermInvestments")
+                    b.Property<long>("LongTermInvestments")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("NetDebt")
+                    b.Property<long>("NetDebt")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("NetReceivables")
+                    b.Property<long>("NetReceivables")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OtherAssets")
+                    b.Property<long>("OtherAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OtherCurrentAssets")
+                    b.Property<long>("OtherCurrentAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OtherCurrentLiabilities")
+                    b.Property<long>("OtherCurrentLiabilities")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OtherLiabilities")
+                    b.Property<long>("OtherLiabilities")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OtherNonCurrentAssets")
+                    b.Property<long>("OtherNonCurrentAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OtherNonCurrentLiabilities")
+                    b.Property<long>("OtherNonCurrentLiabilities")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OthertotalStockholdersEquity")
+                    b.Property<long>("OthertotalStockholdersEquity")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Period")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("PropertyPlantEquipmentNet")
+                    b.Property<long>("PropertyPlantEquipmentNet")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("RetainedEarnings")
+                    b.Property<long>("RetainedEarnings")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ShortTermDebt")
+                    b.Property<long>("ShortTermDebt")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ShortTermInvestments")
+                    b.Property<long>("ShortTermInvestments")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Symbol")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("TaxAssets")
+                    b.Property<long>("TaxAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TaxPayables")
+                    b.Property<long>("TaxPayables")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalAssets")
+                    b.Property<long>("TotalAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalCurrentAssets")
+                    b.Property<long>("TotalCurrentAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalCurrentLiabilities")
+                    b.Property<long>("TotalCurrentLiabilities")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalDebt")
+                    b.Property<long>("TotalDebt")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalInvestments")
+                    b.Property<long>("TotalInvestments")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalLiabilities")
+                    b.Property<long>("TotalLiabilities")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalLiabilitiesAndStockholdersEquity")
+                    b.Property<long>("TotalLiabilitiesAndStockholdersEquity")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalNonCurrentAssets")
+                    b.Property<long>("TotalNonCurrentAssets")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalNonCurrentLiabilities")
+                    b.Property<long>("TotalNonCurrentLiabilities")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TotalStockholdersEquity")
+                    b.Property<long>("TotalStockholdersEquity")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

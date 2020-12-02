@@ -51,6 +51,8 @@ namespace Stocks
             services.AddScoped<IDcfStrategy, DcfStrategy>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IProfileProvider, ProfileProvider>();
+            services.AddScoped<IBalanceSheetService, BalanceSheetService>();
+            services.AddScoped<IBalanceSheetProvider, BalanceSheetProvider>();
             services.AddControllers();
             services.AddHttpClient("Stock", client =>
             {
