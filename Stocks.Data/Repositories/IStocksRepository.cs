@@ -26,5 +26,9 @@ namespace Stocks.Data.Repositories
         Task SaveStockProfileEntities(List<StockProfileEntity> entities);
         Task DeleteBalanceSheetEntities();
         Task SaveBalanceSheetEntities(List<BalanceSheetEntity> entities);
+        Task SaveDividendCalendarEntities2(List<DividendCalendarEntity2> entities);
+        Task DeleteAllDividendCalendarEntities2();
+        Task DeleteStockPriceEntities();
+        Task SaveStockPriceEntities(List<StockPriceEntity> entities);
     }
 }

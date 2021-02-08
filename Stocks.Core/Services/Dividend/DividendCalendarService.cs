@@ -34,6 +34,20 @@ namespace Stocks.Core.Services.Dividend
             return result;
         }
 
+        public async Task<List<DividendCalendarItem2>> GetDividendCalendar2(DividendCalendarRequest input)
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, GetStockDividendCalendar(input));
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var stream = await response.Content.ReadAsStreamAsync();
+            using StreamReader reader = new StreamReader(stream);
+            using JsonTextReader jsonReader = new JsonTextReader(reader);
+            JsonSerializer ser = new JsonSerializer();
+            var result = ser.Deserialize<List<DividendCalendarItem2>>(jsonReader);
+            return result;
+        }
+
         private string GetStockDividendCalendar(DividendCalendarRequest input)
         {
             var result = $"https://financialmodelingprep.com/api/v3/stock_dividend_calendar?from={input.From.ToString("yyyy-MM-dd")}&to={input.To.ToString("yyyy-MM-dd")}&apikey={_settings.ApiToken}";

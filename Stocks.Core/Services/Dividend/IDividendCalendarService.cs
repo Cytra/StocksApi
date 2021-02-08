@@ -9,5 +9,6 @@ namespace Stocks.Core.Services.Dividend
     public interface IDividendCalendarService
     {
         Task<List<DividendCalendarItem>> GetDividendCalendar(DividendCalendarRequest request);
+        Task<List<DividendCalendarItem2>> GetDividendCalendar2(DividendCalendarRequest input);
     }
 }

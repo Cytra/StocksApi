@@ -67,7 +67,7 @@ namespace Stocks.Core.Providers
 
         private string GetDCFListUrl(string stock)
         {
-            var result = $"https://financialmodelingprep.com/api/v3/" + $"historical-discounted-cash-flow/{stock}?apikey=" + Token;
+            var result = $"https://financialmodelingprep.com/api/v3/historical-discounted-cash-flow/{stock}?apikey=" + Token;
             return result;
         }
     }

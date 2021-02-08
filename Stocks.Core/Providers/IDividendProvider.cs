@@ -10,5 +10,6 @@ namespace Stocks.Core.Providers
     {
         Task<List<DividendCalendarItem>> GetDividendCalendar(DividendCalendarRequest request);
         Task<List<DividendCalendarItem>> GetDividendCalendarWithPrices(DividendCalendarRequest request);
+        Task GetDividendCalendarWithPrices2(DividendCalendarRequest request);
     }
 }

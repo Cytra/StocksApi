@@ -105,6 +105,29 @@ namespace Stocks.Data.Repositories
             await _stocksContext.SaveChangesAsync();
         }
 
+        public async Task SaveDividendCalendarEntities2(List<DividendCalendarEntity2> entities)
+        {
+            await _stocksContext.BulkInsertAsync(entities);
+        }
+
+        public async Task DeleteAllDividendCalendarEntities2()
+        {
+            var dividends = await _stocksContext.DividendCalendarEntities2.ToListAsync();
+            await _stocksContext.BulkDeleteAsync(dividends);
+        }
+
+        public async Task DeleteStockPriceEntities()
+        {
+            var entities = await _stocksContext.StockPriceEntities.ToListAsync();
+            await _stocksContext.BulkDeleteAsync(entities);
+        }
+
+        public async Task SaveStockPriceEntities(List<StockPriceEntity> entities)
+        {
+            _stocksContext.StockPriceEntities.AddRange(entities);
+            await _stocksContext.SaveChangesAsync();
+        }
+
         public async Task SaveDCFs(List<Historical_discounted_cash_flow_Entity> dcfs)
         {
             _stocksContext.DCFs.AddRange(dcfs);

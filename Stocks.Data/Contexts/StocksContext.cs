@@ -16,11 +16,13 @@ namespace Stocks.Data.Contexts
 
         public DbSet<Historical_discounted_cash_flow_Entity> DCFs { get; set; }
         public DbSet<DividendCalendarEntity> DividendCalendarEntities { get; set; }
+        public DbSet<DividendCalendarEntity2> DividendCalendarEntities2 { get; set; }
         public DbSet<StockPriceHistoricEntity> StockPriceHistoricEntities { get; set; }
         public DbSet<SPYconstituentEntity> SPYconstituentEntities { get; set; }
         public DbSet<IncomeStatementEntity> IncomeStatementEntities { get; set; }
         public DbSet<StockProfileEntity> StockProfileEntities { get; set; }
         public DbSet<BalanceSheetEntity> BalanceSheetEntities { get; set; }
+        public DbSet<StockPriceEntity> StockPriceEntities { get; set; }
 
     }
 }

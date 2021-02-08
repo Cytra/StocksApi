@@ -20,6 +20,7 @@ namespace Stocks.Core.Profiles
             CreateMap<Historical_discounted_cash_flow_Model, Historical_discounted_cash_flow_Entity>();
 
             CreateMap<DividendCalendarItem, DividendCalendarEntity>();
+            CreateMap<DividendCalendarItem2, DividendCalendarEntity2>();
 
             CreateMap<StockPriceHistoricItem, StockPriceHistoricEntity>();
 
@@ -31,6 +32,8 @@ namespace Stocks.Core.Profiles
 
             CreateMap<BalanceSheet, BalanceSheetEntity>();
 
+            CreateMap<StockPriceItem, StockPriceEntity>();
+            //StockPriceEntity
 
             //        CreateMap<PaymentEntity, Payload>()
             //.ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount))

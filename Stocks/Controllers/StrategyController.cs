@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Providers;
 using Stocks.Core.Strategies;
@@ -24,15 +26,21 @@ namespace Stocks.Controllers
         [HttpPost]
         public async Task<IActionResult> GetMomentumStockPrices(StrategyRequest request)
         {
+            var timer = new Stopwatch();
+            timer.Start();
             await _momentumStrategy.GetStockPrices(request.Dividend, request.MarketCapMoreThan, request.From, request.To, request.Sector, request.VolumeMoreThan);
-            return Ok();
+            timer.Stop();
+            return Ok("Time taken: " + timer.Elapsed.ToString(@"m\:ss\.fff"));
         }
 
         [HttpPost]
         public async Task<IActionResult> GetDCFData(StrategyRequest request)
         {
+            var timer = new Stopwatch(); 
+            timer.Start();
             await _dcfStrategy.Get(request);
-            return Ok();
+            timer.Stop();
+            return Ok("Time taken: " + timer.Elapsed.ToString(@"m\:ss\.fff"));
         }
 
         [HttpPost]
@@ -40,6 +48,16 @@ namespace Stocks.Controllers
         {
             var result = await _dividendProvider.GetDividendCalendarWithPrices(request);
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DividendArbitrage2(DividendCalendarRequest request)
+        {
+            var timer = new Stopwatch();
+            timer.Start();
+            await _dividendProvider.GetDividendCalendarWithPrices2(request);
+            timer.Stop();
+            return Ok("Time taken: " + timer.Elapsed.ToString(@"m\:ss\.fff"));
         }
     }
 }
