@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Providers;
 using System.Threading.Tasks;
+using Stocks.Core.Providers.SaveToDbProviders;
 using Stocks.Core.Services.StockList;
 using Stocks.Model.DCF;
 

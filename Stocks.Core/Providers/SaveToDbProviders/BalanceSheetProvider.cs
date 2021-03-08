@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Stocks.Core.Services.FinancialStatements;
@@ -8,8 +6,12 @@ using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Repositories;
 using Stocks.Model.FinancialStatements;
 
-namespace Stocks.Core.Providers
+namespace Stocks.Core.Providers.SaveToDbProviders
 {
+    public interface IBalanceSheetProvider
+    {
+        Task<List<BalanceSheet>> GetBalanceSheets(string symbol);
+    }
     public class BalanceSheetProvider : IBalanceSheetProvider
     {
         private readonly IBalanceSheetService _balanceSheetService;

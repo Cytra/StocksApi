@@ -1,0 +1,36 @@
+﻿@page "/portfolio"
+@using Stocks.Model.Profile
+
+@if (PortfolioItems == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Amount</th>
+                    <th>Buy Price</th>
+                    <th>Current Price</th>
+                    <th>Change</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in PortfolioItems)
+                {
+                    <tr>
+                        <td>@item.Ticker</td>
+                        <td>@item.Amount</td>
+                        <td>@item.BuyPrice</td>
+                        <td>@item.CurrentPrice</td>
+                        <td>@item.Change</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

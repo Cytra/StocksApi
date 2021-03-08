@@ -1,14 +1,17 @@
 ﻿using AutoMapper;
+using Stocks.Data.Entities;
 using Stocks.Data.Entities.DCF;
 using Stocks.Data.Entities.Dividend;
 using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.StockPrice;
 using Stocks.Model.DCF;
 using Stocks.Model.Dividend;
 using Stocks.Model.FinancialStatements;
 using Stocks.Model.Index;
+using Stocks.Model.Portfolio;
 using Stocks.Model.StockPrice;
 
 namespace Stocks.Core.Profiles
@@ -33,7 +36,10 @@ namespace Stocks.Core.Profiles
             CreateMap<BalanceSheet, BalanceSheetEntity>();
 
             CreateMap<StockPriceItem, StockPriceEntity>();
-            //StockPriceEntity
+
+            CreateMap<PortfolioRequest, PortfolioEntity>();
+
+            CreateMap<PortfolioEntity, PortfolioItem>();
 
             //        CreateMap<PaymentEntity, Payload>()
             //.ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount))

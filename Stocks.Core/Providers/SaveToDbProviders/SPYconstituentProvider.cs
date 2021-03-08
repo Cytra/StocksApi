@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Stocks.Core.Services.Index;
 using Stocks.Data.Entities.Index;
-using Stocks.Data.Entities.StockPrice;
 using Stocks.Data.Repositories;
 using Stocks.Model.Index;
 
-namespace Stocks.Core.Providers
+namespace Stocks.Core.Providers.SaveToDbProviders
 {
+    public interface ISPYconstituentProvider
+    {
+        Task<List<SPYconstituentModel>> GetSpyHistory();
+    }
     public class SPYconstituentProvider : ISPYconstituentProvider
     {
         private readonly ISPYconstituentService _SPYconstituentService;

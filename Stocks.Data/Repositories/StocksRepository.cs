@@ -1,4 +1,5 @@
-﻿using Stocks.Data.Contexts;
+﻿using System;
+using Stocks.Data.Contexts;
 using Stocks.Data.Entities.DCF;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Entities.Dividend;
 using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.StockPrice;
 
@@ -126,6 +128,33 @@ namespace Stocks.Data.Repositories
         {
             _stocksContext.StockPriceEntities.AddRange(entities);
             await _stocksContext.SaveChangesAsync();
+        }
+
+        public async Task DeletePortfolioItem(Guid stockId)
+        {
+            var dbItem = _stocksContext.Portfolio.Single(x => x.StockId == stockId);
+            dbItem.Deleted = DateTimeOffset.Now;
+            await _stocksContext.SaveChangesAsync();
+        }
+
+        public async Task AddStockItem(PortfolioEntity dbItem)
+        {
+            _stocksContext.Portfolio.Add(dbItem);
+            await _stocksContext.SaveChangesAsync();
+        }
+
+        public async Task<List<PortfolioEntity>> GetPortfolio(bool withDeleted)
+        {
+            var query = _stocksContext.Portfolio.AsNoTracking();
+            if (withDeleted)
+            {
+                
+            }
+            else
+            {
+                query = query.Where(x => x.Deleted == null);
+            }
+            return await query.ToListAsync();
         }
 
         public async Task SaveDCFs(List<Historical_discounted_cash_flow_Entity> dcfs)

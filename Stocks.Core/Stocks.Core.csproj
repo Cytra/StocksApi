@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Stocks.Model\Stocks.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Facades\" />
+  </ItemGroup>
+
 </Project>

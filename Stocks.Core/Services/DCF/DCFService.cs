@@ -12,6 +12,10 @@ using Stocks.Model.Dividend;
 
 namespace Stocks.Core.Services.DCF
 {
+    public interface IDCFService
+    {
+        Task<List<DividendCalendarItem2>> GetDividendCalendar2(string symbol);
+    }
     public class DCFService : IDCFService
     {
         private readonly IHttpClientFactory _httpClientFactory;

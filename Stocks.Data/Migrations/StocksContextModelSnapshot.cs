@@ -449,6 +449,37 @@ namespace Stocks.Data.Migrations
                     b.ToTable("SPYconstituentEntities");
                 });
 
+            modelBuilder.Entity("Stocks.Data.Entities.Portfolio.PortfolioEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("BuyPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("Deleted")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("StockId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Ticker")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Portfolio");
+                });
+
             modelBuilder.Entity("Stocks.Data.Entities.Profile.StockProfileEntity", b =>
                 {
                     b.Property<int>("Id")

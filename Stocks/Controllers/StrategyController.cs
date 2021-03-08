@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Providers;
+using Stocks.Core.Providers.SaveToDbProviders;
 using Stocks.Core.Strategies;
 using Stocks.Model.Dividend;
 using Stocks.Model.Strategy;

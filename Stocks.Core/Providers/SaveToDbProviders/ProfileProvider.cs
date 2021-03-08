@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Stocks.Core.Services.Profile;
@@ -8,8 +6,12 @@ using Stocks.Data.Entities.Profile;
 using Stocks.Data.Repositories;
 using Stocks.Model.Profile;
 
-namespace Stocks.Core.Providers
+namespace Stocks.Core.Providers.SaveToDbProviders
 {
+    public interface IProfileProvider
+    {
+        Task<List<StockProfile>> GetStockProfile(string symbol);
+    }
     public class ProfileProvider : IProfileProvider
     {
         private readonly IProfileService _profileService;

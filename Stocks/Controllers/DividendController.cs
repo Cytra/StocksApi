@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Providers;
+using Stocks.Core.Providers.SaveToDbProviders;
 using Stocks.Model.Dividend;
 
 namespace Stocks.Controllers

@@ -1,0 +1,17 @@
+﻿@page "/stockOverview/{StockTicker}"
+
+@if(@StockProfile == null)
+{
+<p>Loading</p>
+} 
+else
+{
+<div>
+    <div class="row">
+        <div class="col col-sm-auto border font-weight-bold" >Symbol</div>
+        <div class="col col-sm-auto border ">@StockProfile.Symbol</div>
+        <div class="col col-sm-auto border font-weight-bold ">Address</div>
+        <div class="col col-sm-auto border ">@StockProfile.Address</div>
+    </div>
+</div>
+}

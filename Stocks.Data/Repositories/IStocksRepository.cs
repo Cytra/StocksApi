@@ -1,9 +1,11 @@
-﻿using Stocks.Data.Entities.DCF;
+﻿using System;
+using Stocks.Data.Entities.DCF;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Stocks.Data.Entities.Dividend;
 using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
+using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.StockPrice;
 
@@ -30,5 +32,8 @@ namespace Stocks.Data.Repositories
         Task DeleteAllDividendCalendarEntities2();
         Task DeleteStockPriceEntities();
         Task SaveStockPriceEntities(List<StockPriceEntity> entities);
+        Task DeletePortfolioItem(Guid stockId);
+        Task AddStockItem(PortfolioEntity dbItem);
+        Task<List<PortfolioEntity>> GetPortfolio(bool withDeleted);
     }
 }

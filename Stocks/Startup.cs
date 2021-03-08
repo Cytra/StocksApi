@@ -7,7 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Stocks.Core.Providers;
+using Stocks.Core.Providers.Other;
+using Stocks.Core.Providers.SaveToDbProviders;
 using Stocks.Core.Services;
+using Stocks.Core.Services.DCF;
 using Stocks.Core.Services.Dividend;
 using Stocks.Core.Services.FinancialStatements;
 using Stocks.Core.Services.Index;
@@ -19,6 +22,7 @@ using Stocks.Data.Contexts;
 using Stocks.Data.Repositories;
 using Stocks.Middleware;
 using Stocks.Model;
+using Stocks.Model.Shared;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Stocks
@@ -37,9 +41,11 @@ namespace Stocks
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IDcfProvider, DcfProvider>();
+            services.AddScoped<IDCFService, DCFService>();
             services.AddScoped<IStocksRepository, StocksRepository>();
             services.AddScoped<IStockListService, StockListService>();
             services.AddScoped<IDividendProvider, DividendProvider>();
+            services.AddScoped<IStockPriceProvider, StockPriceProvider>();
             services.AddScoped<IStockListService, StockListService>();
             services.AddScoped<IDividendCalendarService, DividendCalendarService>();
             services.AddScoped<IStockPriceService, StockPriceService>();
@@ -53,6 +59,7 @@ namespace Stocks
             services.AddScoped<IProfileProvider, ProfileProvider>();
             services.AddScoped<IBalanceSheetService, BalanceSheetService>();
             services.AddScoped<IBalanceSheetProvider, BalanceSheetProvider>();
+            services.AddScoped<IPortfolioProvider, PortfolioProvider>();
             services.AddControllers();
             services.AddHttpClient("Stock", client =>
             {
@@ -62,6 +69,11 @@ namespace Stocks
             });
 
             services.AddOptions<AppSettings>().Bind(Configuration.GetSection("AppSettings"));
+
+            services.AddCors(options => options.AddPolicy("AllowEverything", builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()));
 
             services.AddDbContext<StocksContext>(options => options.UseSqlServer(AppSettings.SqlConnectionString));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -74,7 +86,9 @@ namespace Stocks
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             app.UseMiddleware<ExceptionMiddleware>();
+            app.UseCors("AllowEverything");
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();

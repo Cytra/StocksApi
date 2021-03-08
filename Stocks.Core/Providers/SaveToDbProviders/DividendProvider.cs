@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Stocks.Core.Extensions;
@@ -14,8 +12,14 @@ using Stocks.Data.Repositories;
 using Stocks.Model.Dividend;
 using Stocks.Model.StockPrice;
 
-namespace Stocks.Core.Providers
+namespace Stocks.Core.Providers.SaveToDbProviders
 {
+    public interface IDividendProvider
+    {
+        Task<List<DividendCalendarItem>> GetDividendCalendar(DividendCalendarRequest request);
+        Task<List<DividendCalendarItem>> GetDividendCalendarWithPrices(DividendCalendarRequest request);
+        Task GetDividendCalendarWithPrices2(DividendCalendarRequest request);
+    }
     public class DividendProvider : IDividendProvider
     {
         private readonly IMapper _mapper;
