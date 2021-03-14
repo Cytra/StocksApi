@@ -30,13 +30,13 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<decimal>("DCF")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("StockPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Symbol")
                         .HasColumnType("nvarchar(10)")
@@ -55,7 +55,7 @@ namespace Stocks.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("AdjDividend")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -67,7 +67,7 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Dividend")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Label")
                         .HasColumnType("nvarchar(max)");
@@ -76,7 +76,7 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<DateTime?>("RecordDate")
                         .HasColumnType("datetime2");
@@ -97,7 +97,7 @@ namespace Stocks.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("AdjDividend")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -109,7 +109,7 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Dividend")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Label")
                         .HasColumnType("nvarchar(max)");
@@ -457,10 +457,10 @@ namespace Stocks.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<decimal>("BuyPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -491,13 +491,13 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Beta")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Ceo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Changes")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Cik")
                         .HasColumnType("nvarchar(max)");
@@ -521,10 +521,10 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Dcf")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<decimal?>("DcfDiff")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<bool?>("DefaultImage")
                         .HasColumnType("bit");
@@ -554,7 +554,7 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("LastDiv")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<long?>("MktCap")
                         .HasColumnType("bigint");
@@ -563,7 +563,7 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Range")
                         .HasColumnType("nvarchar(max)");
@@ -591,6 +591,287 @@ namespace Stocks.Data.Migrations
                     b.ToTable("StockProfileEntities");
                 });
 
+            modelBuilder.Entity("Stocks.Data.Entities.Reddit.Link_Flair_Richtext", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("RedditDdEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("e")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("t")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RedditDdEntityId");
+
+                    b.ToTable("Link_Flair_Richtext");
+                });
+
+            modelBuilder.Entity("Stocks.Data.Entities.Reddit.RedditDdEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("RedditId")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<bool>("allow_live_comments")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("archived")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("author")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("author_flair_background_color")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("author_flair_template_id")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("author_flair_text")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("author_flair_text_color")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("author_flair_type")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("author_fullname")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<bool>("author_patreon_flair")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("author_premium")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("can_gild")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("can_mod_post")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("clicked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("contest_mode")
+                        .HasColumnType("bit");
+
+                    b.Property<float>("created_utc")
+                        .HasColumnType("real");
+
+                    b.Property<string>("domain")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<int>("downs")
+                        .HasColumnType("int");
+
+                    b.Property<int>("gilded")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("hidden")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("hide_score")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("is_crosspostable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("is_meta")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("is_original_content")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("is_reddit_media_domain")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("is_robot_indexable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("is_self")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("is_video")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("likes")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("link_flair_background_color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("link_flair_css_class")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("link_flair_template_id")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("link_flair_text")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("link_flair_text_color")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("link_flair_type")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<bool>("locked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("media_only")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<bool>("no_follow")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("num_comments")
+                        .HasColumnType("int");
+
+                    b.Property<int>("num_crossposts")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("over_18")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("parent_whitelist_status")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("permalink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("pinned")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("post_hint")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<bool>("quarantine")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("saved")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("score")
+                        .HasColumnType("int");
+
+                    b.Property<string>("selftext")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("selftext_html")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("send_replies")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("spoiler")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("stickied")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("subreddit")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("subreddit_id")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("subreddit_name_prefixed")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<int>("subreddit_subscribers")
+                        .HasColumnType("int");
+
+                    b.Property<string>("subreddit_type")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("suggested_sort")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<string>("thumbnail")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<int?>("thumbnail_height")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("thumbnail_width")
+                        .HasColumnType("int");
+
+                    b.Property<string>("title")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<int>("total_awards_received")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ups")
+                        .HasColumnType("int");
+
+                    b.Property<float>("upvote_ratio")
+                        .HasColumnType("real");
+
+                    b.Property<string>("url")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<bool>("visited")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("whitelist_status")
+                        .HasColumnType("nvarchar(1032)")
+                        .HasMaxLength(1032);
+
+                    b.Property<int?>("wls")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RedditDdEntities");
+                });
+
             modelBuilder.Entity("Stocks.Data.Entities.StockPrice.StockPriceEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -599,7 +880,7 @@ namespace Stocks.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Symbol")
                         .HasColumnType("nvarchar(max)");
@@ -620,19 +901,19 @@ namespace Stocks.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("AdjClose")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<decimal>("Change")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<decimal>("ChangeOverTime")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<decimal>("ChangePercent")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<decimal>("Close")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
@@ -641,16 +922,16 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("High")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Label")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Low")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<decimal>("Open")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.Property<string>("Symbol")
                         .HasColumnType("nvarchar(30)")
@@ -663,11 +944,20 @@ namespace Stocks.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("Vwap")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(15,2)");
 
                     b.HasKey("Id");
 
                     b.ToTable("StockPriceHistoricEntities");
+                });
+
+            modelBuilder.Entity("Stocks.Data.Entities.Reddit.Link_Flair_Richtext", b =>
+                {
+                    b.HasOne("Stocks.Data.Entities.Reddit.RedditDdEntity", null)
+                        .WithMany("link_flair_richtext")
+                        .HasForeignKey("RedditDdEntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

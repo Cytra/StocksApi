@@ -20,6 +20,8 @@ namespace Stocks.UI
             builder.RootComponents.Add<App>("app");
             builder.Services.AddHttpClient<IUIStockService, IuiStockService>(client => client.BaseAddress = new Uri("https://localhost:5001"));
             builder.Services.AddHttpClient<IPortfolioProvider, PortfolioProvider>(client => client.BaseAddress = new Uri("https://localhost:5001"));
+            builder.Services.AddHttpClient<IRedditOtherProvider, RedditOtherProvider>(client => client.BaseAddress = new Uri("https://localhost:5001"));
+            
             await builder.Build().RunAsync();
         }
     }

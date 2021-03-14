@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Stocks.Data.Entities.DCF
 {
@@ -14,7 +15,9 @@ namespace Stocks.Data.Entities.DCF
         public string Symbol { get; set; }
         public DateTime Date { get; set; }
         [JsonProperty("Stock Price")]
+        [Column(TypeName = "decimal(15,2)")]
         public decimal StockPrice { get; set; }
+        [Column(TypeName = "decimal(15,2)")]
         public decimal DCF { get; set; }
     }
 }

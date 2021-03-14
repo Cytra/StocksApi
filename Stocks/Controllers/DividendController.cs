@@ -7,7 +7,7 @@ using Stocks.Model.Dividend;
 namespace Stocks.Controllers
 {
     [ApiController]
-    [Route("api/[action]")]
+    [Route("api/[controller]/[action]")]
     public class DividendController : ControllerBase
     {
         private readonly IDividendProvider _dividendProvider;

@@ -5,7 +5,7 @@ using Stocks.Core.Services.Profile;
 namespace Stocks.Controllers
 {
     [ApiController]
-    [Route("api/[action]")]
+    [Route("api/[controller]/[action]")]
     public class StockController : ControllerBase
     {
         private readonly IProfileService _profileService;

@@ -12,6 +12,7 @@ namespace Stocks.Data.Entities.StockPrice
         [Key]
         public int Id { get; set; }
         public string Symbol { get; set; }
+        [Column(TypeName = "decimal(15,2)")]
         public decimal Price { get; set; }
         public string Volume { get; set; }
     }

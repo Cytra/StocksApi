@@ -5,6 +5,7 @@ using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
 using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
+using Stocks.Data.Entities.Reddit;
 using Stocks.Data.Entities.StockPrice;
 
 namespace Stocks.Data.Contexts
@@ -25,6 +26,6 @@ namespace Stocks.Data.Contexts
         public DbSet<BalanceSheetEntity> BalanceSheetEntities { get; set; }
         public DbSet<StockPriceEntity> StockPriceEntities { get; set; }
         public DbSet<PortfolioEntity> Portfolio { get; set; }
-
+        public DbSet<RedditDdEntity> RedditDdEntities { get; set; }
     }
 }

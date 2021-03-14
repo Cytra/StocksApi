@@ -8,8 +8,8 @@ using Stocks.Core.Providers.SaveToDbProviders;
 
 namespace Stocks.Controllers
 {
-    [ApiController]
-    [Route("api/[action]")]
+    //[ApiController]
+    //[Route("api/[controller]/[action]")]
     public class IndexController : ControllerBase
     {
         private readonly ISPYconstituentProvider _SPYconstituentProvider;

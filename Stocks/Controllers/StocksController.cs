@@ -7,8 +7,8 @@ using Stocks.Model.DCF;
 
 namespace Stocks.Controllers
 {
-    [ApiController]
-    [Route("api/[action]")]
+    //[ApiController]
+    //[Route("api/[controller]/[action]")]
     public class StocksController : ControllerBase
     {
         private readonly IDcfProvider _stockProvider;

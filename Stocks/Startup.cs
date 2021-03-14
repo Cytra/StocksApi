@@ -6,15 +6,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Stocks.Core.Providers;
 using Stocks.Core.Providers.Other;
 using Stocks.Core.Providers.SaveToDbProviders;
+using Stocks.Core.Scheduling;
 using Stocks.Core.Services;
 using Stocks.Core.Services.DCF;
 using Stocks.Core.Services.Dividend;
 using Stocks.Core.Services.FinancialStatements;
 using Stocks.Core.Services.Index;
 using Stocks.Core.Services.Profile;
+using Stocks.Core.Services.Reddit;
 using Stocks.Core.Services.StockList;
 using Stocks.Core.Services.StockPrice;
 using Stocks.Core.Strategies;
@@ -60,7 +64,18 @@ namespace Stocks
             services.AddScoped<IBalanceSheetService, BalanceSheetService>();
             services.AddScoped<IBalanceSheetProvider, BalanceSheetProvider>();
             services.AddScoped<IPortfolioProvider, PortfolioProvider>();
-            services.AddControllers();
+            services.AddScoped<IRedditService, RedditService>();
+            services.AddScoped<IRedditDBProvider, RedditDbProvider>();
+            services.AddScoped<IRedditOtherProvider, RedditOtherProvider>();
+            services.AddControllers()
+                .AddNewtonsoftJson(opt =>
+                {
+                    opt.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
+                    opt.SerializerSettings.Formatting = Formatting.None;
+                    opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                    opt.SerializerSettings.Converters.Add(new StringEnumConverter());
+                    JsonConvert.DefaultSettings = () => opt.SerializerSettings;
+                });
             services.AddHttpClient("Stock", client =>
             {
                 client.BaseAddress = new Uri("https://financialmodelingprep.com");
@@ -82,11 +97,16 @@ namespace Stocks
                 c.ExampleFilters();
             });
             services.AddSwaggerExamplesFromAssemblyOf<Startup>();
+
+            services.AddCronJob<RedditCronJob>(c =>
+            {
+                c.TimeZoneInfo = TimeZoneInfo.Local;
+                c.CronExpression = "0 */10 * * * *";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseCors("AllowEverything");
             app.UseHttpsRedirection();

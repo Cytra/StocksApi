@@ -11,7 +11,9 @@ using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
 using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
+using Stocks.Data.Entities.Reddit;
 using Stocks.Data.Entities.StockPrice;
+using Stocks.Model.Reddit;
 
 namespace Stocks.Data.Repositories
 {
@@ -155,6 +157,20 @@ namespace Stocks.Data.Repositories
                 query = query.Where(x => x.Deleted == null);
             }
             return await query.ToListAsync();
+        }
+
+        public async Task SaveRedditDdEntities(List<RedditDdEntity> result, float from)
+        {
+            var existingDbs = _stocksContext.RedditDdEntities.Where(x => x.created_utc >= from).ToList();
+            await _stocksContext.BulkDeleteAsync(existingDbs);
+            await _stocksContext.BulkInsertAsync(result);
+        }
+
+        public async Task<List<RedditDdEntity>> GetRedditDdEntities(RedditOtherRequest request)
+        {
+            var result = await _stocksContext.RedditDdEntities
+                .Where(x => x.Created > request.DateFrom && x.Created < request.DateTo).ToListAsync();
+            return result;
         }
 
         public async Task SaveDCFs(List<Historical_discounted_cash_flow_Entity> dcfs)

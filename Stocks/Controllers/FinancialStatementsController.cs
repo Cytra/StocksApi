@@ -9,7 +9,7 @@ using Stocks.Core.Providers.SaveToDbProviders;
 namespace Stocks.Controllers
 {
     [ApiController]
-    [Route("api/[action]")]
+    [Route("api/[controller]/[action]")]
     public class FinancialStatementsController : ControllerBase
     {
         private readonly IIncomeStatementProvider _incomeStatementProvider;

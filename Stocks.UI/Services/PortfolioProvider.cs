@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Stocks.Model.Portfolio;
-using Stocks.Model.Profile;
 using Stocks.Model.Shared;
 
 namespace Stocks.UI.Services

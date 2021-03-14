@@ -10,8 +10,8 @@ using Stocks.Model.Strategy;
 
 namespace Stocks.Controllers
 {
-    [ApiController]
-    [Route("api/[action]")]
+    //[ApiController]
+    //[Route("api/[controller]/[action]")]
     public class StrategyController : ControllerBase
     {
         private readonly IMomentumStrategy _momentumStrategy;

@@ -7,7 +7,9 @@ using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Entities.Index;
 using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
+using Stocks.Data.Entities.Reddit;
 using Stocks.Data.Entities.StockPrice;
+using Stocks.Model.Reddit;
 
 namespace Stocks.Data.Repositories
 {
@@ -35,5 +37,7 @@ namespace Stocks.Data.Repositories
         Task DeletePortfolioItem(Guid stockId);
         Task AddStockItem(PortfolioEntity dbItem);
         Task<List<PortfolioEntity>> GetPortfolio(bool withDeleted);
+        Task SaveRedditDdEntities(List<RedditDdEntity> result, float from);
+        Task<List<RedditDdEntity>> GetRedditDdEntities(RedditOtherRequest request);
     }
 }

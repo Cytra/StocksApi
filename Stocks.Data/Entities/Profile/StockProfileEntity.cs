@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Stocks.Data.Entities.Profile
@@ -12,12 +13,16 @@ namespace Stocks.Data.Entities.Profile
         }
 
         public string Symbol { get; set; }
+        [Column(TypeName = "decimal(15,2)")]
         public decimal Price { get; set; }
+        [Column(TypeName = "decimal(15,2)")]
         public decimal? Beta { get; set; }
         public Int64? VolAvg { get; set; }
         public Int64? MktCap { get; set; }
+        [Column(TypeName = "decimal(15,2)")]
         public decimal? LastDiv { get; set; }
         public string Range { get; set; }
+        [Column(TypeName = "decimal(15,2)")]
         public decimal? Changes { get; set; }
         public string CompanyName { get; set; }
         public string Currency { get; set; }
@@ -38,7 +43,9 @@ namespace Stocks.Data.Entities.Profile
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
+        [Column(TypeName = "decimal(15,2)")]
         public decimal? DcfDiff { get; set; }
+        [Column(TypeName = "decimal(15,2)")]
         public decimal? Dcf { get; set; }
         public string Image { get; set; }
         public DateTime? IpoDate { get; set; }
