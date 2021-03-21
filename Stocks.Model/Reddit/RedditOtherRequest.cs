@@ -13,5 +13,6 @@ namespace Stocks.Model.Reddit
     {
         [Required] public RedditSortType SortType { get; set; }
         public int Size { get; set; }
+        public DateTimeOffset After { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Stocks.Model.StockPrice
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Stocks.Model.StockPrice
 {
     public class StockPricesForUi
     {
@@ -9,7 +11,7 @@
     }
     public class StockPriceForUi
     {
-        public string Performance { get; set; }
+        public decimal Performance { get; set; }
     }
 
 }

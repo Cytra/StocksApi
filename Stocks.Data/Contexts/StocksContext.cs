@@ -7,6 +7,7 @@ using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.Reddit;
 using Stocks.Data.Entities.StockPrice;
+using Stocks.Data.Entities.YahooFinance;
 
 namespace Stocks.Data.Contexts
 {
@@ -27,5 +28,6 @@ namespace Stocks.Data.Contexts
         public DbSet<StockPriceEntity> StockPriceEntities { get; set; }
         public DbSet<PortfolioEntity> Portfolio { get; set; }
         public DbSet<RedditDdEntity> RedditDdEntities { get; set; }
+        public DbSet<YahooFinanceOptionEntity> YahooFinanceOptionEntities { get; set; }
     }
 }

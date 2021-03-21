@@ -7,8 +7,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Stocks.Core.Extensions;
+using Stocks.Core.Helpers;
 using Stocks.Core.Services.StockList;
 using Stocks.Core.Services.StockPrice;
+using Stocks.Model;
 using Stocks.Model.Reddit;
 using Stocks.Model.StockPrice;
 
@@ -17,13 +19,13 @@ namespace Stocks.Core.Providers.Other
     public interface IStockPriceProvider
     {
         Task<List<StockPriceItem>> GetStockPrices(List<string> symbols);
-        Task GetStockPricesForUi(List<RedditDdDto> dto);
+        Task<RedditDdDtoList> GetStockPricesForUi(List<RedditDdDto> dto, RedditOtherRequest request);
     }
     public class StockPriceProvider : IStockPriceProvider
     {
         private readonly IStockPriceService _stockPriceService;
         private readonly IStockListService _stockListService;
-        private string[] _tickerBlackList = new[] {"OUT", "BE", "DD", "HOLD" };
+        
         public StockPriceProvider(IStockPriceService stockPriceService, IStockListService stockListService)
         {
             _stockPriceService = stockPriceService;
@@ -46,7 +48,7 @@ namespace Stocks.Core.Providers.Other
             return result;
         }
 
-        public async Task GetStockPricesForUi(List<RedditDdDto> dtos)
+        public async Task<RedditDdDtoList> GetStockPricesForUi(List<RedditDdDto> dtos, RedditOtherRequest request)
         {
             string pattern = @"[A-Z]{2,}";
             var regex = new Regex(pattern);
@@ -62,7 +64,7 @@ namespace Stocks.Core.Providers.Other
                     foreach (var val in potentialTickers)
                     {
                         var match = regex.Match(val);
-                        if (!string.IsNullOrWhiteSpace(match.Value) && !_tickerBlackList.Contains(match.Value))
+                        if (!string.IsNullOrWhiteSpace(match.Value) && !StockLists.TickerBlackList.Contains(match.Value))
                         {
                             if (!tickers.Contains(match.Value))
                             {
@@ -108,7 +110,7 @@ namespace Stocks.Core.Providers.Other
                 foreach (var potentialTicker in dto.PotentialTickers)
                 {
                     var prices = result.Where(x => x.Symbol.Contains(potentialTicker)).ToList();
-                    if (prices.Count != 0 && prices[0].Historical.Count >= 60)
+                    if (prices.Count != 0 && prices[0].Historical != null && prices[0].Historical.Count >= 61)
                     {
                         dto.Ticker = prices[0].Symbol;
                         if (prices[0].Historical[0] != null)
@@ -119,8 +121,9 @@ namespace Stocks.Core.Providers.Other
                                 dto.Prices.Day = new StockPriceForUi()
                                 {
                                     Performance =
-                                        ((prices[0].Historical[0].AdjClose - prices[0].Historical[1].AdjClose)/ prices[0].Historical[1].AdjClose)
-                                        .ToString("P2", new NumberFormatInfo { PercentPositivePattern = 1, PercentNegativePattern = 1 })
+                                        decimal.Round(((prices[0].Historical[0].AdjClose - prices[0].Historical[1].AdjClose) / prices[0].Historical[1].AdjClose), 2, MidpointRounding.AwayFromZero)
+                                
+                                        //.ToString("P2", new NumberFormatInfo { PercentPositivePattern = 1, PercentNegativePattern = 1 })
                                 };
                             }
                             if (prices[0]?.Historical[5] != null)
@@ -128,8 +131,10 @@ namespace Stocks.Core.Providers.Other
                                 dto.Prices.Week = new StockPriceForUi()
                                 {
                                     Performance =
-                                        ((prices[0].Historical[0].AdjClose - prices[0].Historical[5].AdjClose) / prices[0].Historical[5].AdjClose)
-                                        .ToString("P2", new NumberFormatInfo { PercentPositivePattern = 1, PercentNegativePattern = 1 })
+                                        decimal.Round(((prices[0].Historical[0].AdjClose - prices[0].Historical[5].AdjClose) / prices[0].Historical[5].AdjClose), 2, MidpointRounding.AwayFromZero)
+                                        
+                                        
+                                    //.ToString("P2", new NumberFormatInfo { PercentPositivePattern = 1, PercentNegativePattern = 1 })
                                 };
                             }
                             if (prices[0]?.Historical[20] != null)
@@ -137,17 +142,18 @@ namespace Stocks.Core.Providers.Other
                                 dto.Prices.Month = new StockPriceForUi()
                                 {
                                     Performance =
-                                        ((prices[0].Historical[0].AdjClose - prices[0].Historical[20].AdjClose) / prices[0].Historical[20].AdjClose)
-                                        .ToString("P2", new NumberFormatInfo { PercentPositivePattern = 1, PercentNegativePattern = 1 })
+                                        decimal.Round(((prices[0].Historical[0].AdjClose - prices[0].Historical[20].AdjClose) / prices[0].Historical[20].AdjClose), 2, MidpointRounding.AwayFromZero)
+                                
+                                        //.ToString("P2", new NumberFormatInfo { PercentPositivePattern = 1, PercentNegativePattern = 1 })
                                 };
                             }
                             if (prices[0]?.Historical[60] != null)
                             {
                                 dto.Prices.ThreeMonths = new StockPriceForUi()
                                 {
-                                    Performance =
-                                        ((prices[0].Historical[0].AdjClose - prices[0].Historical[60].AdjClose) / prices[0].Historical[60].AdjClose)
-                                        .ToString("P2", new NumberFormatInfo { PercentPositivePattern = 1, PercentNegativePattern = 1 })
+                                    Performance = decimal.Round(((prices[0].Historical[0].AdjClose - prices[0].Historical[60].AdjClose) / prices[0].Historical[60].AdjClose), 2, MidpointRounding.AwayFromZero)
+                                
+                                        //.ToString("P2", new NumberFormatInfo { PercentPositivePattern = 1, PercentNegativePattern = 1 })
                                 };
                             }
                         }
@@ -155,6 +161,39 @@ namespace Stocks.Core.Providers.Other
                 }
             }
 
+            return new RedditDdDtoList()
+            {
+                Aggregated = GetAggregateds(dtos),
+                Items = dtos,
+                Paging = new PagingModel()
+                {
+                    Page = request.Page,
+                    PageSize = request.RowsPerPage,
+                    TotalItems = result.Count
+                }
+            };
+        }
+
+        private List<RedditDdDtoAggregated> GetAggregateds(List<RedditDdDto> dtos)
+        {
+            var result = new List<RedditDdDtoAggregated>();
+            var tickers = dtos.Where(x => !string.IsNullOrWhiteSpace(x.Ticker))
+                .Select(x => x.Ticker).Distinct()
+                .ToList();
+            foreach (var ticker in tickers)
+            {
+                var aggregatedToAdd = new RedditDdDtoAggregated()
+                {
+                    OneWeekPosts = dtos.Where(x=> x.Ticker == ticker).Count(x => x.created_utc >= DateTimeOffset.Now.AddDays(-5).ToUnixTimeSeconds() && x.created_utc <= DateTimeOffset.Now.ToUnixTimeSeconds()),
+                    TwoWeekPosts = dtos.Where(x => x.Ticker == ticker).Count(x => x.created_utc >= DateTimeOffset.Now.AddDays(-10).ToUnixTimeSeconds() && x.created_utc <= DateTimeOffset.Now.AddDays(-5).ToUnixTimeSeconds()),
+                    ThreeWeekPosts = dtos.Where(x => x.Ticker == ticker).Count(x => x.created_utc >= DateTimeOffset.Now.AddDays(-15).ToUnixTimeSeconds() && x.created_utc <= DateTimeOffset.Now.AddDays(-10).ToUnixTimeSeconds()),
+                    FourWeekPosts = dtos.Where(x => x.Ticker == ticker).Count(x => x.created_utc >= DateTimeOffset.Now.AddDays(-20).ToUnixTimeSeconds() && x.created_utc <= DateTimeOffset.Now.AddDays(-15).ToUnixTimeSeconds()),
+                    Prices = dtos.First(x=> x.Ticker == ticker).Prices,
+                    Ticker = ticker,
+                };
+                result.Add(aggregatedToAdd);
+            }
+            return result;
         }
     }
 }

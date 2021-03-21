@@ -1,0 +1,123 @@
+﻿@page "/redditWsbDd"
+@using Stocks.Model.Profile
+
+@if (RedditDdDtoList == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div>
+        <table id="example" class="table table-striped" style="width:100%"
+               data-pagination="true">
+            <thead>
+                <tr>
+                    <th><span @onclick="@(() => SortAgg("Ticker"))">Ticker</span></th>
+                    <th><span @onclick="@(() => SortAgg("1W Posts"))">1W Posts</span></th>
+                    <th><span @onclick="@(() => SortAgg("2W Posts"))">2W Posts</span></th>
+                    <th><span @onclick="@(() => SortAgg("3W Posts"))">3W Posts</span></th>
+                    <th><span @onclick="@(() => SortAgg("4W Posts"))">4W Posts</span></th>
+                    <th><span @onclick="@(() => SortAgg("Day Perf"))">Day Perf</span></th>
+                    <th><span @onclick="@(() => SortAgg("Week Perf"))">Week Perf</span></th>
+                    <th><span @onclick="@(() => SortAgg("Month Perf"))">Month Perf</span></th>
+                    <th><span @onclick="@(() => SortAgg("3Months Perf"))">3Months Perf</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in RedditDdDtoAggregatedList)
+                {
+
+                    <tr>
+                        <td>@item.Ticker</td>
+                        <td>@item.OneWeekPosts</td>
+                        <td>@item.TwoWeekPosts</td>
+                        <td>@item.ThreeWeekPosts</td>
+                        <td>@item.FourWeekPosts</td>
+                        <td>@item.Prices.Day.Performance</td>
+                        <td>@item.Prices.Week.Performance</td>
+                        <td>@item.Prices.Month.Performance</td>
+                        <td>@item.Prices.ThreeMonths.Performance</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div style="display:flex; flex-direction: row;">
+        <input style="width: 240px;" class="form-control mr-sm-2" type="search" placeholder="Stock Ticker" aria-label="Search" @bind="@Ticker">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit" @onclick="@FilterStocks">Filter</button>
+    </div>
+
+    <div>
+        <table id="example" class="table table-striped" style="width:100%"
+               data-pagination="true">
+            <thead>
+                <tr>
+                    <th><span @onclick="@(() => Sort("Title"))">Title</span></th>
+                    <th><span @onclick="@(() => Sort("Created"))">Created</span></th>
+                    <th><span @onclick="@(() => Sort("Score"))">Score</span></th>
+                    <th><span @onclick="@(() => Sort("Ticker"))">Ticker</span></th>
+                    <th><span @onclick="@(() => Sort("Day"))">Day</span></th>
+                    <th><span @onclick="@(() => Sort("Week"))">Week</span></th>
+                    <th><span @onclick="@(() => Sort("Month"))">Month</span></th>
+                    <th><span @onclick="@(() => Sort("3Months"))">3Months</span></th>
+                    <th>Actions</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in RedditDdDtoListFiltered)
+                {
+
+                    <tr>
+                        <td>
+                            @if (@item.title.Length > 40)
+                            {
+                                @($"{@item.title.Substring(0, 40)}...")
+                            }
+                            else
+                            {
+                                @item.title
+                            }
+                        </td>
+                        <td>@item.CreatedString</td>
+                        <td>@item.score</td>
+                        <td>@item.Ticker</td>
+                        <td>@item.Prices.Day.Performance</td>
+                        <td>@item.Prices.Week.Performance</td>
+                        <td>@item.Prices.Month.Performance</td>
+                        <td>@item.Prices.ThreeMonths.Performance</td>
+                        <td>
+                            @*<a href="@($"redditPost/{@item.Id}")" target="_blank" class="btn btn-primary table-btn">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>*@
+                            <a href="@($"https://www.reddit.com{@item.permalink}")" target="_blank" class="btn btn-primary table-btn">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @if (RedditDdDtoList.Paging.TotalPages > 0)
+        {
+            <div class="float-left pager">
+                <button type="button" class="btn btn-primary btn-sm" disabled="@(RedditDdDtoList.Paging.Page == 1 ? "disabled" : null)" @onclick="@(() => GetItems(1))">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" disabled="@(RedditDdDtoList.Paging.Page - 1 > 0 ? null : "disabled")" @onclick="@(() => GetItems(RedditDdDtoList.Paging.Page - 1))">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </button>
+                <span>@RedditDdDtoList.Paging.Page</span>
+                <button type="button" class="btn btn-primary btn-sm" disabled="@(RedditDdDtoList.Paging.Page + 1 <= RedditDdDtoList.Paging.TotalPages ? null : "disabled")" @onclick="@(() => GetItems(RedditDdDtoList.Paging.Page + 1))">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" disabled="@(RedditDdDtoList.Paging.Page == RedditDdDtoList.Paging.TotalPages ? "disabled" : null)" @onclick="@(() => GetItems(RedditDdDtoList.Paging.TotalPages))">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        }
+    </div>
+}

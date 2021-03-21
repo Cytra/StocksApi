@@ -22,5 +22,12 @@ namespace Stocks.Controllers
             var result = await _redditOtherProvider.GetDdList(request);
             return result;
         }
+
+        [HttpGet]
+        public async Task<RedditDdDto> Dd(int id)
+        {
+            var result = await _redditOtherProvider.GetDbItem(id);
+            return result;
+        }
     }
 }

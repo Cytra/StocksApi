@@ -13,7 +13,9 @@ using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.Reddit;
 using Stocks.Data.Entities.StockPrice;
+using Stocks.Data.Entities.YahooFinance;
 using Stocks.Model.Reddit;
+using Stocks.Model.YahooFinance;
 
 namespace Stocks.Data.Repositories
 {
@@ -159,9 +161,10 @@ namespace Stocks.Data.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task SaveRedditDdEntities(List<RedditDdEntity> result, float from)
+        public async Task SaveRedditDdEntities(List<RedditDdEntity> result, float from, float to)
         {
-            var existingDbs = _stocksContext.RedditDdEntities.Where(x => x.created_utc >= from).ToList();
+            var existingDbs = _stocksContext.RedditDdEntities
+                .Where(x => x.created_utc >= from && x.created_utc <= to).ToList();
             await _stocksContext.BulkDeleteAsync(existingDbs);
             await _stocksContext.BulkInsertAsync(result);
         }
@@ -169,8 +172,65 @@ namespace Stocks.Data.Repositories
         public async Task<List<RedditDdEntity>> GetRedditDdEntities(RedditOtherRequest request)
         {
             var result = await _stocksContext.RedditDdEntities
-                .Where(x => x.Created > request.DateFrom && x.Created < request.DateTo).ToListAsync();
+                .Where(x => x.created_utc >= request.DateFrom.ToUnixTimeSeconds() 
+                            && x.created_utc <= request.DateTo.ToUnixTimeSeconds()
+                            && x.score > 0
+                            ).ToListAsync();
             return result;
+        }
+
+        public async Task<RedditDdEntity> GetRedditDdEntity(int id)
+        {
+            var result = await _stocksContext.RedditDdEntities
+                .Where(x => x.Id == id).FirstOrDefaultAsync();
+            return result;
+        }
+
+        public async Task SaveYahooFinanceOptionEntities(List<YahooFinanceOptionEntity> entities)
+        {
+            var existing = await _stocksContext.YahooFinanceOptionEntities
+                .Where(x => x.Created.Date == DateTimeOffset.Now.Date 
+                            && entities.Select(y=> y.Ticker).Contains(x.Ticker))
+                .ToListAsync();
+
+            var toUpdateEntities = new List<YahooFinanceOptionEntity>();
+            var toInsertEntities = new List<YahooFinanceOptionEntity>();
+            foreach (var entity in entities)
+            {
+                var toUpdate = existing.SingleOrDefault(x => x.OptionName == entity.OptionName);
+                if (toUpdate != null)
+                {
+                    toUpdate.OpenInterest = entity.OpenInterest;
+                    toUpdate.StrikePrice = entity.StrikePrice;
+                    toUpdateEntities.Add(toUpdate);
+                }
+                else
+                {
+                    toInsertEntities.Add(entity);
+                }
+            }
+
+            await _stocksContext.BulkInsertAsync(toInsertEntities);
+            await _stocksContext.BulkUpdateAsync(toUpdateEntities);
+        }
+
+        public async Task<List<YahooFinanceOptionEntityGroupByItem>> GetYahooFinanceOptionEntities(string ticker)
+        {
+            var query = await _stocksContext.Set<YahooFinanceOptionEntity>()
+                .Where(tik => tik.Ticker == ticker)
+                .GroupBy(c => new { c.Created.Date, c.Type, }, (k, g) => new
+                {
+                    OpenInterest = g.Sum(b => b.OpenInterest),
+                    Created = k.Date,
+                    Type = k.Type
+                }).Select(h => new YahooFinanceOptionEntityGroupByItem()
+                {
+                    Created = h.Created,
+                    OpenInterest = h.OpenInterest,
+                    Type = h.Type
+                }).ToListAsync();
+
+            return query;
         }
 
         public async Task SaveDCFs(List<Historical_discounted_cash_flow_Entity> dcfs)

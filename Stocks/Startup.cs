@@ -67,6 +67,9 @@ namespace Stocks
             services.AddScoped<IRedditService, RedditService>();
             services.AddScoped<IRedditDBProvider, RedditDbProvider>();
             services.AddScoped<IRedditOtherProvider, RedditOtherProvider>();
+            services.AddScoped<IYahooFinanceDbProvider, YahooFinanceDbProvider>();
+            services.AddScoped<IYahooFinanceService, YahooFinanceService>();
+            services.AddScoped<IYahooFinanceOtherProvider, YahooFinanceOtherProvider>();
             services.AddControllers()
                 .AddNewtonsoftJson(opt =>
                 {

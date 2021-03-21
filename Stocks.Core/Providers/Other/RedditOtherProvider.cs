@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using Stocks.Core.Services.StockPrice;
+﻿using AutoMapper;
 using Stocks.Data.Repositories;
 using Stocks.Model;
 using Stocks.Model.Reddit;
 using Stocks.Model.Shared;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Stocks.Core.Providers.Other
 {
@@ -27,18 +24,21 @@ namespace Stocks.Core.Providers.Other
         public async Task<RedditDdDtoList> GetDdList(RedditOtherRequest request)
         {
             var entities = await _stocksRepository.GetRedditDdEntities(request);
-            var result = _mapper.Map<List<RedditDdDto>>(entities);
-            await _stockPriceProvider.GetStockPricesForUi(result);
-            return new RedditDdDtoList()
+            var dtos = _mapper.Map<List<RedditDdDto>>(entities);
+            var ddDtoList = await _stockPriceProvider.GetStockPricesForUi(dtos, request);
+            return ddDtoList;
+        }
+
+        public async Task<RedditDdDto> GetDbItem(int id)
+        {
+            var entity = await _stocksRepository.GetRedditDdEntity(id);
+            if (entity != null)
             {
-                Items = result,
-                Paging = new PagingModel()
-                {
-                    Page = request.Page,
-                    PageSize = request.RowsPerPage,
-                    TotalItems = result.Count
-                }
-            };
+                var result = _mapper.Map<RedditDdDto>(entity);
+                return result;
+            }
+
+            return null;
         }
     }
 }

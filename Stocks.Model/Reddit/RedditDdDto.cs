@@ -1,15 +1,27 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using Stocks.Model.StockPrice;
 
 namespace Stocks.Model.Reddit
 {
     public class RedditDdDtoList : ListModelBase<RedditDdDto>
     {
+        public List<RedditDdDtoAggregated> Aggregated { get; set; }
+    }
 
+    public class RedditDdDtoAggregated
+    {
+        public string Ticker { get; set; }
+        public StockPricesForUi Prices { get; set; }
+        public int OneWeekPosts { get; set; }
+        public int TwoWeekPosts { get; set; }
+        public int ThreeWeekPosts { get; set; }
+        public int FourWeekPosts { get; set; }
     }
 
     public class RedditDdDto
     {
+        public int Id { get; set; }
         public StockPricesForUi Prices { get; set; }
         public string Ticker { get; set; }  
         public List<string> PotentialTickers { get; set; }

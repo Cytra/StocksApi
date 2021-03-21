@@ -29,11 +29,31 @@ namespace Stocks.Core.Providers.SaveToDbProviders
 
         public async Task GetDdList(RedditDbRequest request)
         {
-            var response = await _redditService.GetLatestDd(request);
+            var response = await _redditService.GetLatestDd(request, null);
             var children = response.data.children.Select(x => x.data).ToList();
+            var lastItemTime = children.Last().created_utc;
             var ddEntities = _mapper.Map<List<RedditDdEntity>>(children);
             var minDate = children.Select(x => x.created_utc).Min();
-            await _repo.SaveRedditDdEntities(ddEntities, minDate);
+            var maxDate = children.Select(x => x.created_utc).Max();
+            await _repo.SaveRedditDdEntities(ddEntities, minDate, maxDate);
+            while (lastItemTime > request.After.ToUnixTimeSeconds())
+            {
+                response = await _redditService.GetLatestDd(request, children.Last().id);
+                if (response.data.children.Length != 0)
+                {
+                    children = response.data.children.Select(x => x.data).ToList();
+                    ddEntities = _mapper.Map<List<RedditDdEntity>>(children);
+                    minDate = children.Select(x => x.created_utc).Min();
+                    maxDate = children.Select(x => x.created_utc).Max();
+                    await _repo.SaveRedditDdEntities(ddEntities, minDate, maxDate);
+                    lastItemTime = children.Last().created_utc;
+                }
+                else
+                {
+                    break;
+                }
+
+            }
         }
     }
 }

@@ -53,21 +53,16 @@ namespace Stocks.Model.Reddit
         public string subreddit_type { get; set; }
         public int ups { get; set; }
         public int total_awards_received { get; set; }
-        public Media_Embed media_embed { get; set; }
         public int? thumbnail_width { get; set; }
         public string author_flair_template_id { get; set; }
         public bool is_original_content { get; set; }
-        public Secure_Media secure_media { get; set; }
         public bool is_reddit_media_domain { get; set; }
         public bool is_meta { get; set; }
-        public Secure_Media_Embed secure_media_embed { get; set; }
         public string link_flair_text { get; set; }
         public bool can_mod_post { get; set; }
         public int score { get; set; }
         public bool author_premium { get; set; }
         public string thumbnail { get; set; }
-        public Author_Flair_Richtext[] author_flair_richtext { get; set; }
-        public Gildings gildings { get; set; }
         public bool is_self { get; set; }
         public string link_flair_type { get; set; }
         public int? wls { get; set; }
@@ -82,7 +77,6 @@ namespace Stocks.Model.Reddit
         public bool is_crosspostable { get; set; }
         public bool pinned { get; set; }
         public bool over_18 { get; set; }
-        public All_Awardings[] all_awardings { get; set; }
         public bool media_only { get; set; }
         public string link_flair_template_id { get; set; }
         public bool can_gild { get; set; }
@@ -109,11 +103,8 @@ namespace Stocks.Model.Reddit
         public int subreddit_subscribers { get; set; }
         public float created_utc { get; set; }
         public int num_crossposts { get; set; }
-        public Media media { get; set; }
         public bool is_video { get; set; }
-        public Media_Metadata media_metadata { get; set; }
         public string post_hint { get; set; }
-        public Preview preview { get; set; }
     }
 
     public class Media_Embed

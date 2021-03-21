@@ -951,6 +951,38 @@ namespace Stocks.Data.Migrations
                     b.ToTable("StockPriceHistoricEntities");
                 });
 
+            modelBuilder.Entity("Stocks.Data.Entities.YahooFinance.YahooFinanceOptionEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("OpenInterest")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OptionName")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<decimal>("StrikePrice")
+                        .HasColumnType("decimal(15,2)");
+
+                    b.Property<string>("Ticker")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("YahooFinanceOptionEntities");
+                });
+
             modelBuilder.Entity("Stocks.Data.Entities.Reddit.Link_Flair_Richtext", b =>
                 {
                     b.HasOne("Stocks.Data.Entities.Reddit.RedditDdEntity", null)

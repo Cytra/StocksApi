@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Stocks.Core.Helpers;
 using Stocks.Core.Providers.SaveToDbProviders;
 using Stocks.Model.Dividend;
 using Stocks.Model.Reddit;
@@ -14,15 +15,27 @@ namespace Stocks.Controllers
     public class CronController : ControllerBase
     {
         private readonly IRedditDBProvider _redditDBProvider;
-        public CronController(IRedditDBProvider redditDbProvider)
+        private readonly IYahooFinanceDbProvider _yahooFinanceDbProvider;
+        public CronController(IRedditDBProvider redditDbProvider, IYahooFinanceDbProvider yahooFinanceDbProvider)
         {
             _redditDBProvider = redditDbProvider;
+            _yahooFinanceDbProvider = yahooFinanceDbProvider;
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateRedditDdDB(RedditDbRequest request)
         {
             await _redditDBProvider.GetDdList(request);
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStockOptionOpenInterest()
+        {
+            foreach (var stock in StockLists.OptionOpenInterestStockList)
+            {
+                await _yahooFinanceDbProvider.GetStockOptionOpenInterest(stock);
+            }
             return Ok();
         }
     }

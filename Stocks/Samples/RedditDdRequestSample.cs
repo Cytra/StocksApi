@@ -26,7 +26,8 @@ namespace Stocks.Samples
             return new RedditDbRequest()
             {
                 SortType = RedditSortType.day,
-                Size = 1000
+                Size = 100,
+                After = DateTimeOffset.Now.AddMonths(-1)
             };
         }
     }
