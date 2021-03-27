@@ -1,0 +1,121 @@
+﻿@page "/calendar"
+@using System.Globalization
+
+<h3>Earnings</h3>
+@if (Earnings == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Date</th>
+                    <th>EPS</th>
+                    <th>EPS Estimate</th>
+                    <th>Revenue</th>
+                    <th>Revenue Estimate</th>
+                    <th>Time</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Earnings)
+                {
+                    <tr>
+                        <td>@item.symbol</td>
+                        <td>@item.date</td>
+                        <td>@item.eps</td>
+                        <td>@item.epsEstimated</td>
+                        <td>@item.revenue</td>
+                        <td>@item.revenueEstimated</td>
+                        <td>@item.time</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Ipos</h3>
+@if (Earnings == null)
+{
+
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Date</th>
+                    <th>Market Cap</th>
+                    <th>Action</th>
+                    <th>Company</th>
+                    <th>Exchange</th>
+                    <th>Price range</th>
+                    <th>Shares</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Ipos)
+                {
+                    <tr>
+                        <td>@item.symbol</td>
+                        <td>@item.date</td>
+                        <td>@item.marketCap</td>
+                        <td>@item.actions</td>
+                        <td>@item.company</td>
+                        <td>@item.exchange</td>
+                        <td>@item.priceRange</td>
+                        <td>@item.shares</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Economics</h3>
+@if (Earnings == null)
+{
+
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Change</th>
+                    <th>Change perc</th>
+                    <th>Country</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Economics)
+                {
+                    <tr>
+                        <td>@item._event</td>
+                        <td>@item.date</td>
+                        <td>@item.actual</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

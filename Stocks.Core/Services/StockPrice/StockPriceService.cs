@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Stocks.Model;
+using Stocks.Model.Shared;
 using Stocks.Model.StockPrice;
 
 namespace Stocks.Core.Services.StockPrice
@@ -92,7 +93,7 @@ namespace Stocks.Core.Services.StockPrice
 
         private string GetHistoricSimpleUrl(string symbol)
         {
-            var result = $"https://financialmodelingprep.com/api/v3/historical-price-full/{symbol}&apikey={_settings.ApiToken}";
+            var result = $"https://financialmodelingprep.com/api/v3/historical-price-full/{symbol}?apikey={_settings.ApiToken}";
             return result;
         }
     }

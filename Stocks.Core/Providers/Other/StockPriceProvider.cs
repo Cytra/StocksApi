@@ -12,6 +12,7 @@ using Stocks.Core.Services.StockList;
 using Stocks.Core.Services.StockPrice;
 using Stocks.Model;
 using Stocks.Model.Reddit;
+using Stocks.Model.Shared;
 using Stocks.Model.StockPrice;
 
 namespace Stocks.Core.Providers.Other

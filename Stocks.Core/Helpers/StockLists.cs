@@ -8,7 +8,8 @@ namespace Stocks.Core.Helpers
     {
         public static List<string> OptionOpenInterestStockList = new List<string>()
         {
-            "GME", "AMC", "ATOS","RKT", "DIS", "NOK", "EVFM"
+            "GME", "AMC", 
+            "RKT", 
         };
 
         public static List<string> TickerBlackList = new List<string>()

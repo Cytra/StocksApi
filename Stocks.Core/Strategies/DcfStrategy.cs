@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Stocks.Core.Extensions;
 using Stocks.Core.Providers.SaveToDbProviders;
-using Stocks.Core.Services.FinancialStatements;
-using Stocks.Core.Services.Profile;
 using Stocks.Core.Services.StockList;
 using Stocks.Data.Repositories;
 using Stocks.Model.DCF;

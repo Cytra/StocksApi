@@ -1,57 +1,6 @@
 ﻿@page "/openinterest"
 @using System.Globalization
 
-@*@if (StockList == null)
-    {
-        <p></p>
-    }
-    else
-    {
-    <ul class="list-group">
-        @foreach (var item in StockList)
-        {
-            <li class="list-group-item">@item</li>
-        }
-    </ul>
-
-    }
-
-    <div style="display:flex; flex-direction: row;">
-        <input style="width: 240px;" class="form-control mr-sm-2" type="search" placeholder="Stock Ticker" aria-label="Search" @bind="@Ticker">
-        <button class="btn btn-primary my-2 my-sm-0" type="submit" @onclick="@GetList">Filter</button>
-    </div>
-
-    @if (YahooFinanceOptionEntityGroupByLists == null)
-    {
-        <p>Search For ticker</p>
-    }
-    else
-    {
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Created</th>
-                        <th>Open Calls</th>
-                        <th>Open Puts</th>
-                        <th>Call Put ratio</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in YahooFinanceOptionEntityGroupByLists)
-                    {
-                        <tr>
-                            <td>@item.Created.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</td>
-                            <td>@item.OpenInterestCall</td>
-                            <td>@item.OpenInterestPut</td>
-                            <td>@item.CallPutRatio</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    }*@
 
 @if (AllStocks == null)
 {

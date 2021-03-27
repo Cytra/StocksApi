@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Stocks.Core.Services.Profile;
+using Stocks.Model.CompanyOutlook;
+using Stocks.Model.Shared;
 
 namespace Stocks.Controllers
 {
@@ -8,17 +9,24 @@ namespace Stocks.Controllers
     [Route("api/[controller]/[action]")]
     public class StockController : ControllerBase
     {
-        private readonly IProfileService _profileService;
-        public StockController(IProfileService profileService)
+        private readonly IStockService _stockService;
+        public StockController(IStockService stockService)
         {
-            _profileService = profileService;
+            _stockService = stockService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Profile(string stock)
         {
-            var result = await _profileService.GetStockProfile(stock);
+            var result = await _stockService.GetStockProfile(stock);
             return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<CompanyOutlookModel> CompanyOutlook(string stock)
+        {
+            var result = await _stockService.GetCompanyOutlook(stock);
+            return result;
         }
     }
 }

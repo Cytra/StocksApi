@@ -11,6 +11,7 @@ using Stocks.Core.Services.StockPrice;
 using Stocks.Data.Entities.StockPrice;
 using Stocks.Data.Repositories;
 using Stocks.Model.DCF;
+using Stocks.Model.Shared;
 
 namespace Stocks.Core.Strategies
 {

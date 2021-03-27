@@ -1,0 +1,156 @@
+﻿@page "/screener"
+@using System.Globalization
+@using Stocks.Model.Screener
+
+<h3>Screener</h3>
+<form>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <div><label>Market Cap</label></div>
+                <div><label>Price</label></div>
+                <div><label>Dividend Yield</label></div>
+                <div><label>Country</label></div>
+                <div><label>Sector</label></div>
+            </div>
+            <div class="col">
+                <select class="custom-select custom-select-sm" @bind="@SelectedMarketCap">
+                    @foreach (var item in MarketCapList)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+                <select class="custom-select custom-select-sm" @bind="@SelectedPrice">
+                    @foreach (var item in PriceList)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+                <select class="custom-select custom-select-sm" @bind="@SelectedDividendYield">
+                    @foreach (var item in DividendYieldList)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+                <select class="custom-select custom-select-sm" @bind="@SelectedCountry">
+                    <option>Any</option>
+                    @foreach (var item in Enum.GetValues(typeof(Country)))
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+                <select class="custom-select custom-select-sm" @bind="@SelectedSector">
+                    <option>Any</option>
+                    @foreach (var item in Enum.GetValues(typeof(Sector)))
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <div><label>Beta</label></div>
+                <div><label>Volume</label></div>
+                <div><label>Exchange</label></div>
+                <div><label>Industry</label></div>
+            </div>
+            <div class="col">
+                <select class="custom-select custom-select-sm" @bind="@SelectedBeta">
+                    @foreach (var item in BetaList)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+                <select class="custom-select custom-select-sm" @bind="@SelectedVolume">
+                    @foreach (var item in VolumeList)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+                <select class="custom-select custom-select-sm" @bind="@SelectedExchange">
+                    <option>Any</option>
+                    @foreach (var item in Enum.GetValues(typeof(Exchange)))
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+                <select class="custom-select custom-select-sm" @bind="@SelectedIndustry">
+                    <option>Any</option>
+                    @foreach (var item in Enum.GetValues(typeof(Industry)))
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</form>
+
+<button class="btn btn-outline-primary my-2 my-sm-0" type="submit" @onclick="@GetStocks">Screen</button>
+
+@if (Stocks == null)
+{
+
+}
+else
+{
+
+    <div>
+        <table class="table" style="font-size: 10px;">
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Beta</th>
+                    <th>Market Cap</th>
+                    <th>Company Name</th>
+                    <th>Country</th>
+                    <th>Exchange</th>
+                    <th>Industry</th>
+                    <th>Sector</th>
+                    <th>Price</th>
+                    <th>Dividend</th>
+                    <th>Dividend Yield</th>
+                    <th>Volume</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Stocks)
+            {
+                <tr>
+                    <td>@item.symbol</td>
+                    <td>@item.beta.ToString("0.##")</td>
+                    <td>@item.marketCap.ToString("#,##0,,,.##B")</td>
+                    <td>@item.companyName</td>
+                    <td>@item.country</td>
+                    <td>@item.exchangeShortName</td>
+                    <td>@item.industry</td>
+                    <td>@item.sector</td>
+                    <td>@item.price.ToString("0.##")</td>
+                    <td>@item.lastAnnualDividend.ToString("0.##")</td>
+                    <td>@item.DividendYield.ToString("P2")</td>
+                    <td>@item.volume.ToString("#,##0,,M")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        @if (Response.Paging.TotalPages > 0)
+        {
+            <div class="float-left pager">
+                <button type="button" class="btn btn-primary btn-sm" disabled="@(Response.Paging.Page == 1 ? "disabled" : null)" @onclick="@(() => GetItems(1))">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" disabled="@(Response.Paging.Page - 1 > 0 ? null : "disabled")" @onclick="@(() => GetItems(Response.Paging.Page - 1))">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </button>
+                <span>@Response.Paging.Page</span>
+                <button type="button" class="btn btn-primary btn-sm" disabled="@(Response.Paging.Page + 1 <= Response.Paging.TotalPages ? null : "disabled")" @onclick="@(() => GetItems(Response.Paging.Page + 1))">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" disabled="@(Response.Paging.Page == Response.Paging.TotalPages ? "disabled" : null)" @onclick="@(() => GetItems(Response.Paging.TotalPages))">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        }
+    </div>
+
+}

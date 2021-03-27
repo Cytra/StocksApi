@@ -1,0 +1,87 @@
+﻿@page "/stockOverview/{StockTicker}"
+
+@inject NavigationManager NavigationManager
+@using Newtonsoft.Json
+
+
+@if (CompanyOutlook == null)
+{
+    <p>Loading</p>
+}
+else
+{
+
+    <h2>Profile</h2>
+    <div class="row">
+        <div class="col">
+            <div class="font-weight-bold">Symbol</div>
+            <div class="font-weight-bold">Name</div>
+            <div class="font-weight-bold">Avg Vol</div>
+            <div class="font-weight-bold">MktCap</div>
+            <div class="font-weight-bold">DcfDiff</div>
+            <div class="font-weight-bold">Change</div>
+            <div class="font-weight-bold">Currency</div>
+            <div class="font-weight-bold">Exchange</div>
+            <div class="font-weight-bold">Industry</div>
+        </div>
+        <div class="col">
+            <div>@CompanyOutlook.profile.symbol</div>
+            <div>@CompanyOutlook.profile.companyName</div>
+            <div>@CompanyOutlook.profile.volAvg</div>
+            <div>@CompanyOutlook.profile.mktCap.ToString("#,##0,,,.##B")</div>
+            <div>@CompanyOutlook.profile.dcfDiff?.ToString("0.##")</div>
+            <div>@CompanyOutlook.profile.changes</div>
+            <div>@CompanyOutlook.profile.currency</div>
+            <div>@CompanyOutlook.profile.exchangeShortName</div>
+            <div>@CompanyOutlook.profile.industry</div>
+        </div>
+        <div class="col">
+            <div class="font-weight-bold">Price</div>
+            <div class="font-weight-bold">Beta</div>
+            <div class="font-weight-bold">Last Div</div>
+            <div class="font-weight-bold">Range</div>
+            <div class="font-weight-bold">dcf</div>
+            <div class="font-weight-bold">Sector</div>
+            <div class="font-weight-bold">Country</div>
+            <div class="font-weight-bold">FullTimeEmployees</div>
+            <div class="font-weight-bold">Image</div>
+        </div>
+        <div class="col">
+            <div>@CompanyOutlook.profile.price</div>
+            <div>@CompanyOutlook.profile.beta</div>
+            <div>@CompanyOutlook.profile.lastDiv</div>
+            <div>@CompanyOutlook.profile.range</div>
+            <div>@CompanyOutlook.profile.dcf.ToString("0.##")</div>
+            <div>@CompanyOutlook.profile.sector</div>
+            <div>@CompanyOutlook.profile.country</div>
+            <div>@CompanyOutlook.profile.fullTimeEmployees</div>
+            <div>@CompanyOutlook.profile.image</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <a href="/stockOverview/financials/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Financials</a>
+        </div>
+    </div>
+
+    <h2>News</h2>
+
+    <div class="row">
+        @foreach (var item in @CompanyOutlook.stockNews)
+        {
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src=@item.image alt="Card image cap">
+                    <h5 class="card-header">@item.title</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.publishedDate @item.site</h5>
+                        <p class="card-text">@item.text.Substring(0, 50)</p>
+                        <a href=@item.url class="card-link">More</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Helpers;
@@ -32,9 +33,17 @@ namespace Stocks.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateStockOptionOpenInterest()
         {
+            //var tasks = StockLists.OptionOpenInterestStockList.Select(async stock =>
+            //{
+            //    await _yahooFinanceDbProvider.GetStockOptionOpenInterest(stock);
+            //});
+            //await Task.WhenAll(tasks);
+
             foreach (var stock in StockLists.OptionOpenInterestStockList)
             {
+
                 await _yahooFinanceDbProvider.GetStockOptionOpenInterest(stock);
+                Thread.Sleep(1000);
             }
             return Ok();
         }

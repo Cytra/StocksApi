@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Stocks.Model.StockPrice;
 
-namespace Stocks.Core.Services.StockPrice
+namespace Stocks.Model.Shared
 {
     public interface IStockPriceService
     {

@@ -13,14 +13,16 @@ using Stocks.Core.Providers.Other;
 using Stocks.Core.Providers.SaveToDbProviders;
 using Stocks.Core.Scheduling;
 using Stocks.Core.Services;
+using Stocks.Core.Services.Calendar;
 using Stocks.Core.Services.DCF;
 using Stocks.Core.Services.Dividend;
 using Stocks.Core.Services.FinancialStatements;
 using Stocks.Core.Services.Index;
-using Stocks.Core.Services.Profile;
 using Stocks.Core.Services.Reddit;
+using Stocks.Core.Services.Screener;
 using Stocks.Core.Services.StockList;
 using Stocks.Core.Services.StockPrice;
+using Stocks.Core.Services.StockService;
 using Stocks.Core.Strategies;
 using Stocks.Data.Contexts;
 using Stocks.Data.Repositories;
@@ -59,7 +61,6 @@ namespace Stocks
             services.AddScoped<IIncomeStatementService, IncomeStatementService>();
             services.AddScoped<IIncomeStatementProvider, IncomeStatementProvider>();
             services.AddScoped<IDcfStrategy, DcfStrategy>();
-            services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IProfileProvider, ProfileProvider>();
             services.AddScoped<IBalanceSheetService, BalanceSheetService>();
             services.AddScoped<IBalanceSheetProvider, BalanceSheetProvider>();
@@ -70,6 +71,10 @@ namespace Stocks
             services.AddScoped<IYahooFinanceDbProvider, YahooFinanceDbProvider>();
             services.AddScoped<IYahooFinanceService, YahooFinanceService>();
             services.AddScoped<IYahooFinanceOtherProvider, YahooFinanceOtherProvider>();
+            services.AddScoped<IStockService, StockService>();
+            services.AddScoped<IStockScreenerService, StockScreenerService>();
+            services.AddScoped<IStockScreenerPrivider, StockScreenerPrivider>();
+            services.AddScoped<ICalendarService, CalendarService>();
             services.AddControllers()
                 .AddNewtonsoftJson(opt =>
                 {
@@ -82,6 +87,12 @@ namespace Stocks
             services.AddHttpClient("Stock", client =>
             {
                 client.BaseAddress = new Uri("https://financialmodelingprep.com");
+                client.Timeout = new TimeSpan(0, 0, 30);
+                client.DefaultRequestHeaders.Clear();
+            });
+
+            services.AddHttpClient("yahooFinance", client =>
+            {
                 client.Timeout = new TimeSpan(0, 0, 30);
                 client.DefaultRequestHeaders.Clear();
             });

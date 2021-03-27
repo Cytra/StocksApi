@@ -18,7 +18,7 @@ namespace Stocks.Core.Services
         }
         public async Task<string> GetStockOptionData(string ticker, string date)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("yahooFinance");
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, string.IsNullOrWhiteSpace(date) ? GetUrl(ticker) : GetUrl(ticker,date));
             using var response = await client.SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead);
             var result = await response.Content.ReadAsStringAsync();

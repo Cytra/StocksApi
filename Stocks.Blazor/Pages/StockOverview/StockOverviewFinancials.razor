@@ -1,0 +1,759 @@
+﻿@page "/stockOverview/financials/{StockTicker}"
+
+@if (CompanyOutlook == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <h2>Dividends</h2>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Labels</th>
+                    @foreach (var item in @CompanyOutlook.stockDividend)
+                    {
+                        <th>@item.date</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dividend</td>
+                    @foreach (var item in @CompanyOutlook.stockDividend)
+                    {
+                        <td>@item.dividend.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AdjDividend</td>
+                    @foreach (var item in @CompanyOutlook.stockDividend)
+                    {
+                        <td>@item.adjDividend.ToString("0.##")</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Income Annual</h2>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Labels</th>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <th>@item.date</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Revenue</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.revenue.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CostOfRevenue</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.costOfRevenue.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>GrossProfit</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.grossProfit.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>GrossProfitRatio</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.grossProfitRatio.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ResearchAndDevelopmentExpenses</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.researchAndDevelopmentExpenses.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ReneralAndAdministrativeExpenses</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.generalAndAdministrativeExpenses.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>SellingAndMarketingExpenses</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.sellingAndMarketingExpenses.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherExpenses</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.otherExpenses.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OperatingExpenses</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.operatingExpenses.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CostAndExpenses</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.costAndExpenses.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>InterestExpense</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.interestExpense.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DepreciationAndAmortization</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.depreciationAndAmortization.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Ebitda</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.ebitda.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Ebitdaratio</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.ebitdaratio.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OperatingIncome</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.operatingIncome.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OperatingIncomeRatio</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.operatingIncomeRatio.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalOtherIncomeExpensesNet</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.totalOtherIncomeExpensesNet.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>IncomeBeforeTax</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.incomeBeforeTax.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>IncomeBeforeTaxRatio</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.incomeBeforeTaxRatio.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>IncomeTaxExpense</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.incomeTaxExpense.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetIncome</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.netIncome.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetIncomeRatio</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.netIncomeRatio.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Eps</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.eps.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Epsdiluted</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.epsdiluted.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>WeightedAverageShsOut</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.weightedAverageShsOut.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>WeightedAverageShsOutDil</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.income)
+                    {
+                        <td>@item.weightedAverageShsOutDil.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Balance Annual</h2>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Labels</th>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <th>@item.date</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CashAndCashEquivalents</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.cashAndCashEquivalents.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ShortTermInvestments</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.shortTermInvestments.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CashAndShortTermInvestments</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.cashAndShortTermInvestments.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetReceivables</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.netReceivables.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Inventory</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.inventory.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherCurrentAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.otherCurrentAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalCurrentAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalCurrentAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PropertyPlantEquipmentNet</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.propertyPlantEquipmentNet.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Goodwill</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.goodwill.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>IntangibleAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.intangibleAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>GoodwillAndIntangibleAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.goodwillAndIntangibleAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>LongTermInvestments</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.longTermInvestments.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TaxAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.taxAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherNonCurrentAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.otherNonCurrentAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalNonCurrentAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalNonCurrentAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.otherAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalAssets</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalAssets.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AccountPayables</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.accountPayables.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ShortTermDebt</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.shortTermDebt.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TaxPayables</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.taxPayables.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DeferredRevenue</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.deferredRevenue.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherCurrentLiabilities</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.otherCurrentLiabilities.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalCurrentLiabilities</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalCurrentLiabilities.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>LongTermDebt</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.longTermDebt.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DeferredRevenueNonCurrent</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.deferredRevenueNonCurrent.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DeferredTaxLiabilitiesNonCurrent</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.deferredTaxLiabilitiesNonCurrent.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherNonCurrentLiabilities</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.otherNonCurrentLiabilities.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalNonCurrentLiabilities</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalNonCurrentLiabilities.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherLiabilities</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.otherLiabilities.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalLiabilities</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalLiabilities.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CommonStock</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.commonStock.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>RetainedEarnings</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.retainedEarnings.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AccumulatedOtherComprehensiveIncomeLoss</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.accumulatedOtherComprehensiveIncomeLoss.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OthertotalStockholdersEquity</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.othertotalStockholdersEquity.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalStockholdersEquity</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalStockholdersEquity.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalLiabilitiesAndStockholdersEquity</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalLiabilitiesAndStockholdersEquity.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalInvestments</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalInvestments.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TotalDebt</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.totalDebt.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetDebt</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.balance)
+                    {
+                        <td>@item.netDebt.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Cash Annual</h2>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Labels</th>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <th>@item.date</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>NetIncome</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.netIncome.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DepreciationAndAmortization</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.depreciationAndAmortization.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DeferredIncomeTax</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.deferredIncomeTax.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>StockBasedCompensation</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.stockBasedCompensation.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ChangeInWorkingCapital</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.changeInWorkingCapital.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AccountsReceivables</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.accountsReceivables.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Inventory</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.inventory.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AccountsPayables</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.accountsPayables.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherWorkingCapital</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.otherWorkingCapital.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherNonCashItems</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.otherNonCashItems.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetCashProvidedByOperatingActivities</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.netCashProvidedByOperatingActivities.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>InvestmentsInPropertyPlantAndEquipment</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.investmentsInPropertyPlantAndEquipment.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AcquisitionsNet</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.acquisitionsNet.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PurchasesOfInvestments</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.purchasesOfInvestments.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>SalesMaturitiesOfInvestments</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.salesMaturitiesOfInvestments.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherInvestingActivites</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.otherInvestingActivites.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetCashUsedForInvestingActivites</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.netCashUsedForInvestingActivites.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DebtRepayment</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.debtRepayment.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CommonStockIssued</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.commonStockIssued.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CommonStockRepurchased</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.commonStockRepurchased.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DividendsPaid</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.dividendsPaid.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OtherFinancingActivites</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.otherFinancingActivites.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetCashUsedProvidedByFinancingActivities</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.netCashUsedProvidedByFinancingActivities.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>EffectOfForexChangesOnCash</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.effectOfForexChangesOnCash.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetChangeInCash</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.netChangeInCash.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CashAtEndOfPeriod</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.cashAtEndOfPeriod.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CashAtBeginningOfPeriod</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.cashAtBeginningOfPeriod.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OperatingCashFlow</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.operatingCashFlow.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CapitalExpenditure</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.capitalExpenditure.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>FreeCashFlow</td>
+                    @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
+                    {
+                        <td>@item.freeCashFlow.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

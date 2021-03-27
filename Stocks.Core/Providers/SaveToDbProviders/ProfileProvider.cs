@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Stocks.Core.Services.Profile;
 using Stocks.Data.Entities.Profile;
 using Stocks.Data.Repositories;
 using Stocks.Model.Profile;
+using Stocks.Model.Shared;
 
 namespace Stocks.Core.Providers.SaveToDbProviders
 {
@@ -14,19 +14,19 @@ namespace Stocks.Core.Providers.SaveToDbProviders
     }
     public class ProfileProvider : IProfileProvider
     {
-        private readonly IProfileService _profileService;
+        private readonly IStockService _stockService;
         private readonly IStocksRepository _stocksRepository;
         private readonly IMapper _mapper;
-        public ProfileProvider(IProfileService profileService, IStocksRepository stocksRepository, IMapper mapper)
+        public ProfileProvider(IStockService stockService, IStocksRepository stocksRepository, IMapper mapper)
         {
-            _profileService = profileService;
+            _stockService = stockService;
             _stocksRepository = stocksRepository;
             _mapper = mapper;
         }
 
         public async Task<List<StockProfile>> GetStockProfile(string symbol)
         {
-            var result = await _profileService.GetStockProfile(symbol);
+            var result = await _stockService.GetStockProfile(symbol);
             var dbEntities = _mapper.Map<List<StockProfileEntity>>(result);
             await _stocksRepository.SaveStockProfileEntities(dbEntities);
             return result;

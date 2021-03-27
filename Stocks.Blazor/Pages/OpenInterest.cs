@@ -26,7 +26,7 @@ namespace Stocks.Blazor.Pages
             foreach (var stock in StockList)
             {
                 var stockList = await YahooFinanceOtherProvider.GetOpenInterest(stock);
-                allList.Add(stockList);
+                allList.Add(stockList.OrderByDescending(x=> x.Created).ToList());
             }
             AllStocks = allList;
         }

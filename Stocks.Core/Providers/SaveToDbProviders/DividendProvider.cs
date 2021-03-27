@@ -10,6 +10,7 @@ using Stocks.Data.Entities.Dividend;
 using Stocks.Data.Entities.StockPrice;
 using Stocks.Data.Repositories;
 using Stocks.Model.Dividend;
+using Stocks.Model.Shared;
 using Stocks.Model.StockPrice;
 
 namespace Stocks.Core.Providers.SaveToDbProviders

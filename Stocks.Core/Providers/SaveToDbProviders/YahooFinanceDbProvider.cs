@@ -30,7 +30,10 @@ namespace Stocks.Core.Providers.SaveToDbProviders
             foreach (var date in dates)
             {
                 var entitiesToAdd = await GetOptionData(ticker, date);
-                allEntities.AddRange(entitiesToAdd);
+                if (entitiesToAdd != null)
+                {
+                    allEntities.AddRange(entitiesToAdd);
+                }
             }
 
             await _stocksRepository.SaveYahooFinanceOptionEntities(allEntities);
@@ -42,7 +45,11 @@ namespace Stocks.Core.Providers.SaveToDbProviders
             var htmlString = await _yahooFinanceService.GetStockOptionData(ticker, date);
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(htmlString);
-            var callTable = htmlDoc.DocumentNode.Descendants("table").Single(node => node.GetAttributeValue("class", "").Contains("W(100%) Pos(r) Bd(0) Pt(0) list-options"));
+            var callTable = htmlDoc.DocumentNode.Descendants("table").SingleOrDefault(node => node.GetAttributeValue("class", "").Contains("W(100%) Pos(r) Bd(0) Pt(0) list-options"));
+            if (callTable == null)
+            {
+                return null;
+            }
             var callBody = callTable.ChildNodes.Single(x => x.Name == "tbody");
             var callTrItems = callBody.ChildNodes.Where(x => x.Name == "tr").ToList();
             foreach (var node in callTrItems)

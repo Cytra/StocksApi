@@ -21,12 +21,13 @@ namespace Stocks.Blazor
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddHttpClient<IUIStockService, IuiStockService>(client => client.BaseAddress = new Uri("https://localhost:5001"));
+            builder.Services.AddHttpClient<IStockService, IuiStockService>(client => client.BaseAddress = new Uri("https://localhost:5001"));
             builder.Services.AddHttpClient<IPortfolioProvider, PortfolioProvider>(client => client.BaseAddress = new Uri("https://localhost:5001"));
             builder.Services.AddHttpClient<IRedditOtherProvider, RedditOtherProvider>(client => client.BaseAddress = new Uri("https://localhost:5001"));
             builder.Services.AddHttpClient<IYahooFinanceOtherProvider, YahooFinanceOtherProvider>(client => client.BaseAddress = new Uri("https://localhost:5001"));
-
-            await builder.Build().RunAsync();
+            builder.Services.AddHttpClient<IStockPriceService, StockPriceService>(client => client.BaseAddress = new Uri("https://localhost:5001"));
+            builder.Services.AddHttpClient<IStockScreenerPrivider, StockScreenerPrivider>(client => client.BaseAddress = new Uri("https://localhost:5001"));
+            builder.Services.AddHttpClient<ICalendarService, CalendarService>(client => client.BaseAddress = new Uri("https://localhost:5001"));
 
             await builder.Build().RunAsync();
         }
