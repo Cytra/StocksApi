@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Stocks.Model.Calendar;
@@ -20,8 +19,8 @@ namespace Stocks.Blazor.Pages
         {
             var request = new CalendarRequest()
             {
-                From = DateTime.Now,
-                To = DateTime.Now.AddDays(10)
+                From = DateTime.Now.AddDays(-1),
+                To = DateTime.Now.AddDays(1)
             };
             Earnings = await CalendarService.GetEarningsCalendar(request);
             Ipos = await CalendarService.GetIpoCalendar(request);

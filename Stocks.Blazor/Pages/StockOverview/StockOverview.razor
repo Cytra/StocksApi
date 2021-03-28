@@ -60,8 +60,23 @@ else
     </div>
 
     <div class="row">
-        <div class="col">
-            <a href="/stockOverview/financials/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Financials</a>
+        <div style="margin-right: 10px">
+            <a target="_blank" href="/stockOverview/financials/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Financials</a>
+        </div>
+        <div style="margin-right: 10px">
+            <a target="_blank" href="/stockOverview/keymetrics/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Key Metrics</a>
+        </div>
+        <div style="margin-right: 10px">
+            <a target="_blank" href="/stockOverview/pressreleases/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Press Releases</a>
+        </div>
+        <div style="margin-right: 10px">
+            <a target="_blank" href="/stockOverview/secfillings/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Sec Fillings</a>
+        </div>
+        <div style="margin-right: 10px">
+            <a target="_blank" href="/stockOverview/dcf/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">DCF</a>
+        </div>
+        <div style="margin-right: 10px">
+            <a target="_blank" href="/stockOverview/rating/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Rating</a>
         </div>
     </div>
 
@@ -76,7 +91,14 @@ else
                     <h5 class="card-header">@item.title</h5>
                     <div class="card-body">
                         <h5 class="card-title">@item.publishedDate @item.site</h5>
-                        <p class="card-text">@item.text.Substring(0, 50)</p>
+                        <p class="card-text">@if (item.text.Length > 50)
+                                             {
+                                                 @item.text.Substring(0, 50)
+                                             }
+                                             else
+                                             {
+                                                 @item.text
+                                             }</p>
                         <a href=@item.url class="card-link">More</a>
                     </div>
                 </div>

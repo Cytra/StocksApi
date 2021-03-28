@@ -1,0 +1,27 @@
+﻿@page "/stockOverview/pressreleases/{StockTicker}"
+
+<h3>PressReleases</h3>
+
+@if (PressReleasesList == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in PressReleasesList)
+        {
+            <div class="col-sm-12">
+                <div class="card">
+                    <h5 class="card-header">@item.title</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.date.ToString("yyyy-MM-dd")</h5>
+                        <p class="card-text">@item.text</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+

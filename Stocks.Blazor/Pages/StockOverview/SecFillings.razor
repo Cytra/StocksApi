@@ -1,0 +1,26 @@
+﻿@page "/stockOverview/secfillings/{StockTicker}"
+
+<h3>SecFillings</h3>
+
+@if (SecFillingsList == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in SecFillingsList)
+        {
+            <div class="col-sm-3">
+                <div class="card" style="width: 18rem;">
+                    <h5 class="card-header">@item.type @item.fillingDate.ToString("yyyy-MM-dd")</h5>
+                    <div class="card-body">
+                        <p class="card-text">@item.cik</p>
+                        <a target="_blank" href=@item.link class="card-link">Link</a>
+                        <a target="_blank" href=@item.finalLink class="card-link">Final Link</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

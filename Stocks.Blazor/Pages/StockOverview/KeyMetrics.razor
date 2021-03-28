@@ -1,0 +1,437 @@
+﻿@page "/stockOverview/keymetrics/{StockTicker}"
+
+
+<h3>KeyMetrics</h3>
+
+
+@if (KeyMetricsList == null)
+{
+    <p>Loading</p>
+}
+else
+{
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Labels</th>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <th>@item.date.ToString("yyyy-MM-dd")</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>period</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.period</td>
+                    }
+                </tr>
+                <tr>
+                    <td>RevenuePerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.revenuePerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetIncomePerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.netIncomePerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>OperatingCashFlowPerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.operatingCashFlowPerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>FreeCashFlowPerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.freeCashFlowPerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CashPerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.cashPerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>BookValuePerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.bookValuePerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TangibleBookValuePerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.tangibleBookValuePerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ShareholdersEquityPerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.shareholdersEquityPerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>InterestDebtPerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.interestDebtPerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>MarketCap</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.marketCap?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>EnterpriseValue</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.enterpriseValue?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PeRatio</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.peRatio?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PriceToSalesRatio</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.priceToSalesRatio?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Pocfratio</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.pocfratio?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PfcfRatio</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.pfcfRatio?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PbRatio</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.pbRatio?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PtbRatio</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.ptbRatio?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>EvToSales</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.evToSales?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>EnterpriseValueOverEBITDA</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.enterpriseValueOverEBITDA?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>EvToOperatingCashFlow</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.evToOperatingCashFlow?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>EvToFreeCashFlow</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.evToFreeCashFlow?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>EarningsYield</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.earningsYield?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>FreeCashFlowYield</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.freeCashFlowYield?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DebtToEquity</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.debtToEquity?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DebtToAssets</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.debtToAssets?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetDebtToEBITDA</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.netDebtToEBITDA?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CurrentRatio</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.currentRatio?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>InterestCoverage</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.interestCoverage?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>IncomeQuality</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.incomeQuality?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DividendYield</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.dividendYield?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PayoutRatio</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.payoutRatio?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>SalesGeneralAndAdministrativeToRevenue</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.salesGeneralAndAdministrativeToRevenue?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ResearchAndDdevelopementToRevenue</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.researchAndDdevelopementToRevenue?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>IntangiblesToTotalAssets</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.intangiblesToTotalAssets?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CapexToOperatingCashFlow</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.capexToOperatingCashFlow?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CapexToRevenue</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.capexToRevenue?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CapexToDepreciation</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.capexToDepreciation?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>StockBasedCompensationToRevenue</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.stockBasedCompensationToRevenue?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>GrahamNumber</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.grahamNumber?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Roic</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.roic?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ReturnOnTangibleAssets</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.returnOnTangibleAssets?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>GrahamNetNet</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.grahamNetNet?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>WorkingCapital</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.workingCapital?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>TangibleAssetValue</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.tangibleAssetValue?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>NetCurrentAssetValue</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.netCurrentAssetValue?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>InvestedCapital</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.investedCapital?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AverageReceivables</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.averageReceivables?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AveragePayables</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.averagePayables?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>AverageInventory</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.averageInventory?.ToString("#,##0,,,.##B")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DaysSalesOutstanding</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.daysSalesOutstanding?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DaysPayablesOutstanding</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.daysPayablesOutstanding?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>DaysOfInventoryOnHand</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.daysOfInventoryOnHand?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>ReceivablesTurnover</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.receivablesTurnover?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>PayablesTurnover</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.payablesTurnover?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>InventoryTurnover</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.inventoryTurnover?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Roe</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.roe?.ToString("0.##")</td>
+                    }
+                </tr>
+                <tr>
+                    <td>CapexPerShare</td>
+                    @foreach (var item in KeyMetricsList)
+                    {
+                        <td>@item.capexPerShare?.ToString("0.##")</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+

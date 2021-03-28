@@ -1,0 +1,42 @@
+﻿@page "/stockOverview/rating/{StockTicker}"
+
+<h3>Rating</h3>
+
+@if (RatingHistorics == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Recommendation</th>
+                    <th>DCF</th>
+                    <th>ROE</th>
+                    <th>ROA</th>
+                    <th>DE</th>
+                    <th>PE</th>
+                    <th>PB</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in RatingHistorics)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.ratingRecommendation</td>
+                        <td>@item.ratingDetailsDCFRecommendation</td>
+                        <td>@item.ratingDetailsROERecommendation</td>
+                        <td>@item.ratingDetailsROARecommendation</td>
+                        <td>@item.ratingDetailsDERecommendation</td>
+                        <td>@item.ratingDetailsPERecommendation</td>
+                        <td>@item.ratingDetailsPBRecommendation</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

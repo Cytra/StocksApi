@@ -28,5 +28,40 @@ namespace Stocks.Controllers
             var result = await _stockService.GetCompanyOutlook(stock);
             return result;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> KeyMetrics(string stock)
+        {
+            var result = await _stockService.GetKeyMetrics(stock);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> PressReleases(string stock)
+        {
+            var result = await _stockService.GetPressReleases(stock);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SecFillings(string stock)
+        {
+            var result = await _stockService.GetSecFillings(stock);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Dcf(string stock)
+        {
+            var result = await _stockService.GetDCF(stock);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Rating(string stock)
+        {
+            var result = await _stockService.Rating(stock);
+            return Ok(result);
+        }
     }
 }

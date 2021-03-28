@@ -1,0 +1,35 @@
+﻿@page "/stockOverview/dcf/{StockTicker}"
+
+<h3>Dcf</h3>
+
+@if (DcfList == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>DCF</th>
+                    <th>Price</th>
+                    <th>Ratio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in DcfList?.historicalDCF)
+                {
+                <tr>
+                    <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@item.DCF?.ToString("0.##")</td>
+                    <td>@item.StockPrice?.ToString("0.##")</td>
+                    <td>@item.Ratio?.ToString("0.##")</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+}

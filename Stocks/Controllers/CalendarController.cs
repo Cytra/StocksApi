@@ -34,7 +34,7 @@ namespace Stocks.Controllers
         [HttpPost]
         public async Task<IActionResult> GetEconomicCalendar(CalendarRequest request)
         {
-            var result = await _calendarService.GetEarningsCalendar(request);
+            var result = await _calendarService.GetEconomicCalendar(request);
             return Ok(result);
         }
     }

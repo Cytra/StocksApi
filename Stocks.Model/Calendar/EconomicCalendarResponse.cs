@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace Stocks.Model.Calendar
 {
     public class EconomicCalendarResponse
     {
+        [JsonProperty("event")]
         public string _event { get; set; }
         public string date { get; set; }
         public string country { get; set; }

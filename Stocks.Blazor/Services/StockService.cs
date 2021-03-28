@@ -2,7 +2,12 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Stocks.Model.CompanyOutlook;
+using Stocks.Model.DCF;
+using Stocks.Model.KeyMetrics;
+using Stocks.Model.PressReleases;
 using Stocks.Model.Profile;
+using Stocks.Model.Rating;
+using Stocks.Model.SecFillings;
 
 namespace Stocks.Blazor.Services
 {
@@ -28,6 +33,46 @@ namespace Stocks.Blazor.Services
             var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/CompanyOutlook?stock={symbol}");
             using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
             var result = await response.Content.ReadAsAsync<CompanyOutlookModel>();
+            return result;
+        }
+
+        public async Task<List<KeyMetrics>> GetKeyMetrics(string symbol)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/KeyMetrics?stock={symbol}");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<KeyMetrics>>();
+            return result;
+        }
+
+        public async Task<List<PressReleases>> GetPressReleases(string symbol)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/PressReleases?stock={symbol}");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<PressReleases>>();
+            return result;
+        }
+
+        public async Task<List<SecFillings>> GetSecFillings(string symbol)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/SecFillings?stock={symbol}");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<SecFillings>>();
+            return result;
+        }
+
+        public async Task<List<Historical_discounted_cash_flows_Model>> GetDCF(string symbol)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/Dcf?stock={symbol}");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<Historical_discounted_cash_flows_Model>>();
+            return result;
+        }
+
+        public async Task<List<RatingHistoric>> Rating(string symbol)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/Rating?stock={symbol}");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<RatingHistoric>>();
             return result;
         }
     }

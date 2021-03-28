@@ -7,7 +7,8 @@ namespace Stocks.Model.DCF
     {
         public DateTime Date { get; set; }
         [JsonProperty("Stock Price")]
-        public decimal StockPrice { get; set; }
-        public decimal DCF { get; set; }
+        public decimal? StockPrice { get; set; }
+        public decimal? DCF { get; set; }
+        public decimal? Ratio { get; set; }
     }
 }
