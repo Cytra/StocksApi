@@ -22,7 +22,11 @@ namespace Stocks.Blazor.Pages
                 From = DateTime.Now.AddDays(-1),
                 To = DateTime.Now.AddDays(1)
             };
-            Earnings = await CalendarService.GetEarningsCalendar(request);
+            Earnings = await CalendarService.GetEarningsCalendar(new CalendarRequest()
+            {
+                From = DateTime.Now.AddDays(-3),
+                To = DateTime.Now
+            });
             Ipos = await CalendarService.GetIpoCalendar(request);
             Economics = await CalendarService.GetEconomicCalendar(request);
         }

@@ -63,5 +63,33 @@ namespace Stocks.Controllers
             var result = await _stockService.Rating(stock);
             return Ok(result);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EarningsSurprises(string stock)
+        {
+            var result = await _stockService.EarningsSurprises(stock);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StockNews(string stock)
+        {
+            var result = await _stockService.StockNews(stock);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Gainers()
+        {
+            var result = await _stockService.Gainers();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Losers()
+        {
+            var result = await _stockService.Losers();
+            return Ok(result);
+        }
     }
 }

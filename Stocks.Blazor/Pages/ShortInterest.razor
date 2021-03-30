@@ -1,0 +1,55 @@
+﻿@page "/shortinterest"
+
+<h3>Short Interest</h3>
+
+@if (ShortInterests == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div>
+        <table class="table" style="font-size: 10px;">
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Market Cap</th>
+                    <th>Company</th>
+                    <th>Exchange</th>
+                    <th>ShortInt</th>
+                    <th>Float</th>
+                    <th>OutStd</th>
+                    <th>Industry</th>
+                    <th>Day Perf</th>
+                    <th>2Day Perf</th>
+                    <th>3Day Perf</th>
+                    <th>Week Perf</th>
+                    <th>Month Perf</th>
+                    <th>3Months Perf</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ShortInterests)
+                {
+                <tr>
+                    <td>@item.Ticker</td>
+                    <td>@item.MarketCap?.ToString("#,##0,,,.##B")</td>
+                    <td>@item.Company</td>
+                    <td>@item.Exchange</td>
+                    <td>@item.ShortInt.ToString("P0")</td>
+                    <td>@item.Float</td>
+                    <td>@item.OutStd</td>
+                    <td>@item.Industry</td>
+                    <td>@item.Prices.Day.Performance.ToString("P2")</td>
+                    <td>@item.Prices.TwoDay.Performance.ToString("P2")</td>
+                    <td>@item.Prices.ThreeDay.Performance.ToString("P2")</td>
+                    <td>@item.Prices.Week.Performance.ToString("P2")</td>
+                    <td>@item.Prices.Month.Performance.ToString("P2")</td>
+                    <td>@item.Prices.ThreeMonths.Performance.ToString("P2")</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+}

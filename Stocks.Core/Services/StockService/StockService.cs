@@ -6,6 +6,8 @@ using Microsoft.Extensions.Options;
 using Stocks.Model;
 using Stocks.Model.CompanyOutlook;
 using Stocks.Model.DCF;
+using Stocks.Model.EarningSurprice;
+using Stocks.Model.GainersLosers;
 using Stocks.Model.KeyMetrics;
 using Stocks.Model.PressReleases;
 using Stocks.Model.Profile;
@@ -104,6 +106,58 @@ namespace Stocks.Core.Services.StockService
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
             var result = await response.Content.ReadAsAsync<List<RatingHistoric>>();
+            return result;
+        }
+
+        public async Task<List<EarningSurprice>> EarningsSurprises(string symbol)
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, GetUrlEarningsSurprises(symbol));
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<EarningSurprice>>();
+            return result;
+        }
+
+        public async Task<List<Stocknew>> StockNews(string symbol)
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, GetUrlNews(symbol));
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<Stocknew>>();
+            return result;
+        }
+
+        public async Task<List<GainersLosers>> Gainers()
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://financialmodelingprep.com/api/v3/gainers?apikey={_settings.ApiToken}");
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<GainersLosers>>();
+            return result;
+        }
+
+        public async Task<List<GainersLosers>> Losers()
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://financialmodelingprep.com/api/v3/losers?apikey={_settings.ApiToken}");
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<GainersLosers>>();
+            return result;
+        }
+
+        private string GetUrlNews(string symbol)
+        {
+            var result = $"https://financialmodelingprep.com/api/v3/stock_news?tickers={symbol}&limit=50&apikey={_settings.ApiToken}";
+            return result;
+        }
+
+        private string GetUrlEarningsSurprises(string symbol)
+        {
+            var result = $"https://financialmodelingprep.com/api/v3/earnings-surprises/{symbol}?apikey={_settings.ApiToken}";
             return result;
         }
 

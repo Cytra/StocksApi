@@ -16,6 +16,7 @@ else
                     <tr>
                         <th>Ticker</th>
                         <th>Created</th>
+                        <th>DayOfWeek</th>
                         <th>Open Calls</th>
                         <th>Open Puts</th>
                         <th>Call Put ratio</th>
@@ -28,6 +29,7 @@ else
                         <tr>
                             <td>@item.Ticker</td>
                             <td>@item.Created.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</td>
+                            <td>@item.DayOfWeek</td>
                             <td>@item.OpenInterestCall</td>
                             <td>@item.OpenInterestPut</td>
                             <td>@item.CallPutRatio</td>

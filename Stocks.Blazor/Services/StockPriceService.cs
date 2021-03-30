@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Stocks.Core.Extensions;
 using Stocks.Model.Shared;
 using Stocks.Model.StockPrice;
 using Stocks.Model.YahooFinance;

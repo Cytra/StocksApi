@@ -30,17 +30,5 @@ namespace Stocks.Blazor.Pages
             }
             AllStocks = allList;
         }
-        private async void GetList()
-        {
-            if (!string.IsNullOrWhiteSpace(Ticker))
-            {
-                YahooFinanceOptionEntityGroupByLists = await YahooFinanceOtherProvider.GetOpenInterest(Ticker);
-            }
-            else
-            {
-                YahooFinanceOptionEntityGroupByLists = null;
-            }
-            StateHasChanged();
-        }
     }
 }

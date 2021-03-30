@@ -84,10 +84,10 @@ else
                         <td>@item.CreatedString</td>
                         <td>@item.score</td>
                         <td>@item.Ticker</td>
-                        <td>@item.Prices.Day.Performance</td>
-                        <td>@item.Prices.Week.Performance</td>
-                        <td>@item.Prices.Month.Performance</td>
-                        <td>@item.Prices.ThreeMonths.Performance</td>
+                        <td>@item.Prices.Day.Performance.ToString("P0")</td>
+                        <td>@item.Prices.Week.Performance.ToString("P0")</td>
+                        <td>@item.Prices.Month.Performance.ToString("P0")</td>
+                        <td>@item.Prices.ThreeMonths.Performance.ToString("P0")</td>
                         <td>
                             @*<a href="@($"redditPost/{@item.Id}")" target="_blank" class="btn btn-primary table-btn">
                                     <i class="fas fa-info-circle"></i>

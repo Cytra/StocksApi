@@ -20,6 +20,7 @@ using Stocks.Core.Services.FinancialStatements;
 using Stocks.Core.Services.Index;
 using Stocks.Core.Services.Reddit;
 using Stocks.Core.Services.Screener;
+using Stocks.Core.Services.ShortInterest;
 using Stocks.Core.Services.StockList;
 using Stocks.Core.Services.StockPrice;
 using Stocks.Core.Services.StockService;
@@ -75,6 +76,8 @@ namespace Stocks
             services.AddScoped<IStockScreenerService, StockScreenerService>();
             services.AddScoped<IStockScreenerPrivider, StockScreenerPrivider>();
             services.AddScoped<ICalendarService, CalendarService>();
+            services.AddScoped<IShortInterestService, ShortInterestService>();
+            services.AddScoped<IShortInterestProvider, ShortInterestProvider>();
             services.AddControllers()
                 .AddNewtonsoftJson(opt =>
                 {
@@ -93,6 +96,13 @@ namespace Stocks
 
             services.AddHttpClient("yahooFinance", client =>
             {
+                client.Timeout = new TimeSpan(0, 0, 30);
+                client.DefaultRequestHeaders.Clear();
+            });
+
+            services.AddHttpClient("highInterest", client =>
+            {
+                client.BaseAddress = new Uri("https://highshortinterest.com");
                 client.Timeout = new TimeSpan(0, 0, 30);
                 client.DefaultRequestHeaders.Clear();
             });

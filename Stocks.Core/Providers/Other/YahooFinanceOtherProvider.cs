@@ -33,6 +33,7 @@ namespace Stocks.Core.Providers.Other
                 {
                     Ticker = ticker,
                     Created = date,
+                    DayOfWeek = date.DayOfWeek.ToString(),
                     OpenInterestCall = callOpenInterest?.OpenInterest ?? 0,
                     OpenInterestPut = putOpenInterest?.OpenInterest ?? 0,
                     CallPutRatio = putOpenInterest?.OpenInterest != null ? decimal.Round((decimal)callOpenInterest.OpenInterest/putOpenInterest.OpenInterest, 2) : 0

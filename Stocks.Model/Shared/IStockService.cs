@@ -16,5 +16,9 @@ namespace Stocks.Model.Shared
         Task<List<SecFillings.SecFillings>> GetSecFillings(string symbol);
         Task<List<Historical_discounted_cash_flows_Model>> GetDCF(string symbol);
         Task<List<RatingHistoric>> Rating(string symbol);
+        Task<List<EarningSurprice.EarningSurprice>> EarningsSurprises(string symbol);
+        Task<List<Stocknew>> StockNews(string symbol);
+        Task<List<GainersLosers.GainersLosers>> Gainers();
+        Task<List<GainersLosers.GainersLosers>> Losers();
     }
 }

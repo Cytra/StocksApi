@@ -21,7 +21,7 @@ namespace Stocks.Model.FinancialStatements
         public Int64 OtherNonCashItems { get; set; }
         public Int64 NetCashProvidedByOperatingActivities { get; set; }
         public Int64 InvestmentsInPropertyPlantAndEquipment { get; set; }
-        public Int64 AcquisitionsNet { get; set; }
+        public Int64? AcquisitionsNet { get; set; }
         public Int64 PurchasesOfInvestments { get; set; }
         public Int64 SalesMaturitiesOfInvestments { get; set; }
         public Int64 OtherInvestingActivites { get; set; }

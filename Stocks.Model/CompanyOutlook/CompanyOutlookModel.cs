@@ -47,7 +47,7 @@ namespace Stocks.Model.CompanyOutlook
         public string state { get; set; }
         public string zip { get; set; }
         public decimal? dcfDiff { get; set; }
-        public decimal dcf { get; set; }
+        public decimal? dcf { get; set; }
         public string image { get; set; }
         public string ipoDate { get; set; }
         public bool defaultImage { get; set; }
@@ -171,7 +171,7 @@ namespace Stocks.Model.CompanyOutlook
         public long otherNonCashItems { get; set; }
         public long netCashProvidedByOperatingActivities { get; set; }
         public long investmentsInPropertyPlantAndEquipment { get; set; }
-        public decimal acquisitionsNet { get; set; }
+        public decimal? acquisitionsNet { get; set; }
         public long purchasesOfInvestments { get; set; }
         public long salesMaturitiesOfInvestments { get; set; }
         public long otherInvestingActivites { get; set; }
@@ -309,7 +309,7 @@ namespace Stocks.Model.CompanyOutlook
         public decimal otherNonCashItems { get; set; }
         public long netCashProvidedByOperatingActivities { get; set; }
         public decimal investmentsInPropertyPlantAndEquipment { get; set; }
-        public decimal acquisitionsNet { get; set; }
+        public decimal? acquisitionsNet { get; set; }
         public long purchasesOfInvestments { get; set; }
         public long salesMaturitiesOfInvestments { get; set; }
         public long otherInvestingActivites { get; set; }

@@ -8,6 +8,7 @@ namespace Stocks.Model.YahooFinance
     {
         public string Ticker { get; set; }
         public DateTimeOffset Created { get; set; }
+        public string DayOfWeek { get; set; }
         public int OpenInterestPut { get; set; }
         public int OpenInterestCall { get; set; }
         public decimal CallPutRatio { get; set; }

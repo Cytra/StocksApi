@@ -21,10 +21,26 @@ namespace Stocks.Blazor.Pages.StockOverview
             var companyOutlookModel = await IuiStockService.GetCompanyOutlook(StockTicker);
             if (companyOutlookModel != null)
             {
-                companyOutlookModel.financialsAnnual.income = companyOutlookModel.financialsAnnual.income.OrderBy(x => DateTime.Parse(x.date)).ToArray();
-                companyOutlookModel.stockDividend = companyOutlookModel.stockDividend.OrderBy(x => DateTime.Parse(x.date)).ToArray();
-                companyOutlookModel.financialsAnnual.cash = companyOutlookModel.financialsAnnual.cash.OrderBy(x => DateTime.Parse(x.date)).ToArray();
-                companyOutlookModel.financialsAnnual.balance = companyOutlookModel.financialsAnnual.balance.OrderBy(x => DateTime.Parse(x.date)).ToArray();
+                if (companyOutlookModel.stockDividend != null)
+                {
+                    companyOutlookModel.stockDividend = companyOutlookModel.stockDividend.OrderBy(x => DateTime.Parse(x.date)).ToArray();
+                }
+
+                if (companyOutlookModel.financialsAnnual?.income != null)
+                {
+                    companyOutlookModel.financialsAnnual.income = companyOutlookModel.financialsAnnual.income.OrderBy(x => DateTime.Parse(x.date)).ToArray();
+                }
+
+                if (companyOutlookModel.financialsAnnual?.cash != null)
+                {
+                    companyOutlookModel.financialsAnnual.cash = companyOutlookModel.financialsAnnual.cash.OrderBy(x => DateTime.Parse(x.date)).ToArray();
+                }
+
+                if (companyOutlookModel.financialsAnnual?.balance != null)
+                {
+                    companyOutlookModel.financialsAnnual.balance = companyOutlookModel.financialsAnnual.balance.OrderBy(x => DateTime.Parse(x.date)).ToArray();
+                }
+
                 CompanyOutlook = companyOutlookModel;
             }
         }

@@ -26,7 +26,16 @@ else
         </div>
         <div class="col">
             <div>@CompanyOutlook.profile.symbol</div>
-            <div>@CompanyOutlook.profile.companyName</div>
+            <div>
+                @if (@CompanyOutlook.profile.companyName.Length > 20)
+                {
+                    @CompanyOutlook.profile.companyName.Substring(0, 20)
+                }
+                else
+                {
+                    @CompanyOutlook.profile.companyName
+                }
+            </div>
             <div>@CompanyOutlook.profile.volAvg</div>
             <div>@CompanyOutlook.profile.mktCap.ToString("#,##0,,,.##B")</div>
             <div>@CompanyOutlook.profile.dcfDiff?.ToString("0.##")</div>
@@ -44,18 +53,23 @@ else
             <div class="font-weight-bold">Sector</div>
             <div class="font-weight-bold">Country</div>
             <div class="font-weight-bold">FullTimeEmployees</div>
-            <div class="font-weight-bold">Image</div>
         </div>
         <div class="col">
             <div>@CompanyOutlook.profile.price</div>
             <div>@CompanyOutlook.profile.beta</div>
             <div>@CompanyOutlook.profile.lastDiv</div>
             <div>@CompanyOutlook.profile.range</div>
-            <div>@CompanyOutlook.profile.dcf.ToString("0.##")</div>
+            @if (@CompanyOutlook.profile.dcf != null)
+            {
+        <div>@CompanyOutlook.profile.dcf?.ToString("0.##") </div>
+            }
+            else
+            {
+                <div>0</div>
+            }
             <div>@CompanyOutlook.profile.sector</div>
             <div>@CompanyOutlook.profile.country</div>
             <div>@CompanyOutlook.profile.fullTimeEmployees</div>
-            <div>@CompanyOutlook.profile.image</div>
         </div>
     </div>
 
@@ -77,6 +91,12 @@ else
         </div>
         <div style="margin-right: 10px">
             <a target="_blank" href="/stockOverview/rating/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Rating</a>
+        </div>
+        <div style="margin-right: 10px">
+            <a target="_blank" href="/stockOverview/earningsurprice/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">Earning Surprice</a>
+        </div>
+        <div style="margin-right: 10px">
+            <a target="_blank" href="/stockOverview/news/@StockTicker" class="btn btn-primary" role="button" aria-pressed="true">News</a>
         </div>
     </div>
 

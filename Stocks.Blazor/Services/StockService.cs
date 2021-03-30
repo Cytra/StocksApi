@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Stocks.Model.CompanyOutlook;
 using Stocks.Model.DCF;
+using Stocks.Model.EarningSurprice;
+using Stocks.Model.GainersLosers;
 using Stocks.Model.KeyMetrics;
 using Stocks.Model.PressReleases;
 using Stocks.Model.Profile;
@@ -73,6 +75,38 @@ namespace Stocks.Blazor.Services
             var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/Rating?stock={symbol}");
             using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
             var result = await response.Content.ReadAsAsync<List<RatingHistoric>>();
+            return result;
+        }
+
+        public async Task<List<EarningSurprice>> EarningsSurprises(string symbol)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/EarningsSurprises?stock={symbol}");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<EarningSurprice>>();
+            return result;
+        }
+
+        public async Task<List<Stocknew>> StockNews(string symbol)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/StockNews?stock={symbol}");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<Stocknew>>();
+            return result;
+        }
+
+        public async Task<List<GainersLosers>> Gainers()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/Gainers");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<GainersLosers>>();
+            return result;
+        }
+
+        public async Task<List<GainersLosers>> Losers()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/Stock/Losers");
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            var result = await response.Content.ReadAsAsync<List<GainersLosers>>();
             return result;
         }
     }

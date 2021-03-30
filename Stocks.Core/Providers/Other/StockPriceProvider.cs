@@ -17,11 +17,7 @@ using Stocks.Model.StockPrice;
 
 namespace Stocks.Core.Providers.Other
 {
-    public interface IStockPriceProvider
-    {
-        Task<List<StockPriceItem>> GetStockPrices(List<string> symbols);
-        Task<RedditDdDtoList> GetStockPricesForUi(List<RedditDdDto> dto, RedditOtherRequest request);
-    }
+
     public class StockPriceProvider : IStockPriceProvider
     {
         private readonly IStockPriceService _stockPriceService;
@@ -78,7 +74,7 @@ namespace Stocks.Core.Providers.Other
                     dto.PotentialTickers = uppercaseTickers;
                 }
             }
-            var result = new List<StockPriceHistoric>();
+
             foreach (var ticker in tickers)
             {
                 if (stockList.Select(x => x.Symbol).Contains(ticker))
@@ -86,6 +82,8 @@ namespace Stocks.Core.Providers.Other
                     validatedTickers.Add(ticker);
                 }
             }
+
+            var result = new List<StockPriceHistoric>();
 
             if (validatedTickers.Count != 0)
             {
@@ -194,6 +192,94 @@ namespace Stocks.Core.Providers.Other
                 };
                 result.Add(aggregatedToAdd);
             }
+            return result;
+        }
+
+        public async Task<List<StockPricesForUi>> GetPricesForUi(StockPricesForUiRequest request)
+        {
+            var ticker = request.Tickers;
+            var result = new List<StockPricesForUi>();
+            var resultPrices = new List<StockPriceHistoric>();
+
+            if (ticker.Count != 0)
+            {
+                var stockSplits = ListExtensions.Split(ticker, 5);
+                foreach (var stockSplit in stockSplits)
+                {
+                    var stockSymbols = StringExtensions.GetSymbolsString(stockSplit);
+                    var prices = await _stockPriceService.GetHistoricPrices(stockSymbols, DateTime.Now.AddDays(-100), DateTime.Now);
+                    if (prices.HistoricalStockList != null)
+                    {
+                        foreach (var price in prices.HistoricalStockList)
+                        {
+                            resultPrices.Add(price);
+                        }
+                    }
+
+                }
+            }
+
+            foreach (var prices in resultPrices)
+            {
+                var dto = new StockPricesForUi()
+                {
+                    Ticker = prices.Symbol
+                };
+                if (prices.Historical != null && prices.Historical.Count >= 61)
+                {
+                    if (prices.Historical[0] != null)
+                    {
+
+                        if (prices.Historical[1] != null)
+                        {
+                            dto.Day = new StockPriceForUi()
+                            {
+                                Performance = decimal.Round(((prices.Historical[0].AdjClose - prices.Historical[1].AdjClose) / prices.Historical[1].AdjClose), 4, MidpointRounding.AwayFromZero)
+
+                            };
+                        }
+                        if (prices.Historical[2] != null)
+                        {
+                            dto.TwoDay = new StockPriceForUi()
+                            {
+                                Performance = decimal.Round(((prices.Historical[0].AdjClose - prices.Historical[2].AdjClose) / prices.Historical[2].AdjClose), 4, MidpointRounding.AwayFromZero)
+
+                            };
+                        }
+                        if (prices.Historical[3] != null)
+                        {
+                            dto.ThreeDay = new StockPriceForUi()
+                            {
+                                Performance = decimal.Round(((prices.Historical[0].AdjClose - prices.Historical[3].AdjClose) / prices.Historical[3].AdjClose), 4, MidpointRounding.AwayFromZero)
+
+                            };
+                        }
+                        if (prices.Historical[5] != null)
+                        {
+                            dto.Week = new StockPriceForUi()
+                            {
+                                Performance = decimal.Round(((prices.Historical[0].AdjClose - prices.Historical[5].AdjClose) / prices.Historical[5].AdjClose), 4, MidpointRounding.AwayFromZero)
+                            };
+                        }
+                        if (prices.Historical[20] != null)
+                        {
+                            dto.Month = new StockPriceForUi()
+                            {
+                                Performance = decimal.Round(((prices.Historical[0].AdjClose - prices.Historical[20].AdjClose) / prices.Historical[20].AdjClose), 4, MidpointRounding.AwayFromZero)
+                            };
+                        }
+                        if (prices.Historical[60] != null)
+                        {
+                            dto.ThreeMonths = new StockPriceForUi()
+                            {
+                                Performance = decimal.Round(((prices.Historical[0].AdjClose - prices.Historical[60].AdjClose) / prices.Historical[60].AdjClose), 4, MidpointRounding.AwayFromZero)
+                            };
+                        }
+                    }
+                }
+                result.Add(dto);
+            }
+
             return result;
         }
     }

@@ -7,35 +7,39 @@
 else
 {
     <h2>Dividends</h2>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Labels</th>
-                    @foreach (var item in @CompanyOutlook.stockDividend)
-                    {
-                        <th>@item.date</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dividend</td>
-                    @foreach (var item in @CompanyOutlook.stockDividend)
-                    {
-                        <td>@item.dividend.ToString("0.##")</td>
-                    }
-                </tr>
-                <tr>
-                    <td>AdjDividend</td>
-                    @foreach (var item in @CompanyOutlook.stockDividend)
-                    {
-                        <td>@item.adjDividend.ToString("0.##")</td>
-                    }
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    @if (@CompanyOutlook.stockDividend != null)
+    {
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Labels</th>
+                        @foreach (var item in @CompanyOutlook.stockDividend)
+                        {
+                            <th>@item.date</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dividend</td>
+                        @foreach (var item in @CompanyOutlook.stockDividend)
+                        {
+                            <td>@item.dividend.ToString("0.##")</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>AdjDividend</td>
+                        @foreach (var item in @CompanyOutlook.stockDividend)
+                        {
+                            <td>@item.adjDividend.ToString("0.##")</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+
 
     <h2>Income Annual</h2>
 
@@ -631,7 +635,7 @@ else
                     <td>AcquisitionsNet</td>
                     @foreach (var item in @CompanyOutlook.financialsAnnual.cash)
                     {
-                        <td>@item.acquisitionsNet.ToString("#,##0,,,.##B")</td>
+                        <td>@item.acquisitionsNet?.ToString("#,##0,,,.##B")</td>
                     }
                 </tr>
                 <tr>

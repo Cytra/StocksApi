@@ -1,0 +1,36 @@
+﻿@page "/stockOverview/news/{StockTicker}"
+
+<h3>News</h3>
+
+@if (StocknewsList == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in StocknewsList)
+        {
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src=@item.image alt="Card image cap">
+                    <h5 class="card-header">@item.title</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.publishedDate @item.site</h5>
+                        <p class="card-text">
+                            @if (item.text.Length > 50)
+                            {
+                                @item.text.Substring(0, 50)
+                            }
+                            else
+                            {
+                                @item.text
+                            }
+                    </p>
+                    <a href=@item.url class="card-link">More</a>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+}

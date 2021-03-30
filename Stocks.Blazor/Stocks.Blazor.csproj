@@ -12,6 +12,7 @@
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Stocks.Core\Stocks.Core.csproj" />
     <ProjectReference Include="..\Stocks.Model\Stocks.Model.csproj" />
   </ItemGroup>
 
