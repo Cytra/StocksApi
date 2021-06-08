@@ -11,6 +11,7 @@ using Newtonsoft.Json.Converters;
 using Stocks.Core.Providers;
 using Stocks.Core.Providers.Other;
 using Stocks.Core.Providers.SaveToDbProviders;
+using Stocks.Core.PythonScripts;
 using Stocks.Core.Scheduling;
 using Stocks.Core.Services;
 using Stocks.Core.Services.Calendar;
@@ -78,6 +79,8 @@ namespace Stocks
             services.AddScoped<ICalendarService, CalendarService>();
             services.AddScoped<IShortInterestService, ShortInterestService>();
             services.AddScoped<IShortInterestProvider, ShortInterestProvider>();
+            services.AddScoped<IAtrService, AtrService>();
+            services.AddScoped<IPtmProvider, PtmProvider>();
             services.AddControllers()
                 .AddNewtonsoftJson(opt =>
                 {

@@ -33,12 +33,6 @@ namespace Stocks.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateStockOptionOpenInterest()
         {
-            //var tasks = StockLists.OptionOpenInterestStockList.Select(async stock =>
-            //{
-            //    await _yahooFinanceDbProvider.GetStockOptionOpenInterest(stock);
-            //});
-            //await Task.WhenAll(tasks);
-
             foreach (var stock in StockLists.OptionOpenInterestStockList)
             {
 

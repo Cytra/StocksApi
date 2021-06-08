@@ -8,7 +8,7 @@ namespace Stocks.Core.Helpers
     {
         public static List<string> OptionOpenInterestStockList = new List<string>()
         {
-            "GME", "AMC", 
+            "ASO","GME", "AMC", 
             "RKT", 
         };
 

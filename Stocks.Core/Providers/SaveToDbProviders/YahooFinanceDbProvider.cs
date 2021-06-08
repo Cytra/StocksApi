@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
@@ -62,8 +63,9 @@ namespace Stocks.Core.Providers.SaveToDbProviders
                 var strikePriceCanparse = decimal.TryParse(strikePrice, out decimal strikePriceValue);
 
                 var openInterest = node.ChildNodes.Single(x =>
-                    x.Attributes.Any(y => y.Value == "data-col8 Ta(end) Pstart(7px)")).InnerText;
-                var openInterestCanparse = int.TryParse(openInterest, out int openInterestValue);
+                    x.Attributes.Any(y => y.Value == "data-col9 Ta(end) Pstart(7px)")).InnerText;
+                var openInterestCanparse = int.TryParse(openInterest, NumberStyles.AllowThousands,
+                    CultureInfo.InvariantCulture, out int openInterestValue);
 
                 var entityToInsert = new YahooFinanceOptionEntity()
                 {
@@ -90,8 +92,9 @@ namespace Stocks.Core.Providers.SaveToDbProviders
                 var strikePriceCanparse = decimal.TryParse(strikePrice, out decimal strikePriceValue);
 
                 var openInterest = node.ChildNodes.Single(x =>
-                    x.Attributes.Any(y => y.Value == "data-col8 Ta(end) Pstart(7px)")).InnerText;
-                var openInterestCanparse = int.TryParse(openInterest, out int openInterestValue);
+                    x.Attributes.Any(y => y.Value == "data-col9 Ta(end) Pstart(7px)")).InnerText;
+                var openInterestCanparse = int.TryParse(openInterest, NumberStyles.AllowThousands,
+                    CultureInfo.InvariantCulture, out int openInterestValue);
 
                 var entityToInsert = new YahooFinanceOptionEntity()
                 {

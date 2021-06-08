@@ -1,8 +1,9 @@
 ﻿@page "/calendar"
 @using System.Globalization
-
-<h3>Earnings</h3>
-@if (Earnings == null)
+<h1>US</h1>
+<h2>Leading Indicators</h2>
+<h3>ISM manufacturing PMIs</h3>
+@if (IsmPmisManufacturing == null)
 {
 }
 else
@@ -11,110 +12,779 @@ else
         <table class="table">
             <thead>
                 <tr>
-                    <th>Symbol</th>
-                    <th>Date</th>
-                    <th>EPS</th>
-                    <th>EPS Estimate</th>
-                    <th>Revenue</th>
-                    <th>Revenue Estimate</th>
-                    <th>Time</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Earnings)
-                {
-                    <tr>
-                        <td>@item.symbol</td>
-                        <td>@item.date</td>
-                        <td>@item.eps</td>
-                        <td>@item.epsEstimated</td>
-                        <td>@item.revenue</td>
-                        <td>@item.revenueEstimated</td>
-                        <td>@item.time</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-}
-
-<h3>Ipos</h3>
-@if (Earnings == null)
-{
-
-}
-else
-{
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Symbol</th>
-                    <th>Date</th>
-                    <th>Market Cap</th>
-                    <th>Action</th>
-                    <th>Company</th>
-                    <th>Exchange</th>
-                    <th>Price range</th>
-                    <th>Shares</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Ipos)
-                {
-                    <tr>
-                        <td>@item.symbol</td>
-                        <td>@item.date</td>
-                        <td>@item.marketCap</td>
-                        <td>@item.actions</td>
-                        <td>@item.company</td>
-                        <td>@item.exchange</td>
-                        <td>@item.priceRange</td>
-                        <td>@item.shares</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-}
-
-<h3>Economics</h3>
-@if (Earnings == null)
-{
-
-}
-else
-{
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Event</th>
                     <th>Date</th>
                     <th>Actual</th>
-                    <th>Change</th>
-                    <th>Change perc</th>
-                    <th>Country</th>
                     <th>Estimate</th>
                     <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Economics)
+                @foreach (var item in IsmPmisManufacturing)
                 {
                     <tr>
-                        <td>@item._event</td>
-                        <td>@item.date</td>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
                         <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
                         <td>@item.change</td>
                         <td>@item.changePercentage</td>
                         <td>@item.country</td>
-                        <td>@item.estimate</td>
-                        <td>@item.previous</td>
+                        <td>@item._event</td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 }
+
+<h3>ISM services PMIs</h3>
+@if (IsmPmisServices == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in IsmPmisServices)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+
+<h3>Consumer Sentiment</h3>
+@if (ConsumerSentimentMichigan == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ConsumerSentimentMichigan)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Building Permits</h3>
+@if (BuildingPermits == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in BuildingPermits)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+<h2>Confirmation Indicators</h2>
+
+<h3>GDP</h3>
+@if (Gdp == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Gdp)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Nonfarm Payrolls</h3>
+@if (NonfarmPayrolls == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in NonfarmPayrolls)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Unemployment Rate</h3>
+@if (UnemploymentRate == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in UnemploymentRate)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Durable Goods</h3>
+@if (DurableGoods == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in DurableGoods)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h1>China</h1>
+
+<h3>Leading Indicators</h3>
+@if (LeadingIndicatorsCh == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in LeadingIndicatorsCh)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>GDP</h3>
+@if (GdpCH == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in GdpCH)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>PMI</h3>
+@if (PmiCH == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in PmiCH)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Unemployment Rate</h3>
+@if (UnemploymentRateCH == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in UnemploymentRateCH)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h1>EU</h1>
+
+<h3>Markit Manufacturing PMI</h3>
+@if (MarkitManufacturingPmiEU == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in MarkitManufacturingPmiEU)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Markit Services PMI</h3>
+@if (MarkitServicesPmiEU == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in MarkitServicesPmiEU)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Unemployment Rate</h3>
+@if (UnemploymentRateEU == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in UnemploymentRateEU)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>M3 Money Supply</h3>
+@if (M3MoneySupplyEU == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in M3MoneySupplyEU)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h3>Consumer Confidence</h3>
+@if (ConsumerConfidenceEU == null)
+{
+}
+else
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Estimate</th>
+                    <th>Previous</th>
+                    <th>Change</th>
+                    <th>Change Percentage</th>
+                    <th>Country</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ConsumerConfidenceEU)
+                {
+                    <tr>
+                        <td>@item.date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.actual</td>
+                        <td>@item.estimate</td>
+                        <td>@item.previous</td>
+                        <td>@item.change</td>
+                        <td>@item.changePercentage</td>
+                        <td>@item.country</td>
+                        <td>@item._event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@*<h3>Earnings</h3>
+    @if (Earnings == null)
+    {
+    }
+    else
+    {
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Date</th>
+                        <th>EPS</th>
+                        <th>EPS Estimate</th>
+                        <th>Revenue</th>
+                        <th>Revenue Estimate</th>
+                        <th>Time</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Earnings)
+                    {
+                        <tr>
+                            <td>@item.symbol</td>
+                            <td>@item.date.ToString("yyyy-MM-dd")</td>
+                            <td>@item.eps</td>
+                            <td>@item.epsEstimated</td>
+                            <td>@item.revenue</td>
+                            <td>@item.revenueEstimated</td>
+                            <td>@item.time</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <h3>Ipos</h3>
+    @if (Earnings == null)
+    {
+
+    }
+    else
+    {
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Date</th>
+                        <th>Market Cap</th>
+                        <th>Action</th>
+                        <th>Company</th>
+                        <th>Exchange</th>
+                        <th>Price range</th>
+                        <th>Shares</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Ipos)
+                    {
+                        <tr>
+                            <td>@item.symbol</td>
+                            <td>@item.date.ToString("yyyy-MM-dd")</td>
+                            <td>@item.marketCap</td>
+                            <td>@item.actions</td>
+                            <td>@item.company</td>
+                            <td>@item.exchange</td>
+                            <td>@item.priceRange</td>
+                            <td>@item.shares</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <h3>Economics</h3>
+    @if (Earnings == null)
+    {
+
+    }
+    else
+    {
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Actual</th>
+                        <th>Change</th>
+                        <th>Change perc</th>
+                        <th>Country</th>
+                        <th>Estimate</th>
+                        <th>Previous</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Economics)
+                    {
+                        <tr>
+                            <td>@item._event</td>
+                            <td>@item.date.ToString("yyyy-MM-dd")</td>
+                            <td>@item.actual</td>
+                            <td>@item.change</td>
+                            <td>@item.changePercentage</td>
+                            <td>@item.country</td>
+                            <td>@item.estimate</td>
+                            <td>@item.previous</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }*@

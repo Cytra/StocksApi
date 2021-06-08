@@ -30,7 +30,7 @@ namespace Stocks.Blazor.Services
             throw new NotImplementedException();
         }
 
-        public async Task<StockPriceHistoricList> GetHistoricPrices(string symbol, DateTime @from, DateTime to)
+        public Task<StockPriceHistoricList> GetHistoricPrices(string symbol, DateTime @from, DateTime to)
         {
             throw new NotImplementedException();
         }

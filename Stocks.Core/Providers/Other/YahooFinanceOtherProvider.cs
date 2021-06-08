@@ -43,9 +43,9 @@ namespace Stocks.Core.Providers.Other
             return result;
         }
 
-        public async Task<List<string>> GetOpenInterestStockList()
+        public Task<List<string>> GetOpenInterestStockList()
         {
-            return StockLists.OptionOpenInterestStockList;
+            return Task.FromResult(StockLists.OptionOpenInterestStockList);
         }
     }
 }

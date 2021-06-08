@@ -1,8 +1,10 @@
-﻿namespace Stocks.Model.Calendar
+﻿using System;
+
+namespace Stocks.Model.Calendar
 {
     public class EarningCalendarResponseItem
     {
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public string symbol { get; set; }
         public float? eps { get; set; }
         public float? epsEstimated { get; set; }

@@ -6,7 +6,7 @@ namespace Stocks.Model.Calendar
 {
     public class IpoCalendarResponse
     {
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public string company { get; set; }
         public string symbol { get; set; }
         public string exchange { get; set; }

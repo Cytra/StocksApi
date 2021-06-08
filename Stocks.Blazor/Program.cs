@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Stocks.Blazor.Services;
 using Stocks.Model.Shared;
+using RedditOtherProvider = Stocks.Blazor.Services.RedditOtherProvider;
+using ShortInterestProvider = Stocks.Blazor.Services.ShortInterestProvider;
+using StockPriceProvider = Stocks.Blazor.Services.StockPriceProvider;
+using StockScreenerPrivider = Stocks.Blazor.Services.StockScreenerPrivider;
+using YahooFinanceOtherProvider = Stocks.Blazor.Services.YahooFinanceOtherProvider;
 
 namespace Stocks.Blazor
 {
@@ -31,7 +32,7 @@ namespace Stocks.Blazor
             builder.Services.AddHttpClient<ICalendarService, CalendarService>(client => client.BaseAddress = new Uri(apiUri));
             builder.Services.AddHttpClient<IShortInterestProvider, ShortInterestProvider>(client => client.BaseAddress = new Uri(apiUri));
             builder.Services.AddHttpClient<IStockPriceProvider, StockPriceProvider>(client => client.BaseAddress = new Uri(apiUri));
-
+            builder.Services.AddHttpClient<IPtmProvider, PtmService>(client => client.BaseAddress = new Uri(apiUri));
             await builder.Build().RunAsync();
         }
     }

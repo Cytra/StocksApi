@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace Stocks.Model.Calendar
 {
@@ -6,7 +7,7 @@ namespace Stocks.Model.Calendar
     {
         [JsonProperty("event")]
         public string _event { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public string country { get; set; }
         public float? actual { get; set; }
         public float? previous { get; set; }
