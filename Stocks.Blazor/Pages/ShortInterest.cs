@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Stocks.Core.Extensions;
-using Stocks.Model.Reddit;
 using Stocks.Model.Shared;
-using Stocks.Model.StockPrice;
 
 namespace Stocks.Blazor.Pages
 {
@@ -25,14 +22,6 @@ namespace Stocks.Blazor.Pages
             if (shortInterests != null)
             {
                 var tickers = shortInterests.Select(x => x.Ticker).ToList();
-                var prices = await StockPriceProvider.GetPricesForUi(new StockPricesForUiRequest()
-                {
-                    Tickers = tickers
-                });
-                foreach (var item in shortInterests)
-                {
-                    item.Prices = prices.FirstOrDefault(x => x.Ticker == item.Ticker);
-                }
 
                 var profiles = new List<Model.Profile.StockProfile>();
                 var tickerLists = ListExtensions.Split(tickers, 5);
@@ -48,7 +37,10 @@ namespace Stocks.Blazor.Pages
                     var profileDoAdd = profiles.FirstOrDefault(x => x.Symbol == item.Ticker);
                     item.MarketCap = profileDoAdd?.MktCap;
                 }
-                ShortInterests = shortInterests.OrderByDescending(x=> x.Prices.Day.Performance).ToList();
+                ShortInterests = shortInterests
+                    .OrderByDescending(x=> x.Prices.Day.Performance)
+                    .ThenByDescending(x => x.Prices.TwoDay.Performance)
+                    .ToList();
             }
             else
             {

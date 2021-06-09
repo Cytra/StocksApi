@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Stocks.Data.Entities;
 using Stocks.Data.Entities.DCF;
 using Stocks.Data.Entities.Dividend;
 using Stocks.Data.Entities.FinancialStatements;
@@ -29,5 +30,6 @@ namespace Stocks.Data.Contexts
         public DbSet<PortfolioEntity> Portfolio { get; set; }
         public DbSet<RedditDdEntity> RedditDdEntities { get; set; }
         public DbSet<YahooFinanceOptionEntity> YahooFinanceOptionEntities { get; set; }
+        public DbSet<ShortSqueezeNotifications> ShortSqueezeNotifications { get; set; }
     }
 }

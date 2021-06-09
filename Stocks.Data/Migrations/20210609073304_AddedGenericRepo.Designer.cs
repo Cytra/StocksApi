@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stocks.Data.Contexts;
 
 namespace Stocks.Data.Migrations
 {
     [DbContext(typeof(StocksContext))]
-    partial class StocksContextModelSnapshot : ModelSnapshot
+    [Migration("20210609073304_AddedGenericRepo")]
+    partial class AddedGenericRepo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -882,8 +884,11 @@ namespace Stocks.Data.Migrations
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<decimal>("Limit")
-                        .HasColumnType("decimal(15,2)");
+                    b.Property<int>("Limit")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("Notified")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Symbol")
                         .HasColumnType("nvarchar(10)")

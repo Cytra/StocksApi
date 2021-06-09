@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Stocks.Core.Services.ShortInterest;
 using Stocks.Model.Shared;
 using Stocks.Model.ShortInterest;
+using Stocks.Model.StockPrice;
 
 namespace Stocks.Core.Providers.Other
 {
@@ -53,7 +52,13 @@ namespace Stocks.Core.Providers.Other
                 }
             }
 
-            var prices = await _stockPriceProvider.GetStockPrices(result.Select(x => x.Ticker).ToList());
+            var prices = await _stockPriceProvider.GetPricesForUi(
+                new StockPricesForUiRequest(){ Tickers = result.Select(x => x.Ticker).ToList()});
+
+            foreach (var item in result)
+            {
+                item.Prices = prices.FirstOrDefault(x => x.Ticker == item.Ticker);
+            }
             return result;
         }
     }

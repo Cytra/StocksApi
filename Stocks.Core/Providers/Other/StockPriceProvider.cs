@@ -207,11 +207,21 @@ namespace Stocks.Core.Providers.Other
                 foreach (var stockSplit in stockSplits)
                 {
                     var stockSymbols = StringExtensions.GetSymbolsString(stockSplit);
+                    var currentPrices = await _stockPriceService.GetStockPrices(stockSymbols);
                     var prices = await _stockPriceService.GetHistoricPrices(stockSymbols, DateTime.Now.AddDays(-100), DateTime.Now);
-                    if (prices.HistoricalStockList != null)
+                    if (prices.HistoricalStockList != null && currentPrices != null)
                     {
                         foreach (var price in prices.HistoricalStockList)
                         {
+                            var currentStockPrice = currentPrices.First(x => x.Symbol == price.Symbol).Price;
+                            price.Historical.Add(new StockPriceHistoricItem()
+                            {
+                                AdjClose = currentStockPrice,
+                                Date = DateTime.Now.Date,
+                                Change = price.Historical[0].AdjClose - currentStockPrice,
+                                ChangePercent = (currentStockPrice - price.Historical[0].AdjClose) / price.Historical[0].AdjClose
+                            });
+                            price.Historical = price.Historical.OrderByDescending(x => x.Date).ToList();
                             resultPrices.Add(price);
                         }
                     }

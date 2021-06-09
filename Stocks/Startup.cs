@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Serilog;
 using Stocks.Core.Providers;
 using Stocks.Core.Providers.Other;
 using Stocks.Core.Providers.SaveToDbProviders;
@@ -44,6 +44,11 @@ namespace Stocks
         {
             Configuration = configuration;
             AppSettings = configuration.GetSection("AppSettings").Get<AppSettings>();
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Warning()
+                .WriteTo.MicrosoftTeams(AppSettings.MsTeamsWebHook)
+                .CreateLogger();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -81,6 +86,8 @@ namespace Stocks
             services.AddScoped<IShortInterestProvider, ShortInterestProvider>();
             services.AddScoped<IAtrService, AtrService>();
             services.AddScoped<IPtmProvider, PtmProvider>();
+            services.AddScoped<IShortSqueezeProvider, ShortSqueezeProvider>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddControllers()
                 .AddNewtonsoftJson(opt =>
                 {
@@ -125,10 +132,10 @@ namespace Stocks
             });
             services.AddSwaggerExamplesFromAssemblyOf<Startup>();
 
-            services.AddCronJob<RedditCronJob>(c =>
+            services.AddCronJob<ShortSqueezeJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = "0 */10 * * * *";
+                c.CronExpression = AppSettings.ShortSqueezeCronExpression;
             });
         }
 

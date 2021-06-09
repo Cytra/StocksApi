@@ -15,6 +15,11 @@ namespace Stocks.Samples
                 From = DateTime.Now,
                 To = DateTime.Now.AddDays(10)
             });
+            yield return SwaggerExample.Create("Past 10 days", new CalendarRequest()
+            {
+                From = DateTime.Now.AddDays(-10),
+                To = DateTime.Now
+            });
             yield return SwaggerExample.Create("Past 3 months", new CalendarRequest()
             {
                 From = DateTime.Now.AddDays(-100),
