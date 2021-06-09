@@ -36,7 +36,7 @@ namespace Stocks.Core.Providers.Other
                         .FirstOrDefault(x => x.Symbol == shortInterestStock.Ticker && x.Limit >= i);
                     if (shortInterestStock.Prices.Day.Performance >= i && dbInstance == null)
                     {
-                        _logger.LogWarning($"Stock - {shortInterestStock.Ticker}; Reached ratio - {shortInterestStock.Prices.Day.Performance * 100}%");
+                        _logger.LogWarning($"Stock - {shortInterestStock.Ticker}; Reached ratio - {shortInterestStock.Prices.Day.Performance * 100}%; Limit {i*100}");
                         await _repo.Insert(new ShortSqueezeNotifications()
                         {
                             Created = DateTimeOffset.Now,
