@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stocksblazor-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stocksblazor-api
+  template:
+    metadata:
+      labels:
+        app: stocksblazor-api
+    spec:
+      containers:
+        - name: stocksblazor-api
+          image: cytra/stocksblazor:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stocksblazor-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: stocksblazor-api
+  ports:
+  - name: stocksblazor-api
+    protocol: TCP
+    port: 80
+    targetPort: 80

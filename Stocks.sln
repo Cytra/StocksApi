@@ -13,6 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Blazor", "Stocks.Bla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Model", "Stocks.Model\Stocks.Model.csproj", "{E3F4338E-705F-4095-8DBA-CD891A78DE18}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A973E221-1A2B-4B39-937F-BD0DA7B4D6A7}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\stocks-np.service.yml = k8s\stocks-np.service.yml
+		k8s\stocks.deployment.yml = k8s\stocks.deployment.yml
+		k8s\stocksblazor.deployment.yml = k8s\stocksblazor.deployment.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

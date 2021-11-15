@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stocks-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stocks-api
+  template:
+    metadata:
+      labels:
+        app: stocks-api
+    spec:
+      containers:
+        - name: stocks-api
+          image: cytra/stocks:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stocks-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: stocks-api
+  ports:
+  - name: stocks-api
+    protocol: TCP
+    port: 80
+    targetPort: 80

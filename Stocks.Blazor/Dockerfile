@@ -7,19 +7,19 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Stocks/Stocks.csproj", "Stocks/"]
-COPY ["Stocks.Data/Stocks.Data.csproj", "Stocks.Data/"]
+COPY ["Stocks.Blazor/Stocks.Blazor.csproj", "Stocks.Blazor/"]
 COPY ["Stocks.Model/Stocks.Model.csproj", "Stocks.Model/"]
 COPY ["Stocks.Core/Stocks.Core.csproj", "Stocks.Core/"]
-RUN dotnet restore "Stocks/Stocks.csproj"
+COPY ["Stocks.Data/Stocks.Data.csproj", "Stocks.Data/"]
+RUN dotnet restore "Stocks.Blazor/Stocks.Blazor.csproj"
 COPY . .
-WORKDIR "/src/Stocks"
-RUN dotnet build "Stocks.csproj" -c Release -o /app/build
+WORKDIR "/src/Stocks.Blazor"
+RUN dotnet build "Stocks.Blazor.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Stocks.csproj" -c Release -o /app/publish
+RUN dotnet publish "Stocks.Blazor.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Stocks.dll"]
+ENTRYPOINT ["dotnet", "Stocks.Blazor.dll"]

@@ -1,0 +1,14 @@
+# Service to expose stocks-api app to localhost
+apiVersion: v1
+kind: Service
+metadata:
+  name: stock-npservice-srv
+spec:
+  type: NodePort
+  selector:
+    app: stocks-api
+  ports:
+    - name: stocks-api
+      protocol: TCP
+      port: 80
+      targetPort: 80

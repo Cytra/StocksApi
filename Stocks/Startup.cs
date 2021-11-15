@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Serilog;
@@ -124,7 +125,8 @@ namespace Stocks
                 .AllowAnyMethod()
                 .AllowAnyHeader()));
 
-            services.AddDbContext<StocksContext>(options => options.UseSqlServer(AppSettings.SqlConnectionString));
+            //services.AddDbContext<StocksContext>(options => options.UseSqlServer(AppSettings.SqlConnectionString));
+            services.AddDbContext<StocksContext>(options => options.UseInMemoryDatabase(AppSettings.SqlConnectionString));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
