@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stocks.Blazor\Stocks.Blazor.csproj" />
     <ProjectReference Include="..\Stocks.Core\Stocks.Core.csproj" />
     <ProjectReference Include="..\Stocks.Data\Stocks.Data.csproj" />
   </ItemGroup>

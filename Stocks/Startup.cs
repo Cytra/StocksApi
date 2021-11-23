@@ -125,8 +125,8 @@ namespace Stocks
                 .AllowAnyMethod()
                 .AllowAnyHeader()));
 
-            //services.AddDbContext<StocksContext>(options => options.UseSqlServer(AppSettings.SqlConnectionString));
-            services.AddDbContext<StocksContext>(options => options.UseInMemoryDatabase(AppSettings.SqlConnectionString));
+            services.AddDbContext<StocksContext>(options => options.UseSqlServer(AppSettings.SqlConnectionString));
+            //services.AddDbContext<StocksContext>(options => options.UseInMemoryDatabase(AppSettings.SqlConnectionString));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
