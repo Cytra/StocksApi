@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Stocks.Data.Entities.Profile;
 using Stocks.Data.Repositories;
-using Stocks.Model.Profile;
+using Stocks.Model.FMP.Profile;
 using Stocks.Model.Shared;
 
 namespace Stocks.Core.Providers.SaveToDbProviders

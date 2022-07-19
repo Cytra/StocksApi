@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Stocks.Model.CompanyOutlook;
+using Stocks.Model.FMP.CompanyOutlook;
 using Stocks.Model.Shared;
 
 namespace Stocks.Controllers

@@ -1,6 +1,6 @@
 ﻿using Swashbuckle.AspNetCore.Filters;
 using System.Collections.Generic;
-using Stocks.Model.DCF;
+using Stocks.Model.FMP.DCF;
 
 namespace Stocks.Samples
 {

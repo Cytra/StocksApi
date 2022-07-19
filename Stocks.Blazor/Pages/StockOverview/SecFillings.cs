@@ -14,7 +14,7 @@ namespace Stocks.Blazor.Pages.StockOverview
         [Inject]
         public IStockService IuiStockService { get; set; }
 
-        public List<Model.SecFillings.SecFillings> SecFillingsList { get; set; }
+        public List<Model.FMP.SecFillings.SecFillings> SecFillingsList { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

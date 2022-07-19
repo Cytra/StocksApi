@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Stocks.Model.Shared
+namespace Stocks.Model.Shared;
+
+public interface IShortInterestProvider
 {
-    public interface IShortInterestProvider
-    {
-        Task<List<ShortInterest.ShortInterest>> GetShortInterestList();
-    }
+    Task<List<ShortInterest.ShortInterest>> GetShortInterestList();
 }

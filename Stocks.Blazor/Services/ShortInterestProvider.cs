@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Stocks.Core.Services.ShortInterest;
-using Stocks.Model.Calendar;
-using Stocks.Model.GainersLosers;
 using Stocks.Model.Shared;
 using Stocks.Model.ShortInterest;
 

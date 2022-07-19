@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Stocks.Model\Stocks.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Reddit\" />
+  </ItemGroup>
+
 </Project>

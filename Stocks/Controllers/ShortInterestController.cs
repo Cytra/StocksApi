@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Providers.Other;
-using Stocks.Model.Calendar;
 using Stocks.Model.Shared;
 
 namespace Stocks.Controllers

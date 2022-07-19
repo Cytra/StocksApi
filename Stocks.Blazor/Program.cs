@@ -5,11 +5,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Stocks.Blazor.Services;
 using Stocks.Model.Shared;
-using RedditOtherProvider = Stocks.Blazor.Services.RedditOtherProvider;
 using ShortInterestProvider = Stocks.Blazor.Services.ShortInterestProvider;
 using StockPriceProvider = Stocks.Blazor.Services.StockPriceProvider;
 using StockScreenerPrivider = Stocks.Blazor.Services.StockScreenerPrivider;
-using YahooFinanceOtherProvider = Stocks.Blazor.Services.YahooFinanceOtherProvider;
 
 namespace Stocks.Blazor
 {
@@ -26,8 +24,6 @@ namespace Stocks.Blazor
 
             builder.Services.AddHttpClient<IStockService, IuiStockService>(client => client.BaseAddress = new Uri(apiUri));
             builder.Services.AddHttpClient<IPortfolioProvider, PortfolioProvider>(client => client.BaseAddress = new Uri(apiUri));
-            builder.Services.AddHttpClient<IRedditOtherProvider, RedditOtherProvider>(client => client.BaseAddress = new Uri(apiUri));
-            builder.Services.AddHttpClient<IYahooFinanceOtherProvider, YahooFinanceOtherProvider>(client => client.BaseAddress = new Uri(apiUri));
             builder.Services.AddHttpClient<IStockPriceService, StockPriceService>(client => client.BaseAddress = new Uri(apiUri));
             builder.Services.AddHttpClient<IStockScreenerPrivider, StockScreenerPrivider>(client => client.BaseAddress = new Uri(apiUri));
             builder.Services.AddHttpClient<ICalendarService, CalendarService>(client => client.BaseAddress = new Uri(apiUri));

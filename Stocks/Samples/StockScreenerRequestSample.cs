@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Stocks.Model.Screener;
+using Stocks.Model.FMP.Screener;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Stocks.Samples

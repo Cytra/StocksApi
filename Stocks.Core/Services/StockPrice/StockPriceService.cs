@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Stocks.Model;
+using Stocks.Model.FMP.StockPrice;
 using Stocks.Model.Shared;
-using Stocks.Model.StockPrice;
 
 namespace Stocks.Core.Services.StockPrice
 {

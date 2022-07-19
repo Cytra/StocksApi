@@ -6,8 +6,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Stocks.Model.Profile;
-using Stocks.Model.Screener;
+using Stocks.Model.FMP.Screener;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Services

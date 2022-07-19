@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Providers;
 using Stocks.Core.Providers.SaveToDbProviders;
-using Stocks.Model.Dividend;
+using Stocks.Model.FMP.Dividend;
 
 namespace Stocks.Controllers
 {

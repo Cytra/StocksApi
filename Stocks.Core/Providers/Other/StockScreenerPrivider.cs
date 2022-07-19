@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Stocks.Model;
-using Stocks.Model.Screener;
+using Stocks.Model.FMP.Screener;
 using Stocks.Model.Shared;
 
 namespace Stocks.Core.Providers.Other

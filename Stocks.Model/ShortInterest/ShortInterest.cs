@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Stocks.Model.Reddit;
-using Stocks.Model.StockPrice;
+﻿using Stocks.Model.FMP.StockPrice;
 
 namespace Stocks.Model.ShortInterest
 {

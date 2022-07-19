@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Stocks.Model.CompanyOutlook;
-using Stocks.Model.DCF;
-using Stocks.Model.EarningSurprice;
-using Stocks.Model.GainersLosers;
-using Stocks.Model.KeyMetrics;
-using Stocks.Model.PressReleases;
-using Stocks.Model.Profile;
-using Stocks.Model.Rating;
-using Stocks.Model.SecFillings;
+using Stocks.Model.FMP.CompanyOutlook;
+using Stocks.Model.FMP.DCF;
+using Stocks.Model.FMP.EarningSurprice;
+using Stocks.Model.FMP.GainersLosers;
+using Stocks.Model.FMP.KeyMetrics;
+using Stocks.Model.FMP.PressReleases;
+using Stocks.Model.FMP.Profile;
+using Stocks.Model.FMP.Rating;
+using Stocks.Model.FMP.SecFillings;
 
 namespace Stocks.Blazor.Services
 {

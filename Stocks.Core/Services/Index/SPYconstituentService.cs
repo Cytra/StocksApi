@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Stocks.Model;
-using Stocks.Model.Index;
+using Stocks.Model.FMP.Index;
 
 namespace Stocks.Core.Services.Index
 {

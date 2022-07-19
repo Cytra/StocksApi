@@ -14,7 +14,7 @@ namespace Stocks.Blazor.Pages.StockOverview
         [Inject]
         public IStockService IuiStockService { get; set; }
 
-        public List<Model.KeyMetrics.KeyMetrics> KeyMetricsList { get; set; }
+        public List<Model.FMP.KeyMetrics.KeyMetrics> KeyMetricsList { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

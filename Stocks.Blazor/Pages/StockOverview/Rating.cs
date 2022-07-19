@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Stocks.Model.Rating;
+using Stocks.Model.FMP.Rating;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Pages.StockOverview

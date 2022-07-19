@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Stocks.Core.Extensions;
+using Stocks.Model.FMP.Profile;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Pages
@@ -23,7 +24,7 @@ namespace Stocks.Blazor.Pages
             {
                 var tickers = shortInterests.Select(x => x.Ticker).ToList();
 
-                var profiles = new List<Model.Profile.StockProfile>();
+                var profiles = new List<StockProfile>();
                 var tickerLists = ListExtensions.Split(tickers, 5);
                 foreach (var tickerList in tickerLists)
                 {

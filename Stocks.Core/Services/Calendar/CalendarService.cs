@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Stocks.Model;
-using Stocks.Model.Calendar;
+using Stocks.Model.FMP.Calendar;
 using Stocks.Model.Shared;
 
 namespace Stocks.Core.Services.Calendar

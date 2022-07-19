@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Stocks.Model.DCF;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Pages.StockOverview
@@ -15,7 +14,7 @@ namespace Stocks.Blazor.Pages.StockOverview
         [Inject]
         public IStockService StockService { get; set; }
 
-        public List<Model.EarningSurprice.EarningSurprice> EarningSurpriceList { get; set; }
+        public List<Model.FMP.EarningSurprice.EarningSurprice> EarningSurpriceList { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

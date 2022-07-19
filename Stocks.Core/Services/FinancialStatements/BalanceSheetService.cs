@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Stocks.Model;
-using Stocks.Model.FinancialStatements;
+using Stocks.Model.FMP.FinancialStatements;
 
 namespace Stocks.Core.Services.FinancialStatements
 {

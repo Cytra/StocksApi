@@ -3,12 +3,12 @@ using Stocks.Core.Providers;
 using System.Threading.Tasks;
 using Stocks.Core.Providers.SaveToDbProviders;
 using Stocks.Core.Services.StockList;
-using Stocks.Model.DCF;
+using Stocks.Model.FMP.DCF;
 
 namespace Stocks.Controllers
 {
-    //[ApiController]
-    //[Route("api/[controller]/[action]")]
+    [ApiController]
+    [Route("api/[controller]/[action]")]
     public class StocksController : ControllerBase
     {
         private readonly IDcfProvider _stockProvider;

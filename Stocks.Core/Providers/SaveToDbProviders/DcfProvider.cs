@@ -5,7 +5,7 @@ using Stocks.Core.Services.DCF;
 using Stocks.Core.Services.StockList;
 using Stocks.Data.Entities.DCF;
 using Stocks.Data.Repositories;
-using Stocks.Model.DCF;
+using Stocks.Model.FMP.DCF;
 
 namespace Stocks.Core.Providers.SaveToDbProviders
 {

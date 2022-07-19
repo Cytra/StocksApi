@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Stocks.Model.StockPrice;
+using Stocks.Model.FMP.StockPrice;
 
 namespace Stocks.Model.Shared
 {

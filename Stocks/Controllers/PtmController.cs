@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using IronPython.Modules;
 using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.PythonScripts;
-using Stocks.Model.Calendar;
+using Stocks.Model.FMP.Calendar;
 using Stocks.Model.Shared;
 
 namespace Stocks.Controllers

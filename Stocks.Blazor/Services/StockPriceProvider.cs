@@ -5,10 +5,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Stocks.Model.Calendar;
-using Stocks.Model.Reddit;
+using Stocks.Model.FMP.StockPrice;
 using Stocks.Model.Shared;
-using Stocks.Model.StockPrice;
 
 namespace Stocks.Blazor.Services
 {
@@ -22,11 +20,6 @@ namespace Stocks.Blazor.Services
         }
 
         public Task<List<StockPriceItem>> GetStockPrices(List<string> symbols)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<RedditDdDtoList> GetStockPricesForUi(List<RedditDdDto> dto, RedditOtherRequest request)
         {
             throw new NotImplementedException();
         }

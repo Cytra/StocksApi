@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Stocks.Model.DCF;
-using Stocks.Model.StockList;
+using Stocks.Model.FMP.DCF;
+using Stocks.Model.FMP.StockList;
 
 namespace Stocks.Core.Services.StockList
 {

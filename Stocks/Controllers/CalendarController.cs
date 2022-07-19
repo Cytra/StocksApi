@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Stocks.Model.Calendar;
+using Stocks.Model.FMP.Calendar;
 using Stocks.Model.Shared;
 
 namespace Stocks.Controllers
