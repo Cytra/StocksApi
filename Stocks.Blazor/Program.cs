@@ -18,7 +18,8 @@ namespace Stocks.Blazor
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            var apiUri = builder.HostEnvironment.BaseAddress;
+            //var apiUri = builder.HostEnvironment.BaseAddress;
+            var apiUri = "https://localhost:5001";
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
