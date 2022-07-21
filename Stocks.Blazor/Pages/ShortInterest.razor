@@ -40,12 +40,12 @@ else
                     <td>@item.Float</td>
                     <td>@item.OutStd</td>
                     <td>@item.Industry</td>
-                    <td>@item.Prices.Day.Performance.ToString("P2")</td>
-                    <td>@item.Prices.TwoDay.Performance.ToString("P2")</td>
-                    <td>@item.Prices.ThreeDay.Performance.ToString("P2")</td>
-                    <td>@item.Prices.Week.Performance.ToString("P2")</td>
-                    <td>@item.Prices.Month.Performance.ToString("P2")</td>
-                    <td>@item.Prices.ThreeMonths.Performance.ToString("P2")</td>
+                    <td>@item.Prices?.Day?.Performance?.ToString("P2")</td>
+                    <td>@item.Prices?.TwoDay?.Performance?.ToString("P2")</td>
+                    <td>@item.Prices?.ThreeDay?.Performance?.ToString("P2")</td>
+                    <td>@item.Prices?.Week?.Performance?.ToString("P2")</td>
+                    <td>@item.Prices?.Month?.Performance?.ToString("P2")</td>
+                    <td>@item.Prices?.ThreeMonths?.Performance?.ToString("P2")</td>
                 </tr>
                 }
             </tbody>

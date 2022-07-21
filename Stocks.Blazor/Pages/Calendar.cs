@@ -55,39 +55,72 @@ namespace Stocks.Blazor.Pages
                 To = DateTime.Now
             };
             var ismPmisManufacturing = await PtmProvider.GetIsmPmisManufacturing(ptmInput);
-            IsmPmisManufacturing = ismPmisManufacturing.OrderByDescending(x => x.date).ToList();
+            if(ismPmisManufacturing != null && ismPmisManufacturing.Count > 0)
+                IsmPmisManufacturing = ismPmisManufacturing.OrderByDescending(x => x.date).ToList();
+
             var ismPmisServices = await PtmProvider.GetIsmPmisServices(ptmInput);
-            IsmPmisServices = ismPmisServices.OrderByDescending(x => x.date).ToList();
+            if (ismPmisServices != null && ismPmisServices.Count > 0)
+                IsmPmisServices = ismPmisServices.OrderByDescending(x => x.date).ToList();
+
             var consumerSentimentMichigan = await PtmProvider.ConsumerSentimentMichigan(ptmInput);
-            ConsumerSentimentMichigan = consumerSentimentMichigan.OrderByDescending(x => x.date).ToList();
+            if (consumerSentimentMichigan != null && consumerSentimentMichigan.Count > 0)
+                ConsumerSentimentMichigan = consumerSentimentMichigan.OrderByDescending(x => x.date).ToList();
+            
             var buildingPermits = await PtmProvider.BuildingPermits(ptmInput);
-            BuildingPermits = buildingPermits.OrderByDescending(x => x.date).ToList();
+            if (buildingPermits != null && buildingPermits.Count > 0)
+                BuildingPermits = buildingPermits.OrderByDescending(x => x.date).ToList();
+            
             var nonfarmPayrolls = await PtmProvider.NonfarmPayrolls(ptmInput);
-            NonfarmPayrolls = nonfarmPayrolls.OrderByDescending(x => x.date).ToList();
+            if (nonfarmPayrolls != null && nonfarmPayrolls.Count > 0)
+                NonfarmPayrolls = nonfarmPayrolls.OrderByDescending(x => x.date).ToList();
+            
             var unemploymentRate = await PtmProvider.UnemploymentRate(ptmInput);
-            UnemploymentRate = unemploymentRate.OrderByDescending(x => x.date).ToList();
+            if (unemploymentRate != null && unemploymentRate.Count > 0) 
+                UnemploymentRate = unemploymentRate.OrderByDescending(x => x.date).ToList();
+            
             var durableGoods = await PtmProvider.DurableGoods(ptmInput);
-            DurableGoods = durableGoods.OrderByDescending(x => x.date).ToList();
+            if (durableGoods != null && durableGoods.Count > 0) 
+                DurableGoods = durableGoods.OrderByDescending(x => x.date).ToList();
+            
             var gdp = await PtmProvider.Gdp(ptmInput);
-            Gdp = gdp.OrderByDescending(x => x.date).ToList();
+            if (gdp != null && gdp.Count > 0)
+                Gdp = gdp.OrderByDescending(x => x.date).ToList();
+
             var unemploymentRateCH = await PtmProvider.UnemploymentRateCH(ptmInput);
-            UnemploymentRateCH = unemploymentRateCH.OrderByDescending(x => x.date).ToList();
+            if (unemploymentRateCH != null && unemploymentRateCH.Count > 0) 
+                UnemploymentRateCH = unemploymentRateCH.OrderByDescending(x => x.date).ToList();
+            
             var pmiCH = await PtmProvider.PmiCH(ptmInput);
-            PmiCH = pmiCH.OrderByDescending(x => x.date).ToList();
+            if (pmiCH != null && pmiCH.Count > 0) 
+                PmiCH = pmiCH.OrderByDescending(x => x.date).ToList();
+
             var gdpCH = await PtmProvider.GdpCH(ptmInput);
-            GdpCH = gdpCH.OrderByDescending(x => x.date).ToList();
+            if (gdpCH != null && gdpCH.Count > 0) 
+                GdpCH = gdpCH.OrderByDescending(x => x.date).ToList();
+
             var leadingIndicatorsCh = await PtmProvider.LeadingIndicatorsCh(ptmInput);
-            LeadingIndicatorsCh = leadingIndicatorsCh.OrderByDescending(x => x.date).ToList();
+            if (leadingIndicatorsCh != null && leadingIndicatorsCh.Count > 0) 
+                LeadingIndicatorsCh = leadingIndicatorsCh.OrderByDescending(x => x.date).ToList();
+            
             var markitServicesPmiEU = await PtmProvider.MarkitServicesPmiEU(ptmInput);
-            MarkitServicesPmiEU = markitServicesPmiEU.OrderByDescending(x => x.date).ToList();
+            if (markitServicesPmiEU != null && markitServicesPmiEU.Count > 0) 
+                MarkitServicesPmiEU = markitServicesPmiEU.OrderByDescending(x => x.date).ToList();
+            
             var unemploymentRateEU = await PtmProvider.UnemploymentRateEU(ptmInput);
-            UnemploymentRateEU = unemploymentRateEU.OrderByDescending(x => x.date).ToList();
+            if (unemploymentRateEU != null &&  unemploymentRateEU.Count > 0) 
+                UnemploymentRateEU = unemploymentRateEU.OrderByDescending(x => x.date).ToList();
+            
             var markitManufacturingPmiEU = await PtmProvider.MarkitManufacturingPmiEU(ptmInput);
-            MarkitManufacturingPmiEU = markitManufacturingPmiEU.OrderByDescending(x => x.date).ToList();
+            if (markitManufacturingPmiEU != null &&  markitManufacturingPmiEU.Count > 0) 
+                MarkitManufacturingPmiEU = markitManufacturingPmiEU.OrderByDescending(x => x.date).ToList();
+            
             var m3MoneySupplyEU = await PtmProvider.M3MoneySupplyEU(ptmInput);
-            M3MoneySupplyEU = m3MoneySupplyEU.OrderByDescending(x => x.date).ToList();
+            if (m3MoneySupplyEU != null &&  m3MoneySupplyEU.Count > 0) 
+                M3MoneySupplyEU = m3MoneySupplyEU.OrderByDescending(x => x.date).ToList();
+            
             var consumerConfidenceEU = await PtmProvider.ConsumerConfidenceEU(ptmInput);
-            ConsumerConfidenceEU = consumerConfidenceEU.OrderByDescending(x => x.date).ToList();
+            if (consumerConfidenceEU != null && consumerConfidenceEU.Count > 0) 
+                ConsumerConfidenceEU = consumerConfidenceEU.OrderByDescending(x => x.date).ToList();
         }
     }
 }

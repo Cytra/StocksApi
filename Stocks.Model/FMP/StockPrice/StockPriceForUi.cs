@@ -14,7 +14,7 @@ namespace Stocks.Model.Fmp.StockPrice
     }
     public class StockPriceForUi
     {
-        public decimal Performance { get; set; }
+        public decimal? Performance { get; set; }
     }
 
     public class StockPricesForUiRequest

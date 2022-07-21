@@ -16,7 +16,8 @@ namespace Stocks.Blazor.Pages
         public IStockPriceProvider StockPriceProvider { get; set; }
         [Inject]
         public IStockService IuiStockService { get; set; }
-        public List<Model.ShortInterest.ShortInterest> ShortInterests { get; set; }
+
+        public List<Model.ShortInterest.ShortInterest> ShortInterests { get; set; } = new ();
         protected override async Task OnInitializedAsync()
         {
             var shortInterests = await ShortInterestProvider.GetShortInterestList();
@@ -36,11 +37,13 @@ namespace Stocks.Blazor.Pages
                 foreach (var item in shortInterests)
                 {
                     var profileDoAdd = profiles.FirstOrDefault(x => x.Symbol == item.Ticker);
-                    item.MarketCap = profileDoAdd?.MktCap;
+                    if(profileDoAdd != null)
+                        item.MarketCap = profileDoAdd?.MktCap;
                 }
+
                 ShortInterests = shortInterests
-                    .OrderByDescending(x=> x.Prices.Day.Performance)
-                    .ThenByDescending(x => x.Prices.TwoDay.Performance)
+                    .OrderByDescending(x => x.Prices?.Day?.Performance)
+                    .ThenByDescending(x => x.Prices?.TwoDay?.Performance)
                     .ToList();
             }
             else
