@@ -1,4 +1,4 @@
-﻿namespace Stocks.Model.FMP.CompanyOutlook
+﻿namespace Stocks.Model.Fmp.CompanyOutlook
 {
 
     public class CompanyOutlookModel

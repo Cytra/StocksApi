@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Stocks.Model.FMP.FinancialStatements;
+using Stocks.Model.Fmp.FinancialStatements;
 
 namespace Stocks.Core.Services.FinancialStatements
 {

@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Stocks.Model.FMP.Calendar;
+using Stocks.Model.Fmp.Calendar;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Services

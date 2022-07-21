@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Stocks.Model.FMP.CompanyOutlook;
+using Stocks.Model.Fmp.CompanyOutlook;
 using Stocks.Model.Shared;
 
-namespace Stocks.Controllers
+namespace Stocks.Controllers.Fmp
 {
     [ApiController]
     [Route("api/[controller]/[action]")]

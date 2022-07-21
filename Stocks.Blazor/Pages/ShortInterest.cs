@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Stocks.Core.Extensions;
-using Stocks.Model.FMP.Profile;
+using Stocks.Model.Fmp.Profile;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Pages

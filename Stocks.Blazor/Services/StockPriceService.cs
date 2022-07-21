@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Stocks.Model.FMP.StockPrice;
+using Stocks.Model.Fmp.StockPrice;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Services

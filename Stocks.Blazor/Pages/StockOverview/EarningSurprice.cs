@@ -14,7 +14,7 @@ namespace Stocks.Blazor.Pages.StockOverview
         [Inject]
         public IStockService StockService { get; set; }
 
-        public List<Model.FMP.EarningSurprice.EarningSurprice> EarningSurpriceList { get; set; }
+        public List<Model.Fmp.EarningSurprice.EarningSurprice> EarningSurpriceList { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

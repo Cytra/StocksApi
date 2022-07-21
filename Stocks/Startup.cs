@@ -1,5 +1,6 @@
 using System;
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,8 @@ using Serilog;
 using Stocks.Core.Providers;
 using Stocks.Core.Providers.Other;
 using Stocks.Core.Providers.SaveToDbProviders;
-using Stocks.Core.PythonScripts;
+using Stocks.Core.Queries;
 using Stocks.Core.Scheduling;
-using Stocks.Core.Services;
 using Stocks.Core.Services.Calendar;
 using Stocks.Core.Services.DCF;
 using Stocks.Core.Services.Dividend;
@@ -75,7 +75,6 @@ namespace Stocks
             services.AddScoped<ICalendarService, CalendarService>();
             services.AddScoped<IShortInterestService, ShortInterestService>();
             services.AddScoped<IShortInterestProvider, ShortInterestProvider>();
-            services.AddScoped<IAtrService, AtrService>();
             services.AddScoped<IPtmProvider, PtmProvider>();
             services.AddScoped<IShortSqueezeProvider, ShortSqueezeProvider>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -107,6 +106,9 @@ namespace Stocks
                 client.Timeout = new TimeSpan(0, 0, 30);
                 client.DefaultRequestHeaders.Clear();
             });
+
+            //services.AddMediatR(typeof(TStartup).Assembly);
+            services.AddMediatR(typeof(StockPrice.Command).Assembly);
 
             services.AddOptions<AppSettings>().Bind(Configuration.GetSection("AppSettings"));
 

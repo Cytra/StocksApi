@@ -17,16 +17,10 @@ namespace Stocks.Data.Repositories
         Task DeleteDCF(string stock);
         Task SaveDividendCalendarEntities(List<DividendCalendarEntity> input);
         Task DeleteAllDividendCalendarEntities();
-        Task SaveDividendCalendarEntity(DividendCalendarEntity input);
-        Task DeleteAllStockPriceHistoricEntities();
-        Task SaveStockPriceHistoricEntities(List<StockPriceHistoricEntity> entities);
         Task DeleteSPYconstituentEntities();
         Task SaveSPYconstituentEntities(List<SPYconstituentEntity> entities);
-        Task DeleteIncomeStatementEntities();
         Task SaveIncomeStatementEntities(List<IncomeStatementEntity> entities);
-        Task DeleteStockProfileEntities();
         Task SaveStockProfileEntities(List<StockProfileEntity> entities);
-        Task DeleteBalanceSheetEntities();
         Task SaveBalanceSheetEntities(List<BalanceSheetEntity> entities);
         Task SaveDividendCalendarEntities2(List<DividendCalendarEntity2> entities);
         Task DeleteAllDividendCalendarEntities2();

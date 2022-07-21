@@ -9,11 +9,11 @@ using Stocks.Data.Entities.Index;
 using Stocks.Data.Entities.Portfolio;
 using Stocks.Data.Entities.Profile;
 using Stocks.Data.Entities.StockPrice;
-using Stocks.Model.FMP.DCF;
-using Stocks.Model.FMP.Dividend;
-using Stocks.Model.FMP.FinancialStatements;
-using Stocks.Model.FMP.Index;
-using Stocks.Model.FMP.StockPrice;
+using Stocks.Model.Fmp.DCF;
+using Stocks.Model.Fmp.Dividend;
+using Stocks.Model.Fmp.FinancialStatements;
+using Stocks.Model.Fmp.Index;
+using Stocks.Model.Fmp.StockPrice;
 using Stocks.Model.Portfolio;
 
 namespace Stocks.Core.Profiles
@@ -33,7 +33,7 @@ namespace Stocks.Core.Profiles
 
             CreateMap<IncomeStatement, IncomeStatementEntity>();
 
-            CreateMap<Model.FMP.Profile.StockProfile, StockProfileEntity>();
+            CreateMap<Model.Fmp.Profile.StockProfile, StockProfileEntity>();
 
             CreateMap<BalanceSheet, BalanceSheetEntity>();
 

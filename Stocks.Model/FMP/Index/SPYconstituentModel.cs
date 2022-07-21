@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.Index
+namespace Stocks.Model.Fmp.Index
 {
     public class SPYconstituentModel
     {

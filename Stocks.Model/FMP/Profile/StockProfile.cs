@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.Profile
+namespace Stocks.Model.Fmp.Profile
 {
     public class StockProfile
     {

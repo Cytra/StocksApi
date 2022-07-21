@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.KeyMetrics
+namespace Stocks.Model.Fmp.KeyMetrics
 {
     public class KeyMetrics
     {

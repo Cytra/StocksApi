@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Stocks.Model.FMP.Dividend;
+using Stocks.Model.Fmp.Dividend;
 
 namespace Stocks.Core.Services.Dividend
 {

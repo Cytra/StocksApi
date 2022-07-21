@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Stocks.Model.FMP.Calendar
+namespace Stocks.Model.Fmp.Calendar
 {
     public class EconomicCalendarResponse
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Stocks.Model.FMP.Calendar;
+using Stocks.Model.Fmp.Calendar;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Stocks.Samples

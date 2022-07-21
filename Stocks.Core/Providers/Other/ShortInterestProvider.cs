@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Stocks.Core.Services.ShortInterest;
-using Stocks.Model.FMP.StockPrice;
+using Stocks.Model.Fmp.StockPrice;
 using Stocks.Model.Shared;
 using Stocks.Model.ShortInterest;
 

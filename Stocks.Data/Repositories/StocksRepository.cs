@@ -41,24 +41,6 @@ namespace Stocks.Data.Repositories
             await _stocksContext.BulkDeleteAsync(dividends);
         }
 
-        public async Task SaveDividendCalendarEntity(DividendCalendarEntity input)
-        {
-            _stocksContext.DividendCalendarEntities.Add(input);
-            await _stocksContext.SaveChangesAsync();
-        }
-
-        public async Task DeleteAllStockPriceHistoricEntities()
-        {
-            var entities = await _stocksContext.StockPriceHistoricEntities.ToListAsync();
-            await _stocksContext.BulkDeleteAsync(entities);
-        }
-
-        public async Task SaveStockPriceHistoricEntities(List<StockPriceHistoricEntity> entities)
-        {
-            _stocksContext.StockPriceHistoricEntities.AddRange(entities);
-            await _stocksContext.SaveChangesAsync();
-        }
-
         public async Task DeleteSPYconstituentEntities()
         {
             var entities = await _stocksContext.SPYconstituentEntities.ToListAsync();
@@ -71,23 +53,12 @@ namespace Stocks.Data.Repositories
             await _stocksContext.SaveChangesAsync();
         }
 
-        public async Task DeleteIncomeStatementEntities()
-        {
-            var entities = await _stocksContext.IncomeStatementEntities.ToListAsync();
-            await _stocksContext.BulkDeleteAsync(entities);
-        }
-
         public async Task SaveIncomeStatementEntities(List<IncomeStatementEntity> entities)
         {
             _stocksContext.IncomeStatementEntities.AddRange(entities);
             await _stocksContext.SaveChangesAsync();
         }
 
-        public async Task DeleteStockProfileEntities()
-        {
-            var entities = await _stocksContext.StockProfileEntities.ToListAsync();
-            await _stocksContext.BulkDeleteAsync(entities);
-        }
 
         public async Task SaveStockProfileEntities(List<StockProfileEntity> entities)
         {
@@ -95,11 +66,6 @@ namespace Stocks.Data.Repositories
             await _stocksContext.SaveChangesAsync();
         }
 
-        public async Task DeleteBalanceSheetEntities()
-        {
-            var entities = await _stocksContext.BalanceSheetEntities.ToListAsync();
-            await _stocksContext.BulkDeleteAsync(entities);
-        }
 
         public async Task SaveBalanceSheetEntities(List<BalanceSheetEntity> entities)
         {

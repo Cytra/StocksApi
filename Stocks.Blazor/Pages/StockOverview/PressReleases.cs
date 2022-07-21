@@ -14,7 +14,7 @@ namespace Stocks.Blazor.Pages.StockOverview
         [Inject]
         public IStockService IuiStockService { get; set; }
 
-        public List<Model.FMP.PressReleases.PressReleases> PressReleasesList { get; set; }
+        public List<Model.Fmp.PressReleases.PressReleases> PressReleasesList { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

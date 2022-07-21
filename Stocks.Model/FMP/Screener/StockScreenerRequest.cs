@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Numerics;
 
-namespace Stocks.Model.FMP.Screener
+namespace Stocks.Model.Fmp.Screener
 {
     public class StockScreenerRequest
     {   

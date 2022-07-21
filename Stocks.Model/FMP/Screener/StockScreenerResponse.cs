@@ -1,4 +1,4 @@
-﻿namespace Stocks.Model.FMP.Screener
+﻿namespace Stocks.Model.Fmp.Screener
 {
     public class StockScreenerResponseList : ListModelBase<StockScreenerResponse>
     {

@@ -1,4 +1,4 @@
-﻿namespace Stocks.Model.FMP.StockList
+﻿namespace Stocks.Model.Fmp.StockList
 {
     public class StockScreenListItem
     {

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Stocks.Model.FMP.CompanyOutlook;
-using Stocks.Model.FMP.StockPrice;
+using Stocks.Model.Fmp.CompanyOutlook;
+using Stocks.Model.Fmp.StockPrice;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Pages.StockOverview

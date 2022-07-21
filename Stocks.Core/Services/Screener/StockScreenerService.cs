@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
 using Stocks.Core.Extensions;
 using Stocks.Model;
-using Stocks.Model.FMP.Screener;
+using Stocks.Model.Fmp.Screener;
 using Stocks.Model.Shared;
 
 namespace Stocks.Core.Services.Screener

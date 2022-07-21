@@ -4,7 +4,7 @@ using AutoMapper;
 using Stocks.Core.Services.FinancialStatements;
 using Stocks.Data.Entities.FinancialStatements;
 using Stocks.Data.Repositories;
-using Stocks.Model.FMP.FinancialStatements;
+using Stocks.Model.Fmp.FinancialStatements;
 
 namespace Stocks.Core.Providers.SaveToDbProviders
 {

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Stocks.Model.FMP.CompanyOutlook;
-using Stocks.Model.FMP.DCF;
-using Stocks.Model.FMP.EarningSurprice;
-using Stocks.Model.FMP.GainersLosers;
-using Stocks.Model.FMP.KeyMetrics;
-using Stocks.Model.FMP.PressReleases;
-using Stocks.Model.FMP.Profile;
-using Stocks.Model.FMP.Rating;
-using Stocks.Model.FMP.SecFillings;
+using Stocks.Model.Fmp.CompanyOutlook;
+using Stocks.Model.Fmp.DCF;
+using Stocks.Model.Fmp.EarningSurprice;
+using Stocks.Model.Fmp.GainersLosers;
+using Stocks.Model.Fmp.KeyMetrics;
+using Stocks.Model.Fmp.PressReleases;
+using Stocks.Model.Fmp.Profile;
+using Stocks.Model.Fmp.Rating;
+using Stocks.Model.Fmp.SecFillings;
 
 namespace Stocks.Model.Shared
 {

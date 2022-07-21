@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.SecFillings
+namespace Stocks.Model.Fmp.SecFillings
 {
     public class SecFillings
     {

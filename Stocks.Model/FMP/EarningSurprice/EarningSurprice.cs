@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.EarningSurprice;
+namespace Stocks.Model.Fmp.EarningSurprice;
 
 public class EarningSurprice
 {

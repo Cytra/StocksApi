@@ -1,4 +1,4 @@
-﻿namespace Stocks.Model.FMP.GainersLosers
+﻿namespace Stocks.Model.Fmp.GainersLosers
 {
     public class GainersLosers
     {

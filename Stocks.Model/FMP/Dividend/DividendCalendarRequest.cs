@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Stocks.Model.FMP.Dividend
+namespace Stocks.Model.Fmp.Dividend
 {
     public class DividendCalendarRequest
     {

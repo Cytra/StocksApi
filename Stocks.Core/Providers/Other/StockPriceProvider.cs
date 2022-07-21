@@ -11,7 +11,7 @@ using Stocks.Core.Helpers;
 using Stocks.Core.Services.StockList;
 using Stocks.Core.Services.StockPrice;
 using Stocks.Model;
-using Stocks.Model.FMP.StockPrice;
+using Stocks.Model.Fmp.StockPrice;
 using Stocks.Model.Shared;
 
 namespace Stocks.Core.Providers.Other

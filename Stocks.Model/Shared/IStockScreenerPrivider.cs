@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Stocks.Model.FMP.Screener;
+using Stocks.Model.Fmp.Screener;
 
 namespace Stocks.Model.Shared
 {

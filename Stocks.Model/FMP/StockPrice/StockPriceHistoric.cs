@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Stocks.Model.FMP.StockPrice
+namespace Stocks.Model.Fmp.StockPrice
 {
     public class StockPriceHistoric
     {

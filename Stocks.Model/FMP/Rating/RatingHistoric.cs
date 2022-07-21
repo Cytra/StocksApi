@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.Rating
+namespace Stocks.Model.Fmp.Rating
 {
     public class RatingHistoric
     {

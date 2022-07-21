@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Stocks.Model.FMP.Calendar
+namespace Stocks.Model.Fmp.Calendar
 {
     public class CalendarRequest
     {

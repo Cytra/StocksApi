@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Stocks.Core.Providers;
 using Stocks.Core.Providers.SaveToDbProviders;
 
-namespace Stocks.Controllers
+namespace Stocks.Controllers.Fmp
 {
-    //[ApiController]
-    //[Route("api/[controller]/[action]")]
-    public class IndexController : ControllerBase
+    [ApiController]
+    [Route("api/[controller]/[action]")]
+    public class StockIndexController : ControllerBase
     {
         private readonly ISPYconstituentProvider _SPYconstituentProvider;
-        public IndexController(ISPYconstituentProvider spYconstituentProvider)
+        public StockIndexController(ISPYconstituentProvider spYconstituentProvider)
         {
             _SPYconstituentProvider = spYconstituentProvider;
         }

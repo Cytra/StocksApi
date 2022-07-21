@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.PressReleases
+namespace Stocks.Model.Fmp.PressReleases
 {
     public class PressReleases
     {

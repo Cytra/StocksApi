@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.Calendar
+namespace Stocks.Model.Fmp.Calendar
 {
     public class EarningCalendarResponseItem
     {

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Stocks.Model;
-using Stocks.Model.FMP.DCF;
-using Stocks.Model.FMP.StockList;
+using Stocks.Model.Fmp.DCF;
+using Stocks.Model.Fmp.StockList;
 
 namespace Stocks.Core.Services.StockList
 {

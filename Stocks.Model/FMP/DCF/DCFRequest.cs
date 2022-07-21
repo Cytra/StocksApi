@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.DCF
+namespace Stocks.Model.Fmp.DCF
 {
     public class DCFRequest
     {

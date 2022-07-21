@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.StockPrice
+namespace Stocks.Model.Fmp.StockPrice
 {
     public class StockPriceHistoricSimpleItem
     {

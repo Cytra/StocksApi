@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stocks.Model.FMP.FinancialStatements
+namespace Stocks.Model.Fmp.FinancialStatements
 {
     public class BalanceSheet
     {

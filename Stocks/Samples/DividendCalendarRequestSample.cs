@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Stocks.Model.FMP.Dividend;
+using Stocks.Model.Fmp.Dividend;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Stocks.Samples

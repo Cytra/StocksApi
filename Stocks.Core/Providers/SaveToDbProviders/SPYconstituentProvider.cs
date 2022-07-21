@@ -4,7 +4,7 @@ using AutoMapper;
 using Stocks.Core.Services.Index;
 using Stocks.Data.Entities.Index;
 using Stocks.Data.Repositories;
-using Stocks.Model.FMP.Index;
+using Stocks.Model.Fmp.Index;
 
 namespace Stocks.Core.Providers.SaveToDbProviders
 {

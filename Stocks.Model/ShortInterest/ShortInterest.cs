@@ -1,4 +1,4 @@
-﻿using Stocks.Model.FMP.StockPrice;
+﻿using Stocks.Model.Fmp.StockPrice;
 
 namespace Stocks.Model.ShortInterest
 {

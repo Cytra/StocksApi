@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Stocks.Model.FMP.Calendar;
+using Stocks.Model.Fmp.Calendar;
 
 namespace Stocks.Model.Shared
 {

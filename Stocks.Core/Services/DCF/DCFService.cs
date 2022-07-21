@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Stocks.Model;
-using Stocks.Model.FMP.Dividend;
+using Stocks.Model.Fmp.Dividend;
 
 namespace Stocks.Core.Services.DCF
 {

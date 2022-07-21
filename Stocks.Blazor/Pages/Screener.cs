@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Stocks.Model.FMP.Screener;
+using Stocks.Model.Fmp.Screener;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Pages

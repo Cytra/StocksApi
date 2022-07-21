@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Stocks.Model.FMP.StockPrice;
+using Stocks.Model.Fmp.StockPrice;
 using Stocks.Model.Shared;
 
 namespace Stocks.Blazor.Services

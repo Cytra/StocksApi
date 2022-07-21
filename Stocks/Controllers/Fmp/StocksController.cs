@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Stocks.Core.Providers;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Stocks.Core.Providers.SaveToDbProviders;
 using Stocks.Core.Services.StockList;
-using Stocks.Model.FMP.DCF;
+using Stocks.Model.Fmp.DCF;
 
-namespace Stocks.Controllers
+namespace Stocks.Controllers.Fmp
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
@@ -30,9 +29,9 @@ namespace Stocks.Controllers
 
         [HttpPost]
         public async Task<IActionResult> GetSortedStockList(DCFRequest request)
-        { 
+        {
             var result = await _stockListService.GetSortedStocks(request);
-            return Ok(result.Count);  
+            return Ok(result.Count);
         }
 
         [HttpGet]
